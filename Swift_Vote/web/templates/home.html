@@ -1,0 +1,168 @@
+<html>
+    <head>
+        <title>Home|Swift Vote</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+        <style>
+            /*Navigation Bar Styling*/
+            .nav-menu li{
+                display: inline;
+                list-style: none;
+                margin: 10px;
+            }
+            .nav-links{
+                background-color:white;
+                color: black;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display:inline-block;
+                margin-top: 32px;
+            }
+           .nav-links:hover {
+                background-color: rgb(206, 206, 252);
+                color: rgb(0, 0, 0);
+                }
+
+            /* Carousel Styling*/
+            .carousel-inner{
+                width: 98%;
+                margin: 0 auto;
+                margin-bottom: 10px;
+            }
+
+            .carousel-inner img{
+                height: 400px;                
+            }
+
+            /*News Cards*/
+            .card{
+                
+                margin-bottom: 10px;
+            }
+     
+        </style>
+    </head>
+    <body>
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-light " style="margin:10px; background-color: white;">
+            <a class="navbar-brand" href="#">
+                <!--Logo-->
+            <img src="CaptureLogo.PNG" width="152px" height="80px" class="d-inline-block align-top" alt="Swift-Vote" style="margin-left: 10px;">
+            </a>
+            <!--Navigation Bar Menu Items-->
+            <ul class="nav-menu">
+                <li><a class="nav-links" href='#'>HOME</a></li>
+                <li><a class="nav-links" href='#'>LOGIN</a></li>
+                <li><a class="nav-links" href='#'>REGISTER</a></li>
+                <li><a class="nav-links" href='#'>NEWS</a></li>
+                <li><a class="nav-links" href='#'>MORE</a></li>
+            </ul>   
+        </nav>
+        <!--Carousel To Display News Or Other Related Posts-->
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <!--Slide 1-->
+            <div class="carousel-inner">
+              <div class="carousel-item active ">
+                <img src="vote1.jpg" class="d-block w-100 " alt="..." >
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>First slide label</h5>
+                  <p>Some representative placeholder content for the first slide.</p>
+                </div>
+              </div>
+              <!--Slide 2-->
+              <div class="carousel-item ">
+                <img src="vote2.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>Second slide label</h5>
+                  <p>Some representative placeholder content for the second slide.</p>
+                </div>
+              </div>
+              <!--Slide 3-->
+              <div class="carousel-item ">
+                <img src="vote3.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5>Third slide label</h5>
+                  <p>Some representative placeholder content for the third slide.</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+          <!--News Flash Nav-Bar-->
+          <ul class="nav" style="margin-bottom: 10px;">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#" style="font-size: 20px;">CURRENTLY TRENDING</a>
+            </li>
+          </ul>
+
+          <!--News Cards-->
+          <div class="container" style="margin-left:20px;">
+            <div class="row">
+              <div class="col">
+                  <!--Card-1-->
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <!--Card-2-->
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                <!--Card-3-->  
+                <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div></div>
+              <div class="col">
+                  <!--Card-4-->
+                  <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div></div>
+            </div>
+            
+          </div>
+        
+                    
+
+        
+
+    </body>
+</html>
