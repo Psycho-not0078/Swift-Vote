@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/Update page.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><b>SwiftVote</b></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#"> HOME</a></li>
+                    <li><a href="#"> NEWS</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> REGISTER</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title text-center main_heading">Update Profile</h4>
+                    <form action="sellBooks" enctype="multipart/form-data" method="POST">
+                        <div class="row">
+                            <div class="col">
+                                <br>
+                                <label for="upd">Select field which you want to Update</label>
+                                <select required id="upd" name="upd">
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="name">Name</option>
+                                    <option value="dob">Date of Birth</option>
+                                    <option value="add">Address</option>
+                                    <option value="photo">Photo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <br>
+                                <label for="oldv">Old Value</label>
+                                <input type="text" id="oldv" name="oldv" placeholder="***Shows Old Value***">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <label for="newv">New Value</label>
+                                <input required type="text" id="newv" name="newv" placeholder="Enter New Value">
+                            </div>
+                        </div>
+                        <input type="submit" value="Send Request">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
