@@ -13,6 +13,9 @@ services:
     image: jenkins/jenkins:lts
     privileged: true
     user: root
+    restart: always
+    environment:
+      JAVA_OPTS: "-Djava.awt.headless=true -Xmx512m -Xms512m -Djava.util.logging.config.file=/var/jenkins_home/log.properties"
     ports:
       - 8081:8080
       - 50000:50000
@@ -32,7 +35,7 @@ services:
     extends:
       service: web
     command: python manage.py migrate
-    
+
   web_run:
     extends:
       service: web
