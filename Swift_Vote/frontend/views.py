@@ -10,3 +10,5 @@ def login(request):
 def error(request):
     return render(request,"errorpage.html")
 
+def register(request):
+    return render(request,"Sign Up.html")

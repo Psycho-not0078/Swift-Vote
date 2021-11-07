@@ -1,3 +1,4 @@
+{% load static %}
 <html>
     <head>
         <title>Home|Swift Vote</title>
@@ -67,7 +68,7 @@
         <nav class="navbar navbar-light " style="margin:10px; background-color: rgb(206, 206, 252)">
             <a class="navbar-brand" href="#">
                 <!--Logo-->
-            <img src="CaptureLogo.PNG" width="152px" height="80px" class="d-inline-block align-top" alt="Swift-Vote" style="margin-left: 10px;">
+            <img src="{% static 'images\CaptureLogo.PNG' %}" width="152px" height="80px" class="d-inline-block align-top" alt="Swift-Vote" style="margin-left: 10px;">
             </a>
             <!--Navigation Bar Menu Items-->
             <ul class="nav-menu">
@@ -130,12 +131,12 @@
                 </div>
 
                 <div class="col">
-                  <img src="CaptureLogo.PNG" width="152px" height="80px" class="d-inline-block align-top" alt="Swift-Vote" style="margin-left: 10px; margin-top: 10px;">
+                  <img src="{% static 'images\CaptureLogo.PNG' %}" width="152px" height="80px" class="d-inline-block align-top" alt="Swift-Vote" style="margin-left: 10px; margin-top: 10px;">
                 </div>
               </div>
             </div>
 
-            <p>SwfitVote © 2021</p>
+            <p>SwiftVote © 2021</p>
             
           </footer>
           
