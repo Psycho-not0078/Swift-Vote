@@ -12,3 +12,21 @@ def error(request):
 
 def register(request):
     return render(request,"Sign Up.html")
+
+def candidateDB(request):
+    return render(request,"candidate_db.html")
+
+def ecDB(request):
+    return render(request,"ec_db.html")
+
+def electionSetting(request):
+    return render(request,"ElectionSetting.html")
+
+def myAccount(request):
+    return render(request,"MyAccount.html")
+
+def updateProfile(request):
+    return render(request,"UpdateProfile.html")
+
+def voterDB(request):
+    return render(request,"voter_db.html")
