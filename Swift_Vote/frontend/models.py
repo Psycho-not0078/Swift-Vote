@@ -8,10 +8,10 @@ from django.db.models.base import Model
 from django.db.models.fields.related import ForeignKey
 
 uType=(("official","Official"),("Voter","Voter"),("Candidate","Candidate"))
-aType=(("official","Official"),("Normie","Normie"))
+aType=(("official","Official"),("normie","Normie"))
 class userDetails(AbstractUser):
     uid=models.AutoField(primary_key=True)
-    email=models.EmailField(_("email_address"))
+    email=models.EmailField("email_address")
     fName=models.CharField(max_length=30)
     lName=models.CharField(max_length=30)
     contactNumber=models.CharField(max_length=10)
