@@ -69,13 +69,15 @@
           <div class="col-lg-7 px-5 pt-5">
             <h1 class="font-weight-bold py-3">Sign Up</h1>
             <h4>Sign Up by creating an account.</h4>
-            <form>
+            <form action="register" method="POST">
+              {% csrf_token %}
               <div class="form-row">
                 <div class="col-lg-7">
                   <input
                     type="email"
                     placeholder="Email-Address"
                     class="form-control my-4 p-2"
+                    name="Email"
                   />
                 </div>
               </div>
@@ -85,6 +87,7 @@
                     type="password"
                     placeholder="********"
                     class="form-control my-4 p-2"
+                    name="Password"
                   />
                 </div>
               </div>
