@@ -14,7 +14,7 @@ class userDetails(AbstractUser):
     contactNumber=models.CharField(max_length=10)
     username=models.CharField(max_length=30)
     DOB=models.DateField()
-    documentLocation=models.CharField(max_length=500)
+    documentLocation=models.CharField(max_length=500,null=True,blank=True)
     # password=models.TextField()
     Address=models.TextField()
     type=models.CharField(
@@ -27,7 +27,7 @@ class userDetails(AbstractUser):
 
 
 class Accounts(models.Model):
-    aid=models.IntegerField(primary_key=True)
+    aid=models.AutoField(primary_key=True)
     accountType=models.CharField(
         max_length = 20,
         choices = aType,
@@ -37,4 +37,6 @@ class Accounts(models.Model):
     accountPublic=models.TextField()
     assigned_to = models.ForeignKey(userDetails,to_field="uid",null=True,blank=True)
 
+class location(models.Model):
+    lid=models
     
