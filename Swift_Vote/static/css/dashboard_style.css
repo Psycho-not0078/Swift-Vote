@@ -202,6 +202,7 @@ body {
 .right .stock-fullname {
   font-size: 15px;
   color: #808080;
+  
 }
 .right .stock-value {
   flex: 1;

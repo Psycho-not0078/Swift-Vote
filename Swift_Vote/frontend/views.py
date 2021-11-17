@@ -59,3 +59,12 @@ def updateProfile(request):
 
 def voterDB(request):
     return render(request,"voter_db.html")
+
+def createElection(request):
+    return render(request,"create_election.html")
+
+def disableElection(request):
+    return render(request,"disable_election.html")
+
+def electionHistory(request):
+    return render(request,"election_history.html")
