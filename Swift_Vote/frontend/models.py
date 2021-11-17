@@ -1,4 +1,4 @@
-from typing_extensions import Required
+# from typing_extensions import Required
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
@@ -42,7 +42,7 @@ class Accounts(models.Model):
     accountString=models.CharField(max_length=250)
     accountPrivate=models.TextField()
     accountPublic=models.TextField()
-    assigned_to = models.ForeignKey(userDetails,to_field="uid",null=True,blank=True)
+    assigned_to = models.ForeignKey(userDetails,to_field="uid",null=True,blank=True,on_delete=models.CASCADE)
 
 class location(models.Model):
     lid=models.AutoField(primary_key=True)
@@ -57,7 +57,7 @@ class election(models.Model):
     voteCount=models.BigIntegerField()
     sDate=models.DateTimeField()
     fDate=models.DateTimeField()
-    inCharge=models.ForeignKey(userDetails,null=True,blank=True,to_field="uid")
+    inCharge=models.ForeignKey(userDetails,null=True,blank=True,to_field="uid",on_delete=models.CASCADE)
 
 class candidateHistory(models.Model):
     hid=models.AutoField(primary_key=True)
@@ -67,7 +67,7 @@ class candidateHistory(models.Model):
 
 class userVerification(models.Model):
     vid=models.AutoField(primary_key=True)
-    uid=models.models.ForeignKey(candidates,on_delete=models.CASCADE,to_field="cid")
+    uid=models.ForeignKey(candidates,on_delete=models.CASCADE,to_field="cid")
     documentType=models.CharField(max_length=50)
     documentName=models.CharField(max_length=50)
     Status=models.BooleanField()

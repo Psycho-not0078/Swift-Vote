@@ -71,7 +71,7 @@
             <h4>Sign Up by creating an account.</h4>
             <form action="register" method="POST">
               {% csrf_token %}
-              <div class="form-row">
+              <!-- <div class="form-row">
                 <div class="col-lg-7">
                   <input
                     type="email"
@@ -126,7 +126,8 @@
                 <label class="form-check-label" for="flexRadioDefault2">
                   Auctioneer
                 </label>
-              </div>
+              </div> -->
+              {{ form.as_p }}  
               <div class="form-row">
                 <div class="col-lg-7">
                   <button type="button" class="btn1 mt-3 mb-5">SIGN UP</button>
