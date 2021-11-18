@@ -33,6 +33,7 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - web-migrate
   db:
     image: mysql
     ports:
@@ -42,6 +43,16 @@ services:
        MYSQL_USER: 'root'
        MYSQL_PASSWORD: 'password'
        MYSQL_ROOT_PASSWORD: 'password'
+  
+  web-migrate:
+    build: .
+    command: python manage.py makemigrations && python manage.py migrate
+    volumes:
+      - .:/my_app_dir
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
 
 
   
