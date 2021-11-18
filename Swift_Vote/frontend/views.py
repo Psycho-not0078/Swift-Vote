@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-# from .models import userDetails
+from .models import userDetails
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import auth
 from .forms import UserForm
@@ -8,20 +8,20 @@ def index(request):
     return render(request,"home.html")
 
 def login(request):
-    # if request.method == 'POST':
-    #     email = str(request.POST['email']).lower()
-    #     password = request.POST['password']
-    #     try:
-    #         user = userDetails.objects.get(email=email)
-    #         if check_password(password, user.password):
-    #             user = auth.authenticate(request, email=email, password=password)
-    #             auth.login(request, user)
-    #             return redirect('/')
-    #         else:
-    #             return render(request, 'Log In.html', {'msg': 'Invalid Credentials'})
-    #     except Exception as e:
-    #         return render(request, 'Log In.html', {'msg': 'Invalid Credentials' + str(e)})
-    # else:
+    if request.method == 'POST':
+        email = str(request.POST['email']).lower()
+        password = request.POST['password']
+        try:
+            user = userDetails.objects.get(email=email)
+            if check_password(password, user.password):
+                user = auth.authenticate(request, email=email, password=password)
+                auth.login(request, user)
+                return redirect('/')
+            else:
+                return render(request, 'Log In.html', {'msg': 'Invalid Credentials'})
+        except Exception as e:
+            return render(request, 'Log In.html', {'msg': 'Invalid Credentials' + str(e)})
+    else:
         return render(request,"Log In.html")
 
 def register(request):
