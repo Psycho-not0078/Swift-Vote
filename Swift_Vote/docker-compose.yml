@@ -49,8 +49,6 @@ services:
     command: python manage.py makemigrations && python manage.py migrate
     volumes:
       - .:/my_app_dir
-    ports:
-      - "8000:8000"
     depends_on:
       - db
 
