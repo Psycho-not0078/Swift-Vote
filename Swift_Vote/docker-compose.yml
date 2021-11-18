@@ -2,7 +2,7 @@ version: '3'
 services:
   geth:
     image: ethereum/client-go
-    command: --datadir=/root/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322 --rpcapi "db,personal,eth,net,web3" --rpccorsdomain='*' --networkid=1234 --rpc --rpcaddr="0.0.0.0" init=/root/files/genesis.json
+    command: --datadir=/root/.ethereum/devchain  --http --http.addr 0.0.0.0 --http.corsdomain "*" --http.api "admin,debug,web3,eth,txpool,personal,ethash,miner,net" --allow-insecure-unlock init=/root/files/genesis.json
     volumes:
       - ./genesis.json:/root/files/geth/genesis.json:ro
     ports:

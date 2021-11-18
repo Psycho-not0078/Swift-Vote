@@ -1,29 +1,18 @@
 import solcx
 import web3
-source = "./contract.sol"
-file = "counter.sol"
-spec = {
-            "language": "Solidity",
-            "sources": {
-                file: {
-                    "urls": [source]
-                }
-            },
-            "settings": {
-                "optimizer": {
-                        "enabled": True
-                    },
-                "outputSelection": {
-                        "*": {"*": ["metadata", "evm.bytecode", "abi"]}
-                }
-            }
-        }
-out = solcx.compile_standard(spec, allow_paths=".")
-
-w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
-from web3.middleware import geth_poa_middleware
-w3.middleware_onion.inject(geth_poa_middleware, layer=0)
-print(w3.isConnected())
+from web3.main import Web3
+out=solcx.compile_files(
+    ["/home/psych/github_related_stuff/Swift-Vote/Swift_Vote/backend/static/other/contract/elections.sol"],
+    output_values=["abi","bin"]
+)
+contract_id, contract_interface=out.popitem()
+# print(contract_interface['bin'])
+abi=contract_interface['abi']
+bytecode=contract_interface['bin']
+w3=Web3("http:localhost:8545/")
 
 
+
+# class solWarper():
+    
 # print(out)
