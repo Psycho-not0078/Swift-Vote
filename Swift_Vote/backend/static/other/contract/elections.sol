@@ -44,7 +44,7 @@ contract Election {
     
     function addUser(address _ad) public{
         //function to add users, be it candidates or voters or officials.
-        require(users[userAddress[_ad]].ablity_to_add==1,"the role doesnt allow it");
+        require(users[userAddress[msg.sender]].ablity_to_add==1,"the role doesnt allow it");
         userCount+=1;
         userAddress[_ad]=userCount;
         users[userAddress[_ad]]=user(userCount,0,0);
@@ -80,7 +80,7 @@ contract Election {
     
     function addCandidate( address _ad,string memory _name, string memory _location) public {
         //function to add a candidate to the system
-        require(users[userAddress[_ad]].ablity_to_add==1,"the role doesnt allow it");
+        require(users[userAddress[msg.sender]].ablity_to_add==1,"the role doesnt allow it");
         candidateCount+=1;
         candidateAddress[_ad]=candidateCount;
         candidates[candidateAddress[_ad]]=candidate(candidateCount, _name, _location);
