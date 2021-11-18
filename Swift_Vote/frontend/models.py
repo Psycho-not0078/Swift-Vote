@@ -15,8 +15,8 @@ class userDetails(AbstractUser):
     fName=models.CharField(max_length=30)
     lName=models.CharField(max_length=30)
     contactNumber=models.CharField(max_length=10)
-    username=models.CharField(max_length=30)
-    DOB=models.DateField()
+    username=models.CharField(max_length=30,unique=True)
+    dob=models.DateField()
     documentLocation=models.CharField(max_length=500,null=True,blank=True)
     # password=models.TextField()
     Address=models.TextField()
@@ -25,13 +25,13 @@ class userDetails(AbstractUser):
         choices = uType,
         )
     USERNAME_FIELD='username'
-    REQUIRED_FIELDS=['Fname','Lname','contactNumber','username','email','DOB',"documentLocation"]
+    REQUIRED_FIELDS=['Fname','Lname','contactNumber','email','DOB',"documentLocation"]
     EMAIL_FIELD='email'
 
 class candidates(models.Model):
     cid=models.AutoField(primary_key=True)
     uid=models.ForeignKey(userDetails,on_delete=models.CASCADE)
-    party=models.CharField(primary_key=True)
+    party=models.CharField(max_length=60)
 
 class Accounts(models.Model):
     aid=models.AutoField(primary_key=True)
@@ -75,5 +75,3 @@ class userVerification(models.Model):
 class Vote(models.Model):
     uid=models.ForeignKey(userDetails,on_delete=models.CASCADE,to_field="uid")
     eid=models.ForeignKey(election,on_delete=models.CASCADE,to_field="eid")
-
-    
