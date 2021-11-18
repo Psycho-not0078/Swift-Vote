@@ -1,29 +1,40 @@
 from django.shortcuts import render,redirect
-# from .models import userDetails
+from .models import userDetails
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import auth
+from .forms import UserForm
 # Create your views here.
 def index(request):
     return render(request,"home.html")
 
 def login(request):
-    # if request.method == 'POST':
-    #     email = str(request.POST['email']).lower()
-    #     password = request.POST['password']
-    #     try:
-    #         user = userDetails.objects.get(email=email)
-    #         if check_password(password, user.password):
-    #             user = auth.authenticate(request, email=email, password=password)
-    #             auth.login(request, user)
-    #             return redirect('/')
-    #         else:
-    #             return render(request, 'Log In.html', {'msg': 'Invalid Credentials'})
-    #     except Exception as e:
-    #         return render(request, 'Log In.html', {'msg': 'Invalid Credentials' + str(e)})
-    # else:
+    if request.method == 'POST':
+        email = str(request.POST['email']).lower()
+        password = request.POST['password']
+        try:
+            user = userDetails.objects.get(email=email)
+            if check_password(password, user.password):
+                user = auth.authenticate(request, email=email, password=password)
+                auth.login(request, user)
+                return redirect('/')
+            else:
+                return render(request, 'Log In.html', {'msg': 'Invalid Credentials'})
+        except Exception as e:
+            return render(request, 'Log In.html', {'msg': 'Invalid Credentials' + str(e)})
+    else:
         return render(request,"Log In.html")
 
 def register(request):
+    context ={}
+  
+    # create object of form
+    form = UserForm(request.POST or None, request.FILES or None)
+      
+    # check if form data is valid
+    if form.is_valid():
+        form.save()
+    context['form']= form
+    return render(request,"Sign Up.html",context)
     # if request.method == 'POST':
     #     email = request.POST['Email']
     #     pwd = request.POST['Password']
@@ -33,7 +44,7 @@ def register(request):
     #     user.save()
     #     return redirect('/login')
     # else:
-        return render(request,"Sign Up.html")
+        # return render(request,"Sign Up.html")
 
 def logout(request):
     auth.logout(request)

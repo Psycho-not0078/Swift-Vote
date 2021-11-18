@@ -100,9 +100,16 @@
       </a>
       <!--Navigation Bar Menu Items-->
       <ul class="nav-menu">
-        <li><a class="nav-links" href="#">HOME</a></li>
-        <li><a class="nav-links" href="#">LOGIN</a></li>
-        <li><a class="nav-links" href="#">REGISTER</a></li>
+        {% if user.is_authenticated %}
+        <li>
+          <a class="nav-links" href="login">Hi {{user.fName}} {{user.lName}}</a>
+          <li><a class="nav-links" href="/">HOME</a></li>
+        </li>
+        {% else %}
+        <li><a class="nav-links" href="/">HOME</a></li>
+        <li><a class="nav-links" href="login">LOGIN</a></li>
+        <li><a class="nav-links" href="register">REGISTER</a></li>
+        {% endif %}
         <li><a class="nav-links" href="#">NEWS</a></li>
         <li><a class="nav-links" href="#">MORE</a></li>
       </ul>

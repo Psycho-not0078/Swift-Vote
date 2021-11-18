@@ -1,4 +1,4 @@
-from typing_extensions import Required
+# from typing_extensions import Required
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
@@ -15,8 +15,8 @@ class userDetails(AbstractUser):
     fName=models.CharField(max_length=30)
     lName=models.CharField(max_length=30)
     contactNumber=models.CharField(max_length=10)
-    username=models.CharField(max_length=30)
-    DOB=models.DateField()
+    username=models.CharField(max_length=30,unique=True)
+    dob=models.DateField()
     documentLocation=models.CharField(max_length=500,null=True,blank=True)
     # password=models.TextField()
     Address=models.TextField()
@@ -25,13 +25,13 @@ class userDetails(AbstractUser):
         choices = uType,
         )
     USERNAME_FIELD='username'
-    REQUIRED_FIELDS=['Fname','Lname','contactNumber','username','email','DOB',"documentLocation"]
+    REQUIRED_FIELDS=['Fname','Lname','contactNumber','email','DOB',"documentLocation"]
     EMAIL_FIELD='email'
 
 class candidates(models.Model):
     cid=models.AutoField(primary_key=True)
     uid=models.ForeignKey(userDetails,on_delete=models.CASCADE)
-    party=models.CharField(primary_key=True)
+    party=models.CharField(max_length=60)
 
 class Accounts(models.Model):
     aid=models.AutoField(primary_key=True)
@@ -42,7 +42,7 @@ class Accounts(models.Model):
     accountString=models.CharField(max_length=250)
     accountPrivate=models.TextField()
     accountPublic=models.TextField()
-    assigned_to = models.ForeignKey(userDetails,to_field="uid",null=True,blank=True)
+    assigned_to = models.ForeignKey(userDetails,to_field="uid",null=True,blank=True,on_delete=models.CASCADE)
 
 class location(models.Model):
     lid=models.AutoField(primary_key=True)
@@ -57,7 +57,7 @@ class election(models.Model):
     voteCount=models.BigIntegerField()
     sDate=models.DateTimeField()
     fDate=models.DateTimeField()
-    inCharge=models.ForeignKey(userDetails,null=True,blank=True,to_field="uid")
+    inCharge=models.ForeignKey(userDetails,null=True,blank=True,to_field="uid",on_delete=models.CASCADE)
 
 class candidateHistory(models.Model):
     hid=models.AutoField(primary_key=True)
@@ -67,7 +67,7 @@ class candidateHistory(models.Model):
 
 class userVerification(models.Model):
     vid=models.AutoField(primary_key=True)
-    uid=models.models.ForeignKey(candidates,on_delete=models.CASCADE,to_field="cid")
+    uid=models.ForeignKey(candidates,on_delete=models.CASCADE,to_field="cid")
     documentType=models.CharField(max_length=50)
     documentName=models.CharField(max_length=50)
     Status=models.BooleanField()
@@ -75,5 +75,3 @@ class userVerification(models.Model):
 class Vote(models.Model):
     uid=models.ForeignKey(userDetails,on_delete=models.CASCADE,to_field="uid")
     eid=models.ForeignKey(election,on_delete=models.CASCADE,to_field="eid")
-
-    
