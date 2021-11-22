@@ -2,7 +2,7 @@ version: '3'
 services:
   geth:
     image: ethereum/client-go
-    command: --datadir=/root/.ethereum/devchain  --http --http.addr 0.0.0.0 --http.corsdomain "*" --http.api "admin,debug,web3,eth,txpool,personal,ethash,miner,net" --allow-insecure-unlock init=/root/files/genesis.json
+    command: --datadir=/root/.ethereum/devchain  --http --http.addr 0.0.0.0 --http.corsdomain "*" --http.api "admin,debug,web3,eth,txpool,personal,ethash,miner,net" --allow-insecure-unlock 
     volumes:
       - ./genesis.json:/root/files/geth/genesis.json:ro
     ports:
@@ -21,9 +21,12 @@ services:
       - 50000:50000
     container_name: jenkins
     volumes:
-      - ~/jenkins:/var/jenkins_home
+      - ~/jenkins:/var/jenkins_home 
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/local/bin/docker:/usr/local/bin/docker
+    build: 
+      context: ../
+      dockerfile: Dockerfile
   web:
     build: .
     command: python manage.py runserver 0.0.0.0:8000
@@ -32,23 +35,21 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
       - web-migrate
+      - db
+      - geth
   db:
     image: mysql
     ports:
       - '3306:3306'
     environment:
        MYSQL_DATABASE: 'my-app-db'
-       MYSQL_USER: 'root'
-       MYSQL_PASSWORD: 'password'
-       MYSQL_ROOT_PASSWORD: 'password'
-  
+       MYSQL_USER: 'user#123'
+       MYSQL_PASSWORD: 'password#123'
+       MYSQL_ROOT_PASSWORD: 'passwd'
   web-migrate:
     build: .
-    command: python manage.py makemigrations && python manage.py migrate
-    volumes:
-      - .:/my_app_dir
+    command: python manage.py makemigrations ; python manage.py migrate ;
     depends_on:
       - db
 
