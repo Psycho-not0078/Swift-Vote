@@ -2,7 +2,7 @@ version: '3'
 services:
   geth:
     image: ethereum/client-go
-    command: --datadir=/root/.ethereum/devchain  --http --http.addr 0.0.0.0 --http.corsdomain "*" --http.api "admin,debug,web3,eth,txpool,personal,ethash,miner,net" --allow-insecure-unlock init=/root/files/genesis.json
+    command: --datadir=/root/.ethereum/devchain  --http --http.addr 0.0.0.0 --http.corsdomain "*" --http.api "admin,debug,web3,eth,txpool,personal,ethash,miner,net" --allow-insecure-unlock 
     volumes:
       - ./genesis.json:/root/files/geth/genesis.json:ro
     ports:
