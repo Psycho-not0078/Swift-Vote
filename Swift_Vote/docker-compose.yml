@@ -26,31 +26,23 @@ services:
       - /usr/local/bin/docker:/usr/local/bin/docker
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python manage.py makemigrations; python manage.py migrate; python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/my_app_dir
     ports:
       - "8000:8000"
     depends_on:
       - db
-      - web-migrate
   db:
     image: mysql
     ports:
       - '3306:3306'
     environment:
        MYSQL_DATABASE: 'my-app-db'
-       MYSQL_USER: 'root'
-       MYSQL_PASSWORD: 'password'
+       MYSQL_USER: 'user#123$$'
+       MYSQL_PASSWORD: 'password#123'
        MYSQL_ROOT_PASSWORD: 'password'
-  
-  web-migrate:
-    build: .
-    command: python manage.py makemigrations && python manage.py migrate
-    volumes:
-      - .:/my_app_dir
-    depends_on:
-      - db
+
 
 
   
