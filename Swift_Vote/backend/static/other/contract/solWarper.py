@@ -9,7 +9,7 @@ contract_id, contract_interface=out.popitem()
 # print(contract_interface['bin'])
 abi=contract_interface['abi']
 bytecode=contract_interface['bin']
-w3=Web3("http:localhost:8545/")
+w3=Web3("http:127.0.0.1:8545/")
 
 
 

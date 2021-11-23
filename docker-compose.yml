@@ -11,6 +11,7 @@ services:
       - "8545:8545"
   jenkins:
     image: jenkins/jenkins:lts
+    build: ./jenkins/
     privileged: true
     user: root
     restart: always
@@ -25,8 +26,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/local/bin/docker:/usr/local/bin/docker
   web:
-    build: .
-    command: python manage.py makemigrations; python manage.py migrate; python manage.py runserver 0.0.0.0:8000
+    build: ./Swift_Vote/
+    command: python ./Swift_Vote/manage.py makemigrations; python ./Swift_Vote/manage.py migrate; python ./Swift_Vote/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/my_app_dir
     ports:
@@ -42,6 +43,30 @@ services:
        MYSQL_USER: 'user#123$$'
        MYSQL_PASSWORD: 'password#123'
        MYSQL_ROOT_PASSWORD: 'password'
+  selenium-hub:
+    image: selenium/hub:latest
+    ports:
+      - '4444:4444'
+  chrome:
+    image: selenium/node-chrome:latest
+    privileged: true
+    shm_size: 2g
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+
+  firefox:
+    image: selenium/node-firefox:latest
+    privileged: true
+    shm_size: 2g
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444 
+
 
 
 
