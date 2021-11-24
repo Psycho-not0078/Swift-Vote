@@ -71,13 +71,48 @@
             <h4>Sign Up by creating an account.</h4>
             <form action="register" method="POST">
               {% csrf_token %}
-              <!-- <div class="form-row">
+              <!-- 'fName','lName','username','email','contactNumber','dob','Address' -->
+              <div class="form-row">
+                <div class="col-lg-7">
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    class="form-control my-4 p-2"
+                    name="fname"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-lg-7">
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    class="form-control my-4 p-2"
+                    name="lname"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-lg-7">
+                  <input
+                    type="text"
+                    placeholder="Username"
+                    class="form-control my-4 p-2"
+                    name="username"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
                 <div class="col-lg-7">
                   <input
                     type="email"
                     placeholder="Email-Address"
                     class="form-control my-4 p-2"
-                    name="Email"
+                    name="email"
+                    required
                   />
                 </div>
               </div>
@@ -85,52 +120,50 @@
                 <div class="col-lg-7">
                   <input
                     type="password"
-                    placeholder="********"
+                    placeholder="Enter Password"
                     class="form-control my-4 p-2"
-                    name="Password"
+                    name="password"
+                    required
                   />
                 </div>
               </div>
-              <p>You are an:</p>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault1"
-                />
-                <label class="form-check-label" for="flexRadioDefault1">
-                  Artist
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
-                  checked
-                />
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Enthusiast
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="flexRadioDefault"
-                  id="flexRadioDefault2"
-                  checked
-                />
-                <label class="form-check-label" for="flexRadioDefault2">
-                  Auctioneer
-                </label>
-              </div> -->
-              {{ form.as_p }}  
               <div class="form-row">
                 <div class="col-lg-7">
-                  <button type="button" class="btn1 mt-3 mb-5">SIGN UP</button>
+                  <input
+                    type="date"
+                    class="form-control my-4 p-2"
+                    name="dob"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-lg-7">
+                  <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    class="form-control my-4 p-2"
+                    name="contact"
+                    pattern="[0-9]{10}"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-lg-7">
+                  <input
+                    type="text"
+                    placeholder="Address"
+                    class="form-control my-4 p-2"
+                    name="address"
+                    required
+                  />
+                </div>
+              </div>
+              <!-- {{ form.as_p }}   -->
+              <div class="form-row">
+                <div class="col-lg-7">
+                  <button type="submit" class="btn1 mt-3 mb-5">SIGN UP</button>
                 </div>
               </div>
 

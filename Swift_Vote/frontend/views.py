@@ -20,32 +20,26 @@ def login(request):
             else:
                 return render(request, 'Log In.html', {'msg': 'Invalid Credentials'})
         except Exception as e:
-            return render(request, 'Log In.html', {'msg': 'Invalid Credentials' + str(e)})
+            return render(request, 'Log In.html', {'msg': 'Invalid Credentials' +"  "+ str(e)})
     else:
         return render(request,"Log In.html")
 
 def register(request):
-    context ={}
-  
-    # create object of form
-    form = UserForm(request.POST or None, request.FILES or None)
-      
-    # check if form data is valid
-    if form.is_valid():
-        form.save()
-    context['form']= form
-    return render(request,"Sign Up.html",context)
-    # if request.method == 'POST':
-    #     email = request.POST['Email']
-    #     pwd = request.POST['Password']
-    #     userType = request.POST['flexRadioDefault']
-    #     user = userDetails.objects.create_user(
-    #         email=email, password=pwd, type=userType)
-    #     user.save()
-    #     return redirect('/login')
-    # else:
-        # return render(request,"Sign Up.html")
-
+    if request.method == 'POST':
+        fname = request.POST['fname']
+        lname = request.POST['lname']
+        email = request.POST['email']
+        contact = request.POST['contact']
+        dob = request.POST['dob']
+        password = request.POST['password']
+        username = request.POST['username']
+        address = request.POST['address']
+        user = userDetails.objects.create_user(
+            username=username,email=email,dob=dob,Address=address ,fName=fname,lName=lname, contactNumber=contact,password = password)
+        user.save()
+        return redirect('/login')
+    else:
+        return render(request, 'Sign Up.html')
 def logout(request):
     auth.logout(request)
     return redirect('/')

@@ -17,6 +17,7 @@ class userDetails(AbstractUser):
     contactNumber=models.CharField(max_length=10)
     username=models.CharField(max_length=30,unique=True)
     dob=models.DateField()
+    password = models.CharField(max_length=500,null=True)
     documentLocation=models.CharField(max_length=500,null=True,blank=True)
     # password=models.TextField()
     Address=models.TextField()
@@ -25,8 +26,10 @@ class userDetails(AbstractUser):
         choices = uType,
         )
     USERNAME_FIELD='username'
-    REQUIRED_FIELDS=['Fname','Lname','contactNumber','email','DOB',"documentLocation"]
+    REQUIRED_FIELDS=['Fname','password','Lname','contactNumber','email','DOB',"documentLocation"]
     EMAIL_FIELD='email'
+    # def __str__(self):
+    #     return "{}".format(self.email)
 
 class candidates(models.Model):
     cid=models.AutoField(primary_key=True)
