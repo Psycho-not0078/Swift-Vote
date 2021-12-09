@@ -1,306 +1,331 @@
 {% load static %}
 <html>
-  <head>
-    <title>Create Election</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
-    />
-    <style>
-      /*Navigation Bar Styling*/
-      .nav-menu li {
-        display: inline;
-        list-style: none;
-        margin: 10px;
+
+<head>
+  <title>Create Election</title>
+  <!--JS Files-->
+  <script src="{% static '/js/create_ec.js' %}" type="text/javascript"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css" />
+  <style>
+    /*Navigation Bar Styling*/
+    .nav-menu li {
+      display: inline;
+      list-style: none;
+      margin: 10px;
+    }
+
+    .nav-links {
+      background-color: rgb(206, 206, 252);
+      color: black;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 32px;
+    }
+
+    .nav-links:hover {
+      background-color: rgb(206, 206, 252);
+      color: rgb(0, 0, 0);
+    }
+
+    /*Date-Time Picker*/
+    .input-group {
+      margin: 10px;
+    }
+
+    /*Footer styling*/
+    footer {
+      text-align: center;
+      padding: 3px;
+      background-color: rgb(206, 206, 252);
+      color: black;
+    }
+
+    .footer-container {
+      margin: 20px;
+    }
+
+    .footer-container ul {
+      list-style: none;
+      display: inline-block;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    /*Main-Content Division Styling*/
+
+    .main {
+      margin: 20px;
+    }
+
+    .card {
+      margin-left: 10%;
+      width: 78%;
+      height: 400px;
+    }
+
+    /*Input Invalid*/
+    input:invalid:required {
+      border: 1px dashed red;
+    }
+
+    input:valid {
+      border: 2px solid black;
+    }
+  </style>
+  <!-- Input Form Validation for dates-->
+  <script>
+    function validity() {
+      var st = document.create_ec.startTime.value;
+      var et = document.create_ec.endTime.value;
+
+      var sd = document.create_ec.startDate.value;
+      var ed = document.create_ec.endDate.value;
+
+      //Get Current Date & Time
+      var dateobj = new Date();
+      var dd = dateobj.getDate();
+      var mm = dateobj.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+      var yyyy = dateobj.getFullYear();
+      if (dd < 10) {
+        dd = '0' + dd;
       }
-      .nav-links {
-        background-color: rgb(206, 206, 252);
-        color: black;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 32px;
+      if (mm < 10) {
+        mm = '0' + mm;
       }
-      .nav-links:hover {
-        background-color: rgb(206, 206, 252);
-        color: rgb(0, 0, 0);
+      //Set Current Date
+      today = yyyy + '-' + mm + '-' + dd;
+      //Get Current Time
+      var time_now = dateobj.getHours() + ':' + dateobj.getMinutes();
+      //calculate Days
+      var date1 = new Date(sd);
+      var date2 = new Date(ed);
+      var time_dif = date2.getTime() - date1.getTime();
+
+      const oneDay = 1000 * 60 * 60 * 24; // One day in milliseconds
+      var diffInDays = Math.round(time_dif / oneDay);
+
+      if (st == et && sd == ed) {
+        alert("Start and End of an Election cannot be same!");
+        return false;
       }
-      /*Date-Time Picker*/
-      .input-group {
-        margin: 10px;
+      else if (st == time_now) {
+        alert("Cannot start now! Set Time 3 mins from now.");
+        return false;
+      }
+      else if (sd == today && st < time_now) {
+        alert("Cannot be time elapsed!");
+        return false;
+      }
+      else if (diffInDays > 3) {
+        alert("Cannot set an election for more than 3 days!");
+        return false;
+      }
+      else {
+        return true;
       }
 
-      /*Footer styling*/
-      footer {
-        text-align: center;
-        padding: 3px;
-        background-color: rgb(206, 206, 252);
-        color: black;
-      }
 
-      .footer-container {
-        margin: 20px;
-      }
+    }
 
-      .footer-container ul {
-        list-style: none;
-        display: inline-block;
-        text-align: left;
-        line-height: 1.6;
-      }
 
-      /*Main-Content Division Styling*/
+  </script>
+</head>
 
-      .main {
-        margin: 20px;
-      }
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-light" style="margin: 10px; background-color: rgb(206, 206, 252)">
+    <a class="navbar-brand" href="#">
+      <!--Logo-->
+      <img src="{% static 'images\CaptureLogo.PNG' %}" width="152px" height="80px" class="d-inline-block align-top"
+        alt="Swift-Vote" style="margin-left: 10px" />
+    </a>
+    <!--Navigation Bar Menu Items-->
+    <ul class="nav-menu">
+      {% if user.is_authenticated %}
+      <li>
+        <a class="nav-links" href="login">Hi {{user.fName}} {{user.lName}}</a>
+      <li><a class="nav-links" href="/">HOME</a></li>
+      </li>
+      {% else %}
+      <li><a class="nav-links" href="/">HOME</a></li>
+      <li><a class="nav-links" href="login">LOGIN</a></li>
+      <li><a class="nav-links" href="register">REGISTER</a></li>
+      {% endif %}
+      <li><a class="nav-links" href="#">NEWS</a></li>
+      <li><a class="nav-links" href="#">MORE</a></li>
+    </ul>
+  </nav>
+  <div class="main">
+    <div class="card">
+      <div class="card-header">Election Settings</div>
+      <div class="card-body">
+        <p>Create Election</p>
 
-      .card {
-        margin-left: 10%;
-        width: 78%;
-        height: 400px;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navigation Bar -->
-    <nav
-      class="navbar navbar-light"
-      style="margin: 10px; background-color: rgb(206, 206, 252)"
-    >
-      <a class="navbar-brand" href="#">
-        <!--Logo-->
-        <img
-          src="{% static 'images\CaptureLogo.PNG' %}"
-          width="152px"
-          height="80px"
-          class="d-inline-block align-top"
-          alt="Swift-Vote"
-          style="margin-left: 10px"
-        />
-      </a>
-      <!--Navigation Bar Menu Items-->
-      <ul class="nav-menu">
-        {% if user.is_authenticated %}
-        <li>
-          <a class="nav-links" href="login">Hi {{user.fName}} {{user.lName}}</a>
-          <li><a class="nav-links" href="/">HOME</a></li>
-        </li>
-        {% else %}
-        <li><a class="nav-links" href="/">HOME</a></li>
-        <li><a class="nav-links" href="login">LOGIN</a></li>
-        <li><a class="nav-links" href="register">REGISTER</a></li>
-        {% endif %}
-        <li><a class="nav-links" href="#">NEWS</a></li>
-        <li><a class="nav-links" href="#">MORE</a></li>
-      </ul>
-    </nav>
-    <div class="main">
-      <div class="card">
-        <div class="card-header">Election Settings</div>
-        <div class="card-body">
-          <p>Create Election</p>
+        <!--Form Start-->
+        <form method="POST" action="" name="create_ec" onsubmit="return validity()">
+          {% csrf_token %}
           <div class="container">
             <div class="row">
               <div class="col">
                 <div class="input-group">
-                  <span
-                    class="input-group-text"
-                    style="background-color: rgb(206, 206, 252); color: black"
-                    id="inputGroup-sizing-default"
-                    >Election Name</span
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
+                  <span class="input-group-text" style="background-color: rgb(206, 206, 252); color: black"
+                    id="inputGroup-sizing-default">Election Name</span>
+                  <!--Election Name Input-->
+                  <input type="text" name="ecName" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" required />
                 </div>
                 <div class="input-group">
-                  <span
-                    class="input-group-text"
-                    style="background-color: rgb(206, 206, 252); color: black"
-                    id="inputGroup-sizing-default"
-                    >Start Date</span
-                  >
-                  <input
-                    type="date"
-                    class="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
+                  <span class="input-group-text" style="background-color: rgb(206, 206, 252); color: black"
+                    id="inputGroup-sizing-default">Start
+                    Date</span>
+                  <!--Election Start Date Input-->
+                  <input type="date" name="startDate" id="start" min="" max="2040-01-01" class="form-control"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required />
                 </div>
                 <div class="input-group">
-                  <span
-                    class="input-group-text"
-                    style="background-color: rgb(206, 206, 252); color: black"
-                    id="inputGroup-sizing-default"
-                    >Start Time</span
-                  >
-                  <input
-                    type="time"
-                    class="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
+                  <span class="input-group-text" style="background-color: rgb(206, 206, 252); color: black"
+                    id="inputGroup-sizing-default">Start Time</span>
+                  <!--Election Start Time Input-->
+                  <input type="time" name="startTime" id="startTime" class="form-control"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required />
                 </div>
-                <select
-                  class="form-select"
-                  style="margin: 10px"
-                  aria-label="Default select example"
-                >
-                  <option selected>Select State</option>
-                  <option value="1">Rajasthan</option>
-                  <option value="2">B</option>
-                  <option value="3">C</option>
+
+                <!--Election Select State Input-->
+                <select class="form-select" name="state" style="margin: 10px" aria-label="Default select example"
+                  required>
+                  <option value="">Select State</option>
+                  <option value="Rajasthan">Rajasthan</option>
+                  <option value="Gujrat">Gujrat</option>
+                  <option value="Maharashtra">Maharashtra</option>
                 </select>
               </div>
               <div class="col">
-                <select
-                  class="form-select"
-                  style="margin: 10px"
-                  aria-label="Default select example"
-                >
-                  <option selected>Select Election Type</option>
-                  <option value="1">General Election</option>
-                  <option value="2">State Election</option>
-                  <option value="3">District Election</option>
+                <!--Election Type Input-->
+                <select class="form-select" name="ecType" style="margin: 10px" aria-label="Default select example"
+                  required>
+                  <option value="">Select Election Type</option>
+                  <option value="General Elections">General Election</option>
+                  <option value="State Elections">State Election</option>
+                  <option value="District Elections">District Election</option>
                 </select>
                 <div class="input-group">
-                  <span
-                    class="input-group-text"
-                    style="background-color: rgb(206, 206, 252); color: black"
-                    id="inputGroup-sizing-default"
-                    >End Date</span
-                  >
-                  <input
-                    type="date"
-                    class="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
+                  <!--Election End Date Input-->
+                  <span class="input-group-text" style="background-color: rgb(206, 206, 252); color: black"
+                    id="inputGroup-sizing-default">End Date</span>
+                  <input type="date" name="endDate" min="" max="2040-01-01" class="form-control"
+                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required />
                 </div>
                 <div class="input-group">
-                  <span
-                    class="input-group-text"
-                    style="background-color: rgb(206, 206, 252); color: black"
-                    id="inputGroup-sizing-default"
-                    >End Time</span
-                  >
-                  <input
-                    type="time"
-                    class="form-control"
-                    aria-label="Sizing example input"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
+                  <span class="input-group-text" style="background-color: rgb(206, 206, 252); color: black"
+                    id="inputGroup-sizing-default">End Time</span>
+                  <!--Election End Time Input-->
+                  <input type="time" name="endTime" id="endTime" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default" required />
                 </div>
-                <select
-                  class="form-select"
-                  style="margin: 10px"
-                  aria-label="Default select example"
-                >
-                  <option selected>Select City</option>
-                  <option value="1">Alwar</option>
-                  <option value="2">State Election</option>
-                  <option value="3">District Election</option>
+
+                <!--Election Select City Input-->
+                <select class="form-select" name="city" style="margin: 10px" aria-label="Default select example"
+                  required>
+                  <option value="">Select City</option>
+                  <option value="Alwar">Alwar</option>
+                  <option value="Jaipur">Jaipur</option>
+                  <option value="City">City 3</option>
                 </select>
               </div>
             </div>
           </div>
-
-          <button
-            type="button"
-            style="margin-left: 48%; margin-top: 20px"
-            class="btn btn-primary"
-          >
+          <!--Submit Button-->
+          <button type="submit" style="margin-left: 48%; margin-top: 20px" class="btn btn-primary">
             Submit
           </button>
+
+        </form>
+        <!--Form End-->
+      </div>
+    </div>
+  </div>
+  <!--Footer-->
+  <footer>
+    <div class="footer-container">
+      <div class="row">
+        <div class="col">
+          <ul>
+            <li><b>ORGANIZATION</b></li>
+            <li>About</li>
+            <li>FAQs</li>
+            <li>Contact Us</li>
+          </ul>
+        </div>
+        <div class="col">
+          <ul>
+            <li><b>CONNECT WITH US</b></li>
+            <li>Administration</li>
+            <li>Volunteer</li>
+            <li>Complaints</li>
+          </ul>
+        </div>
+        <div class="col">
+          <ul style="line-height: 2.5">
+            <li><i class="bi bi-twitter"></i> Twitter</li>
+            <li><i class="bi bi-instagram"></i> Instagram</li>
+            <li><i class="bi bi-facebook"></i> Facebook</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <img src="{% static 'images\CaptureLogo.PNG' %}" width="152px" height="80px" class="d-inline-block align-top"
+            alt="Swift-Vote" style="margin-left: 10px; margin-top: 10px" />
         </div>
       </div>
     </div>
-    <!--Footer-->
-    <footer>
-      <div class="footer-container">
-        <div class="row">
-          <div class="col">
-            <ul>
-              <li><b>ORGANIZATION</b></li>
-              <li>About</li>
-              <li>FAQs</li>
-              <li>Contact Us</li>
-            </ul>
-          </div>
-          <div class="col">
-            <ul>
-              <li><b>CONNECT WITH US</b></li>
-              <li>Administration</li>
-              <li>Volunteer</li>
-              <li>Complaints</li>
-            </ul>
-          </div>
-          <div class="col">
-            <ul style="line-height: 2.5">
-              <li><i class="bi bi-twitter"></i> Twitter</li>
-              <li><i class="bi bi-instagram"></i> Instagram</li>
-              <li><i class="bi bi-facebook"></i> Facebook</li>
-            </ul>
-          </div>
 
-          <div class="col">
-            <img
-              src="{% static 'images\CaptureLogo.PNG' %}"
-              width="152px"
-              height="80px"
-              class="d-inline-block align-top"
-              alt="Swift-Vote"
-              style="margin-left: 10px; margin-top: 10px"
-            />
-          </div>
-        </div>
-      </div>
+    <p>SwfitVote © 2021</p>
+  </footer>
 
-      <p>SwfitVote © 2021</p>
-    </footer>
+  <!--Some Bootstrap v4.0 Scripts for card carousel -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    
+  <!--To set limits on the date (Js loads before HTML)-->
+  <script>
+    //Get Current Date & Time
+    var obj1 = new Date();
+    var d = obj1.getDate();
+    var m = obj1.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+    var y = obj1.getFullYear();
+    if (d < 10) {
+      d = '0' + d;
+    }
+    if (m < 10) {
+      m = '0' + m;
+    }
+    //Set Current Date
+    t = y + '-' + m + '-' + d;
+    //Disable dates other than today.
+    document.getElementById('start').setAttribute("min", t);
+  </script>
 
-    <!--Some Bootstrap v4.0 Scripts for card carousel -->
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+
+
+</body>
+
 </html>

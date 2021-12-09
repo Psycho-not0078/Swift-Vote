@@ -51,13 +51,14 @@ class location(models.Model):
     lid=models.AutoField(primary_key=True)
     context=models.CharField(max_length=20)
     locationName=models.CharField(max_length=500)
-    locationVoteCount=models.BigIntegerField()
+    locationVoteCount=models.BigIntegerField(default=0)
 
 class election(models.Model):
     eid=models.AutoField(primary_key=True)
+    ec_name=models.CharField(max_length=200)
     electionType=models.CharField(max_length=250)
     allowedContext=models.CharField(max_length=250)
-    voteCount=models.BigIntegerField()
+    voteCount=models.BigIntegerField(default=0)
     sDate=models.DateTimeField()
     fDate=models.DateTimeField()
     inCharge=models.ForeignKey(userDetails,null=True,blank=True,to_field="uid",on_delete=models.CASCADE)

@@ -1,196 +1,198 @@
 {% load static %}
 <html>
-  <head>
-    <title>Disable Election</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
-    />
-    <style>
-      /*Navigation Bar Styling*/
-      .nav-menu li {
-        display: inline;
-        list-style: none;
-        margin: 10px;
-      }
-      .nav-links {
-        background-color: rgb(206, 206, 252);
-        color: black;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        margin-top: 32px;
-      }
-      .nav-links:hover {
-        background-color: rgb(206, 206, 252);
-        color: rgb(0, 0, 0);
-      }
-      /*Date-Time Picker*/
-      .input-group{
-          margin: 10px;
-      }
 
-      /*Footer styling*/
-      footer {
-        text-align: center;
-        padding: 3px;
-        background-color: rgb(206, 206, 252);
-        color: black;
-      }
+<head>
+  <title>Disable Election</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css" />
+  <style>
+    /*Navigation Bar Styling*/
+    .nav-menu li {
+      display: inline;
+      list-style: none;
+      margin: 10px;
+    }
 
-      .footer-container {
-        margin: 20px;
-      }
+    .nav-links {
+      background-color: rgb(206, 206, 252);
+      color: black;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 32px;
+    }
 
-      .footer-container ul {
-        list-style: none;
-        display: inline-block;
-        text-align: left;
-        line-height: 1.6;
-      }
+    .nav-links:hover {
+      background-color: rgb(206, 206, 252);
+      color: rgb(0, 0, 0);
+    }
 
-      /*Main-Content Division Styling*/
+    /*Date-Time Picker*/
+    .input-group {
+      margin: 10px;
+    }
 
-      .main {
-        margin: 20px;
-      }
+    /*Footer styling*/
+    footer {
+      text-align: center;
+      padding: 3px;
+      background-color: rgb(206, 206, 252);
+      color: black;
+    }
 
-      .card {
-        margin-left: 10%;
-        width: 78%;
-        height: 400px;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navigation Bar -->
-    <nav
-      class="navbar navbar-light"
-      style="margin: 10px; background-color: rgb(206, 206, 252)"
-    >
-      <a class="navbar-brand" href="#">
-        <!--Logo-->
-        <img
-          src="{% static 'images\CaptureLogo.PNG' %}"
-          width="152px"
-          height="80px"
-          class="d-inline-block align-top"
-          alt="Swift-Vote"
-          style="margin-left: 10px"
-        />
-      </a>
-      <!--Navigation Bar Menu Items-->
-      <ul class="nav-menu">
-        {% if user.is_authenticated %}
-        <li>
-          <a class="nav-links" href="login">Hi {{user.fName}} {{user.lName}}</a>
-          <li><a class="nav-links" href="/">HOME</a></li>
-        </li>
+    .footer-container {
+      margin: 20px;
+    }
+
+    .footer-container ul {
+      list-style: none;
+      display: inline-block;
+      text-align: left;
+      line-height: 1.6;
+    }
+
+    /*Main-Content Division Styling*/
+
+    .main {
+      margin: 20px;
+    }
+
+    .card {
+      margin-left: 10%;
+      width: 78%;
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-light" style="margin: 10px; background-color: rgb(206, 206, 252)">
+    <a class="navbar-brand" href="#">
+      <!--Logo-->
+      <img src="{% static 'images\CaptureLogo.PNG' %}" width="152px" height="80px" class="d-inline-block align-top"
+        alt="Swift-Vote" style="margin-left: 10px" />
+    </a>
+    <!--Navigation Bar Menu Items-->
+    <ul class="nav-menu">
+      {% if user.is_authenticated %}
+      <li>
+        <a class="nav-links" href="login">Hi {{user.fName}} {{user.lName}}</a>
+      <li><a class="nav-links" href="/">HOME</a></li>
+      </li>
+      {% else %}
+      <li><a class="nav-links" href="/">HOME</a></li>
+      <li><a class="nav-links" href="login">LOGIN</a></li>
+      <li><a class="nav-links" href="register">REGISTER</a></li>
+      {% endif %}
+      <li><a class="nav-links" href="#">NEWS</a></li>
+      <li><a class="nav-links" href="#">MORE</a></li>
+    </ul>
+  </nav>
+  <div class="main">
+    <div class="card">
+      <div class="card-header">Election Settings</div>
+      <div class="card-body">
+        <p>Disabe Election</p>
+        <form class="form-inline my-2 my-lg-0" action="" method="POST">
+          {% csrf_token %}
+          <input class="form-control mr-sm-2" name="ecSearch" type="search" placeholder="Search Election"
+            aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0"
+            style="background-color:rgb(206, 206, 252) ; color: black; border: none;" type="submit">Search</button>
+        </form>
+        <!--Display Table-->
+        {% if st %}
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Election Name</th>
+              <th scope="col">Type</th>
+              <th scope="col">Start Date/Time</th>
+              <th scope="col">End Date/Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {% for t in st %}
+              <th scope="row">1</th>
+              <td>{{t.ec_name}}</td>
+              <td>{{t.electionType}}</td>
+              <td>{{t.sDate}}</td>
+              <td>{{t.fDate}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
         {% else %}
-        <li><a class="nav-links" href="/">HOME</a></li>
-        <li><a class="nav-links" href="login">LOGIN</a></li>
-        <li><a class="nav-links" href="register">REGISTER</a></li>
+        <h6 style="margin: 10px;">No Data</h6>
         {% endif %}
-        <li><a class="nav-links" href="#">NEWS</a></li>
-        <li><a class="nav-links" href="#">MORE</a></li>
-      </ul>
-    </nav>
-    <div class="main">
-      <div class="card">
-        <div class="card-header">Election Settings</div>
-        <div class="card-body">
-          <p>Disabe Election</p>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search Election" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" style="background-color:rgb(206, 206, 252) ; color: black; border: none;" type="submit">Search</button>
-          </form>
-          <textarea class="form-control" placeholder=">>To confirm, type 'disable'" style="margin-top: 10px; border:none; width: auto;" id="floatingTextarea"></textarea>
-          <button type="button" style="margin-top: 20px;" class="btn btn-primary">Disable</button>
+
+        <textarea class="form-control" placeholder=">>To confirm, type 'disable'"
+          style="margin-top: 10px; border:none; width: auto;" id="floatingTextarea"></textarea>
+        <button type="button" style="margin-top: 20px;" class="btn btn-primary">Disable</button>
+      </div>
+    </div>
+  </div>
+  <!--Footer-->
+  <footer>
+    <div class="footer-container">
+      <div class="row">
+        <div class="col">
+          <ul>
+            <li><b>ORGANIZATION</b></li>
+            <li>About</li>
+            <li>FAQs</li>
+            <li>Contact Us</li>
+          </ul>
+        </div>
+        <div class="col">
+          <ul>
+            <li><b>CONNECT WITH US</b></li>
+            <li>Administration</li>
+            <li>Volunteer</li>
+            <li>Complaints</li>
+          </ul>
+        </div>
+        <div class="col">
+          <ul style="line-height: 2.5">
+            <li><i class="bi bi-twitter"></i> Twitter</li>
+            <li><i class="bi bi-instagram"></i> Instagram</li>
+            <li><i class="bi bi-facebook"></i> Facebook</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <img src="{% static 'images\CaptureLogo.PNG' %}" width="152px" height="80px" class="d-inline-block align-top"
+            alt="Swift-Vote" style="margin-left: 10px; margin-top: 10px" />
         </div>
       </div>
     </div>
-    <!--Footer-->
-    <footer>
-      <div class="footer-container">
-        <div class="row">
-          <div class="col">
-            <ul>
-              <li><b>ORGANIZATION</b></li>
-              <li>About</li>
-              <li>FAQs</li>
-              <li>Contact Us</li>
-            </ul>
-          </div>
-          <div class="col">
-            <ul>
-              <li><b>CONNECT WITH US</b></li>
-              <li>Administration</li>
-              <li>Volunteer</li>
-              <li>Complaints</li>
-            </ul>
-          </div>
-          <div class="col">
-            <ul style="line-height: 2.5">
-              <li><i class="bi bi-twitter"></i> Twitter</li>
-              <li><i class="bi bi-instagram"></i> Instagram</li>
-              <li><i class="bi bi-facebook"></i> Facebook</li>
-            </ul>
-          </div>
 
-          <div class="col">
-            <img
-              src="{% static 'images\CaptureLogo.PNG' %}"
-              width="152px"
-              height="80px"
-              class="d-inline-block align-top"
-              alt="Swift-Vote"
-              style="margin-left: 10px; margin-top: 10px"
-            />
-          </div>
-        </div>
-      </div>
+    <p>SwfitVote © 2021</p>
+  </footer>
 
-      <p>SwfitVote © 2021</p>
-    </footer>
+  <!--Some Bootstrap v4.0 Scripts for card carousel -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
 
-    <!--Some Bootstrap v4.0 Scripts for card carousel -->
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-  </body>
 </html>

@@ -119,12 +119,33 @@
         <div class="card-header">Election Settings</div>
         <div class="card-body">
           <h5 class="card-title">Election History</h5>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Item 1</li>
-            <li class="list-group-item">Item 2</li>
-            <li class="list-group-item">Item 3</li>
-            <li class="list-group-item">Item 4</li>
-          </ul>
+          <!--Display Table-->
+          {% if hist %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Election Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Start Date/Time</th>
+                <th scope="col">End Date/Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for h in hist %}
+                <th scope="row">1</th>
+                <td>{{h.ec_name}}</td>
+                <td>{{h.electionType}}</td>
+                <td>{{h.sDate}}</td>
+                <td>{{h.fDate}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <h1>No Data</h1>
+          {% endif %}
         </div>
       </div>
     </div>

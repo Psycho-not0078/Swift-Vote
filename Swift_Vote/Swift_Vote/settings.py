@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'my-app-db',
         'USER': 'user#123$$',
         'PASSWORD': 'password#123',
-        'HOST': 'db',
+        'HOST': 'localhost',
          'PORT': 3306,
      }
 }
