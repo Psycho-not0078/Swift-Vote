@@ -9,22 +9,6 @@ services:
       - "30303:30303"
       - "30303:30303/udp"
       - "8545:8545"
-  jenkins:
-    image: jenkins/jenkins:lts
-    build: ./jenkins/
-    privileged: true
-    user: root
-    restart: always
-    environment:
-      JAVA_OPTS: "-Djava.awt.headless=true -Xmx512m -Xms512m -Djava.util.logging.config.file=/var/jenkins_home/log.properties"
-    ports:
-      - 8081:8080
-      - 50000:50000
-    container_name: jenkins
-    volumes:
-      - ~/jenkins:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/local/bin/docker:/usr/local/bin/docker
   web:
     build: ./Swift_Vote/
     command: python ./Swift_Vote/manage.py makemigrations; python ./Swift_Vote/manage.py migrate; python ./Swift_Vote/manage.py runserver 0.0.0.0:8000
@@ -43,29 +27,6 @@ services:
        MYSQL_USER: 'user#123$$'
        MYSQL_PASSWORD: 'password#123'
        MYSQL_ROOT_PASSWORD: 'password'
-  selenium-hub:
-    image: selenium/hub:latest
-    ports:
-      - '4444:4444'
-  chrome:
-    image: selenium/node-chrome:latest
-    privileged: true
-    shm_size: 2g
-    depends_on:
-      - selenium-hub
-    environment:
-      - HUB_HOST=selenium-hub
-      - HUB_PORT=4444
-
-  firefox:
-    image: selenium/node-firefox:latest
-    privileged: true
-    shm_size: 2g
-    depends_on:
-      - selenium-hub
-    environment:
-      - HUB_HOST=selenium-hub
-      - HUB_PORT=4444 
 
 
 
