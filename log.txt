@@ -1,0 +1,14 @@
+Attaching to db_1, geth_1, web_1
+db_1    | 2021-12-13T09:20:41.944638Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+db_1    | 2021-12-13T09:20:42.359927Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+db_1    | 2021-12-13T09:20:42.360123Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+db_1    | 2021-12-13T09:20:42.362225Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+db_1    | 2021-12-13T09:20:42.362540Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+db_1    | 2021-12-13T09:20:42.370748Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+db_1    | 2021-12-13T09:20:42.467779Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+db_1    | 2021-12-13T09:20:42.468424Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.26'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+web_1   | /usr/local/lib/python3.10/site-packages/django/core/management/commands/makemigrations.py:105: RuntimeWarning: Got an error checking a consistent migration history performed for database connection 'default': (2002, "Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)")
+web_1   |   warnings.warn(
+web_1   | No changes detected
+web_1 exited with code 0
+Gracefully stopping... (press Ctrl+C again to force)
