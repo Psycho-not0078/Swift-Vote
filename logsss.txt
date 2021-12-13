@@ -1,0 +1,145 @@
+Attaching to swift-vote_db_1, swift-vote_geth_1, swift-vote_web_1
+[36mdb_1    |[0m 2021-12-13 10:49:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.26-1debian10 started.
+[36mdb_1    |[0m 2021-12-13 10:49:19+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+[36mdb_1    |[0m 2021-12-13 10:49:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.26-1debian10 started.
+[36mdb_1    |[0m 2021-12-13T10:49:20.562762Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.26) starting as process 1
+[36mdb_1    |[0m 2021-12-13T10:49:20.596220Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[36mdb_1    |[0m 2021-12-13T10:49:21.866591Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[33mgeth_1  |[0m INFO [12-13|10:49:19.544] Starting Geth on Ethereum mainnet... 
+[33mgeth_1  |[0m INFO [12-13|10:49:19.544] Bumping default cache on mainnet         provided=1024 updated=4096
+[33mgeth_1  |[0m INFO [12-13|10:49:19.547] Maximum peer count                       ETH=50 LES=0 total=50
+[33mgeth_1  |[0m INFO [12-13|10:49:19.551] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+[33mgeth_1  |[0m WARN [12-13|10:49:19.554] Sanitizing cache to Go's GC limits       provided=4096 updated=660
+[33mgeth_1  |[0m INFO [12-13|10:49:19.557] Set global gas cap                       cap=50,000,000
+[33mgeth_1  |[0m INFO [12-13|10:49:19.557] Allocated trie memory caches             clean=99.00MiB dirty=165.00MiB
+[33mgeth_1  |[0m INFO [12-13|10:49:19.557] Allocated cache and file handles         database=/root/.ethereum/devchain/geth/chaindata cache=329.00MiB handles=524,288
+[36mdb_1    |[0m 2021-12-13T10:49:23.365797Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:49:23.366351Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:49:23.395012Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+[36mdb_1    |[0m 2021-12-13T10:49:23.397006Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+[36mdb_1    |[0m 2021-12-13T10:49:23.430434Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[36mdb_1    |[0m 2021-12-13T10:49:23.693152Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+[36mdb_1    |[0m 2021-12-13T10:49:23.693489Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.26'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+[32mweb_1   |[0m /usr/local/lib/python3.10/site-packages/django/core/management/commands/makemigrations.py:105: RuntimeWarning: Got an error checking a consistent migration history performed for database connection 'default': (2002, "Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)")
+[32mweb_1   |[0m   warnings.warn(
+[32mweb_1   |[0m No changes detected
+[33mgeth_1  |[0m INFO [12-13|10:49:26.363] Opened ancient database                  database=/root/.ethereum/devchain/geth/chaindata/ancient readonly=false
+[33mgeth_1  |[0m INFO [12-13|10:49:26.397] Initialised chain configuration          config="{ChainID: 1 Homestead: 1150000 DAO: 1920000 DAOSupport: true EIP150: 2463000 EIP155: 2675000 EIP158: 2675000 Byzantium: 4370000 Constantinople: 7280000 Petersburg: 7280000 Istanbul: 9069000, Muir Glacier: 9200000, Berlin: 12244000, London: 12965000, Arrow Glacier: 13773000, Engine: ethash}"
+[33mgeth_1  |[0m INFO [12-13|10:49:26.405] Disk storage enabled for ethash caches   dir=/root/.ethereum/devchain/geth/ethash count=3
+[33mgeth_1  |[0m INFO [12-13|10:49:26.407] Disk storage enabled for ethash DAGs     dir=/root/.ethash                        count=2
+[33mgeth_1  |[0m INFO [12-13|10:49:26.411] Initialising Ethereum protocol           network=1 dbversion=8
+[33mgeth_1  |[0m INFO [12-13|10:49:26.522] Loaded most recent local header          number=30783 hash=4f5b94..01d40d td=22,323,605,267,576,815 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-13|10:49:26.522] Loaded most recent local full block      number=0     hash=d4e567..cb8fa3 td=17,179,869,184         age=52y8mo2w
+[33mgeth_1  |[0m INFO [12-13|10:49:26.524] Loaded most recent local fast block      number=30344 hash=d0f084..4e4917 td=21,820,635,164,832,621 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-13|10:49:26.525] Loaded last fast-sync pivot marker       number=13,796,282
+[33mgeth_1  |[0m WARN [12-13|10:49:26.527] Snapshot maintenance disabled (syncing) 
+[33mgeth_1  |[0m INFO [12-13|10:49:26.539] Upgrading chain index                    type=bloombits percentage=0
+[33mgeth_1  |[0m INFO [12-13|10:49:26.540] Loaded local transaction journal         transactions=0 dropped=0
+[33mgeth_1  |[0m INFO [12-13|10:49:26.542] Regenerated local transaction journal    transactions=0 accounts=0
+[33mgeth_1  |[0m INFO [12-13|10:49:26.558] Gasprice oracle is ignoring threshold set threshold=2
+[33mgeth_1  |[0m INFO [12-13|10:49:26.566] Starting peer-to-peer node               instance=Geth/v1.10.12-unstable-31870a59/linux-amd64/go1.17.2
+[33mgeth_1  |[0m INFO [12-13|10:49:26.787] New local node record                    seq=1,639,392,326,258 id=9759ba1d56dce981 ip=127.0.0.1 udp=30303 tcp=30303
+[33mgeth_1  |[0m INFO [12-13|10:49:26.992] Started P2P networking                   self=enode://e67a03e13895bd198491729d8b7aef1697342faf7576d9d6203121a91714833d408d60d06ca8a131e133318a003a3600520cfc082ba8879bdd88df208a239ed8@127.0.0.1:30303
+[33mgeth_1  |[0m INFO [12-13|10:49:27.047] IPC endpoint opened                      url=/root/.ethereum/devchain/geth.ipc
+[33mgeth_1  |[0m INFO [12-13|10:49:27.064] HTTP server started                      endpoint=[::]:8545 prefix= cors=* vhosts=localhost
+[32mweb_1   |[0m Traceback (most recent call last):
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
+[32mweb_1   |[0m     self.connect()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 200, in connect
+[32mweb_1   |[0m     self.connection = self.get_new_connection(conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 234, in get_new_connection
+[32mweb_1   |[0m     connection = Database.connect(**conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/__init__.py", line 130, in Connect
+[32mweb_1   |[0m     return Connection(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 185, in __init__
+[32mweb_1   |[0m     super().__init__(*args, **kwargs2)
+[32mweb_1   |[0m MySQLdb._exceptions.OperationalError: (2002, "Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)")
+[32mweb_1   |[0m 
+[32mweb_1   |[0m The above exception was the direct cause of the following exception:
+[32mweb_1   |[0m 
+[32mweb_1   |[0m Traceback (most recent call last):
+[32mweb_1   |[0m   File "/code/manage.py", line 22, in <module>
+[32mweb_1   |[0m     main()
+[32mweb_1   |[0m   File "/code/manage.py", line 18, in main
+[32mweb_1   |[0m     execute_from_command_line(sys.argv)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/__init__.py", line 419, in execute_from_command_line
+[32mweb_1   |[0m     utility.execute()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/__init__.py", line 413, in execute
+[32mweb_1   |[0m     self.fetch_command(subcommand).run_from_argv(self.argv)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 354, in run_from_argv
+[32mweb_1   |[0m     self.execute(*args, **cmd_options)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 398, in execute
+[32mweb_1   |[0m     output = self.handle(*args, **options)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 89, in wrapped
+[32mweb_1   |[0m     res = handle_func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/commands/migrate.py", line 75, in handle
+[32mweb_1   |[0m     self.check(databases=[database])
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 419, in check
+[32mweb_1   |[0m     all_issues = checks.run_checks(
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/checks/registry.py", line 76, in run_checks
+[32mweb_1   |[0m     new_errors = check(app_configs=app_configs, databases=databases)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/checks/database.py", line 13, in check_database_backends
+[32mweb_1   |[0m     issues.extend(conn.validation.check(**kwargs))
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/validation.py", line 9, in check
+[32mweb_1   |[0m     issues.extend(self._check_sql_mode(**kwargs))
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/validation.py", line 13, in _check_sql_mode
+[32mweb_1   |[0m     if not (self.connection.sql_mode & {'STRICT_TRANS_TABLES', 'STRICT_ALL_TABLES'}):
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 48, in __get__
+[32mweb_1   |[0m     res = instance.__dict__[self.name] = self.func(instance)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 405, in sql_mode
+[32mweb_1   |[0m     sql_mode = self.mysql_server_data['sql_mode']
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 48, in __get__
+[32mweb_1   |[0m     res = instance.__dict__[self.name] = self.func(instance)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 366, in mysql_server_data
+[32mweb_1   |[0m     with self.temporary_connection() as cursor:
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/contextlib.py", line 135, in __enter__
+[32mweb_1   |[0m     return next(self.gen)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 603, in temporary_connection
+[32mweb_1   |[0m     with self.cursor() as cursor:
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 259, in cursor
+[32mweb_1   |[0m     return self._cursor()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 235, in _cursor
+[32mweb_1   |[0m     self.ensure_connection()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 218, in ensure_connection
+[32mweb_1   |[0m     with self.wrap_database_errors:
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/utils.py", line 90, in __exit__
+[32mweb_1   |[0m     raise dj_exc_value.with_traceback(traceback) from exc_value
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
+[32mweb_1   |[0m     self.connect()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 200, in connect
+[32mweb_1   |[0m     self.connection = self.get_new_connection(conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 234, in get_new_connection
+[32mweb_1   |[0m     connection = Database.connect(**conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/__init__.py", line 130, in Connect
+[32mweb_1   |[0m     return Connection(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 185, in __init__
+[32mweb_1   |[0m     super().__init__(*args, **kwargs2)
+[32mweb_1   |[0m django.db.utils.OperationalError: (2002, "Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)")
+[32mswift-vote_web_1 exited with code 1
+[0m[33mgeth_1  |[0m INFO [12-13|10:49:28.713] Finished upgrading chain index           type=bloombits
+[33mgeth_1  |[0m INFO [12-13|10:49:36.872] Looking for peers                        peercount=0 tried=16 static=0
+[33mgeth_1  |[0m INFO [12-13|10:49:38.315] New local node record                    seq=1,639,392,326,259 id=9759ba1d56dce981 ip=103.60.198.233 udp=1024  tcp=30303
+[33mgeth_1  |[0m INFO [12-13|10:49:42.056] Block synchronisation started 
+[33mgeth_1  |[0m WARN [12-13|10:49:42.056] Enabling snapshot sync prototype 
+[33mgeth_1  |[0m WARN [12-13|10:49:42.384] Dropping unsynced node during sync       id=ed7d49699461d092 conn=dyndial addr=71.93.73.149:30303 type=Geth/v1.10.13-stable...
+[33mgeth_1  |[0m INFO [12-13|10:49:47.061] Looking for peers                        peercount=0 tried=30 static=0
+[33mgeth_1  |[0m INFO [12-13|10:49:57.284] Looking for peers                        peercount=1 tried=32 static=0
+[33mgeth_1  |[0m WARN [12-13|10:49:57.589] Dropping unsynced node during sync       id=15d58268e42cfc69 conn=dyndial addr=51.81.243.187:30303 type=Geth/v1.10.3-unstabl...
+[33mgeth_1  |[0m INFO [12-13|10:50:09.075] Looking for peers                        peercount=0 tried=31 static=0
+[33mgeth_1  |[0m INFO [12-13|10:50:19.084] Looking for peers                        peercount=0 tried=40 static=0
+[33mgeth_1  |[0m INFO [12-13|10:50:29.358] Looking for peers                        peercount=0 tried=31 static=0
+[33mgeth_1  |[0m INFO [12-13|10:50:39.378] Looking for peers                        peercount=1 tried=34 static=0
+[33mgeth_1  |[0m WARN [12-13|10:50:42.057] Synchronisation failed, dropping peer    peer=ed7d49699461d09206f0498d69b7fcdbd19308de896f22ad5878b71f684b9c67 err=timeout
+[33mgeth_1  |[0m INFO [12-13|10:50:49.468] Looking for peers                        peercount=2 tried=38 static=0
