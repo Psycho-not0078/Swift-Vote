@@ -11,5 +11,5 @@ RUN apk add --update python3 --no-cache py3-pip gcc musl-dev mariadb-connector-c
 # RUN apt install python3-mysqldb python3.8-dev libmysqlclient-dev mysql-client libssl-dev libpython3.8-dev mysql-python
 RUN pip3 install -r requirements.txt
 COPY ./Swift_Vote/ /code/
-COPY ./init.sh /code/init.sh
-RUN chmod +x init.sh
+# COPY ./init.sh /code/init.sh
+# RUN chmod +x init.sh

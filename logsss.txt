@@ -1,47 +1,49 @@
 Attaching to swift-vote_db_1, swift-vote_geth_1, swift-vote_web_1
-[36mdb_1    |[0m 2021-12-13 10:49:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.26-1debian10 started.
-[36mdb_1    |[0m 2021-12-13 10:49:19+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
-[36mdb_1    |[0m 2021-12-13 10:49:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.26-1debian10 started.
-[36mdb_1    |[0m 2021-12-13T10:49:20.562762Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.26) starting as process 1
-[36mdb_1    |[0m 2021-12-13T10:49:20.596220Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
-[36mdb_1    |[0m 2021-12-13T10:49:21.866591Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
-[33mgeth_1  |[0m INFO [12-13|10:49:19.544] Starting Geth on Ethereum mainnet... 
-[33mgeth_1  |[0m INFO [12-13|10:49:19.544] Bumping default cache on mainnet         provided=1024 updated=4096
-[33mgeth_1  |[0m INFO [12-13|10:49:19.547] Maximum peer count                       ETH=50 LES=0 total=50
-[33mgeth_1  |[0m INFO [12-13|10:49:19.551] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
-[33mgeth_1  |[0m WARN [12-13|10:49:19.554] Sanitizing cache to Go's GC limits       provided=4096 updated=660
-[33mgeth_1  |[0m INFO [12-13|10:49:19.557] Set global gas cap                       cap=50,000,000
-[33mgeth_1  |[0m INFO [12-13|10:49:19.557] Allocated trie memory caches             clean=99.00MiB dirty=165.00MiB
-[33mgeth_1  |[0m INFO [12-13|10:49:19.557] Allocated cache and file handles         database=/root/.ethereum/devchain/geth/chaindata cache=329.00MiB handles=524,288
-[36mdb_1    |[0m 2021-12-13T10:49:23.365797Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
-[36mdb_1    |[0m 2021-12-13T10:49:23.366351Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
-[36mdb_1    |[0m 2021-12-13T10:49:23.395012Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
-[36mdb_1    |[0m 2021-12-13T10:49:23.397006Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
-[36mdb_1    |[0m 2021-12-13T10:49:23.430434Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
-[36mdb_1    |[0m 2021-12-13T10:49:23.693152Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
-[36mdb_1    |[0m 2021-12-13T10:49:23.693489Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.26'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
-[32mweb_1   |[0m /usr/local/lib/python3.10/site-packages/django/core/management/commands/makemigrations.py:105: RuntimeWarning: Got an error checking a consistent migration history performed for database connection 'default': (2002, "Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)")
+[36mdb_1    |[0m 2021-12-13 10:59:18+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.26-1debian10 started.
+[36mdb_1    |[0m 2021-12-13 10:59:18+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+[36mdb_1    |[0m 2021-12-13 10:59:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.26-1debian10 started.
+[33mgeth_1  |[0m INFO [12-13|10:59:19.049] Starting Geth on Ethereum mainnet... 
+[33mgeth_1  |[0m INFO [12-13|10:59:19.049] Bumping default cache on mainnet         provided=1024 updated=4096
+[36mdb_1    |[0m 2021-12-13 10:59:19+00:00 [Note] [Entrypoint]: Initializing database files
+[33mgeth_1  |[0m INFO [12-13|10:59:19.054] Maximum peer count                       ETH=50 LES=0 total=50
+[33mgeth_1  |[0m INFO [12-13|10:59:19.054] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+[33mgeth_1  |[0m WARN [12-13|10:59:19.057] Sanitizing cache to Go's GC limits       provided=4096 updated=660
+[33mgeth_1  |[0m INFO [12-13|10:59:19.057] Set global gas cap                       cap=50,000,000
+[33mgeth_1  |[0m INFO [12-13|10:59:19.063] Allocated trie memory caches             clean=99.00MiB dirty=165.00MiB
+[33mgeth_1  |[0m INFO [12-13|10:59:19.063] Allocated cache and file handles         database=/root/.ethereum/devchain/geth/chaindata cache=329.00MiB handles=524,288
+[33mgeth_1  |[0m INFO [12-13|10:59:19.240] Opened ancient database                  database=/root/.ethereum/devchain/geth/chaindata/ancient readonly=false
+[33mgeth_1  |[0m INFO [12-13|10:59:19.240] Writing default main-net genesis block 
+[36mdb_1    |[0m 2021-12-13T10:59:19.692978Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.26) initializing of server in progress as process 41
+[33mgeth_1  |[0m INFO [12-13|10:59:20.416] Persisted trie from memory database      nodes=12356 size=1.78MiB time=216.5427ms gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+[36mdb_1    |[0m 2021-12-13T10:59:19.719347Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[33mgeth_1  |[0m INFO [12-13|10:59:20.425] Initialised chain configuration          config="{ChainID: 1 Homestead: 1150000 DAO: 1920000 DAOSupport: true EIP150: 2463000 EIP155: 2675000 EIP158: 2675000 Byzantium: 4370000 Constantinople: 7280000 Petersburg: 7280000 Istanbul: 9069000, Muir Glacier: 9200000, Berlin: 12244000, London: 12965000, Arrow Glacier: 13773000, Engine: ethash}"
+[33mgeth_1  |[0m INFO [12-13|10:59:20.427] Disk storage enabled for ethash caches   dir=/root/.ethereum/devchain/geth/ethash count=3
+[33mgeth_1  |[0m INFO [12-13|10:59:20.427] Disk storage enabled for ethash DAGs     dir=/root/.ethash                        count=2
+[33mgeth_1  |[0m INFO [12-13|10:59:20.430] Initialising Ethereum protocol           network=1 dbversion=<nil>
+[33mgeth_1  |[0m INFO [12-13|10:59:20.434] Loaded most recent local header          number=0 hash=d4e567..cb8fa3 td=17,179,869,184 age=52y8mo2w
+[33mgeth_1  |[0m INFO [12-13|10:59:20.435] Loaded most recent local full block      number=0 hash=d4e567..cb8fa3 td=17,179,869,184 age=52y8mo2w
+[33mgeth_1  |[0m INFO [12-13|10:59:20.435] Loaded most recent local fast block      number=0 hash=d4e567..cb8fa3 td=17,179,869,184 age=52y8mo2w
+[33mgeth_1  |[0m WARN [12-13|10:59:20.435] Failed to load snapshot, regenerating    err="missing or corrupted snapshot"
+[33mgeth_1  |[0m INFO [12-13|10:59:20.435] Rebuilding state snapshot 
+[33mgeth_1  |[0m INFO [12-13|10:59:20.437] Resuming state snapshot generation       root=d7f897..0f0544 accounts=0 slots=0 storage=0.00B elapsed=1.970ms
+[33mgeth_1  |[0m INFO [12-13|10:59:20.441] Regenerated local transaction journal    transactions=0 accounts=0
+[33mgeth_1  |[0m INFO [12-13|10:59:20.510] Gasprice oracle is ignoring threshold set threshold=2
+[33mgeth_1  |[0m WARN [12-13|10:59:20.527] Error reading unclean shutdown markers   error="leveldb: not found"
+[33mgeth_1  |[0m INFO [12-13|10:59:20.532] Starting peer-to-peer node               instance=Geth/v1.10.12-unstable-31870a59/linux-amd64/go1.17.2
+[33mgeth_1  |[0m INFO [12-13|10:59:20.702] New local node record                    seq=1,639,393,160,646 id=60096d44b38f125d ip=127.0.0.1 udp=30303 tcp=30303
+[33mgeth_1  |[0m INFO [12-13|10:59:20.707] IPC endpoint opened                      url=/root/.ethereum/devchain/geth.ipc
+[33mgeth_1  |[0m INFO [12-13|10:59:20.725] Started P2P networking                   self=enode://f40c147309dd66f535e28daff228d880a686fff9f31d1f2604904bd1fd6db6b855cab0a516277c5dda30650f547b58001279b56026c8e882c8f943c1ed1c618f@127.0.0.1:30303
+[33mgeth_1  |[0m INFO [12-13|10:59:20.726] HTTP server started                      endpoint=[::]:8545 prefix= cors=* vhosts=localhost
+[33mgeth_1  |[0m INFO [12-13|10:59:21.039] Generated state snapshot                 accounts=8893 slots=0 storage=409.64KiB elapsed=603.443ms
+[36mdb_1    |[0m 2021-12-13T10:59:22.583115Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[33mgeth_1  |[0m INFO [12-13|10:59:24.815] New local node record                    seq=1,639,393,160,647 id=60096d44b38f125d ip=103.60.198.233 udp=1024  tcp=30303
+[36mdb_1    |[0m 2021-12-13T10:59:26.216411Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:26.217331Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:26.383709Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+[33mgeth_1  |[0m INFO [12-13|10:59:30.730] Looking for peers                        peercount=0 tried=31 static=0
+[32mweb_1   |[0m /usr/local/lib/python3.10/site-packages/django/core/management/commands/makemigrations.py:105: RuntimeWarning: Got an error checking a consistent migration history performed for database connection 'default': (2002, "Can't connect to MySQL server on 'db' (115)")
 [32mweb_1   |[0m   warnings.warn(
 [32mweb_1   |[0m No changes detected
-[33mgeth_1  |[0m INFO [12-13|10:49:26.363] Opened ancient database                  database=/root/.ethereum/devchain/geth/chaindata/ancient readonly=false
-[33mgeth_1  |[0m INFO [12-13|10:49:26.397] Initialised chain configuration          config="{ChainID: 1 Homestead: 1150000 DAO: 1920000 DAOSupport: true EIP150: 2463000 EIP155: 2675000 EIP158: 2675000 Byzantium: 4370000 Constantinople: 7280000 Petersburg: 7280000 Istanbul: 9069000, Muir Glacier: 9200000, Berlin: 12244000, London: 12965000, Arrow Glacier: 13773000, Engine: ethash}"
-[33mgeth_1  |[0m INFO [12-13|10:49:26.405] Disk storage enabled for ethash caches   dir=/root/.ethereum/devchain/geth/ethash count=3
-[33mgeth_1  |[0m INFO [12-13|10:49:26.407] Disk storage enabled for ethash DAGs     dir=/root/.ethash                        count=2
-[33mgeth_1  |[0m INFO [12-13|10:49:26.411] Initialising Ethereum protocol           network=1 dbversion=8
-[33mgeth_1  |[0m INFO [12-13|10:49:26.522] Loaded most recent local header          number=30783 hash=4f5b94..01d40d td=22,323,605,267,576,815 age=6y5mo1w
-[33mgeth_1  |[0m INFO [12-13|10:49:26.522] Loaded most recent local full block      number=0     hash=d4e567..cb8fa3 td=17,179,869,184         age=52y8mo2w
-[33mgeth_1  |[0m INFO [12-13|10:49:26.524] Loaded most recent local fast block      number=30344 hash=d0f084..4e4917 td=21,820,635,164,832,621 age=6y5mo1w
-[33mgeth_1  |[0m INFO [12-13|10:49:26.525] Loaded last fast-sync pivot marker       number=13,796,282
-[33mgeth_1  |[0m WARN [12-13|10:49:26.527] Snapshot maintenance disabled (syncing) 
-[33mgeth_1  |[0m INFO [12-13|10:49:26.539] Upgrading chain index                    type=bloombits percentage=0
-[33mgeth_1  |[0m INFO [12-13|10:49:26.540] Loaded local transaction journal         transactions=0 dropped=0
-[33mgeth_1  |[0m INFO [12-13|10:49:26.542] Regenerated local transaction journal    transactions=0 accounts=0
-[33mgeth_1  |[0m INFO [12-13|10:49:26.558] Gasprice oracle is ignoring threshold set threshold=2
-[33mgeth_1  |[0m INFO [12-13|10:49:26.566] Starting peer-to-peer node               instance=Geth/v1.10.12-unstable-31870a59/linux-amd64/go1.17.2
-[33mgeth_1  |[0m INFO [12-13|10:49:26.787] New local node record                    seq=1,639,392,326,258 id=9759ba1d56dce981 ip=127.0.0.1 udp=30303 tcp=30303
-[33mgeth_1  |[0m INFO [12-13|10:49:26.992] Started P2P networking                   self=enode://e67a03e13895bd198491729d8b7aef1697342faf7576d9d6203121a91714833d408d60d06ca8a131e133318a003a3600520cfc082ba8879bdd88df208a239ed8@127.0.0.1:30303
-[33mgeth_1  |[0m INFO [12-13|10:49:27.047] IPC endpoint opened                      url=/root/.ethereum/devchain/geth.ipc
-[33mgeth_1  |[0m INFO [12-13|10:49:27.064] HTTP server started                      endpoint=[::]:8545 prefix= cors=* vhosts=localhost
 [32mweb_1   |[0m Traceback (most recent call last):
 [32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
 [32mweb_1   |[0m     self.connect()
@@ -57,7 +59,7 @@ Attaching to swift-vote_db_1, swift-vote_geth_1, swift-vote_web_1
 [32mweb_1   |[0m     return Connection(*args, **kwargs)
 [32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 185, in __init__
 [32mweb_1   |[0m     super().__init__(*args, **kwargs2)
-[32mweb_1   |[0m MySQLdb._exceptions.OperationalError: (2002, "Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)")
+[32mweb_1   |[0m MySQLdb._exceptions.OperationalError: (2002, "Can't connect to MySQL server on 'db' (115)")
 [32mweb_1   |[0m 
 [32mweb_1   |[0m The above exception was the direct cause of the following exception:
 [32mweb_1   |[0m 
@@ -126,20 +128,102 @@ Attaching to swift-vote_db_1, swift-vote_geth_1, swift-vote_web_1
 [32mweb_1   |[0m     return Connection(*args, **kwargs)
 [32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 185, in __init__
 [32mweb_1   |[0m     super().__init__(*args, **kwargs2)
-[32mweb_1   |[0m django.db.utils.OperationalError: (2002, "Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)")
+[32mweb_1   |[0m django.db.utils.OperationalError: (2002, "Can't connect to MySQL server on 'db' (115)")
+[36mdb_1    |[0m 2021-12-13 10:59:38+00:00 [Note] [Entrypoint]: Database files initialized
+[36mdb_1    |[0m 2021-12-13 10:59:38+00:00 [Note] [Entrypoint]: Starting temporary server
 [32mswift-vote_web_1 exited with code 1
-[0m[33mgeth_1  |[0m INFO [12-13|10:49:28.713] Finished upgrading chain index           type=bloombits
-[33mgeth_1  |[0m INFO [12-13|10:49:36.872] Looking for peers                        peercount=0 tried=16 static=0
-[33mgeth_1  |[0m INFO [12-13|10:49:38.315] New local node record                    seq=1,639,392,326,259 id=9759ba1d56dce981 ip=103.60.198.233 udp=1024  tcp=30303
-[33mgeth_1  |[0m INFO [12-13|10:49:42.056] Block synchronisation started 
-[33mgeth_1  |[0m WARN [12-13|10:49:42.056] Enabling snapshot sync prototype 
-[33mgeth_1  |[0m WARN [12-13|10:49:42.384] Dropping unsynced node during sync       id=ed7d49699461d092 conn=dyndial addr=71.93.73.149:30303 type=Geth/v1.10.13-stable...
-[33mgeth_1  |[0m INFO [12-13|10:49:47.061] Looking for peers                        peercount=0 tried=30 static=0
-[33mgeth_1  |[0m INFO [12-13|10:49:57.284] Looking for peers                        peercount=1 tried=32 static=0
-[33mgeth_1  |[0m WARN [12-13|10:49:57.589] Dropping unsynced node during sync       id=15d58268e42cfc69 conn=dyndial addr=51.81.243.187:30303 type=Geth/v1.10.3-unstabl...
-[33mgeth_1  |[0m INFO [12-13|10:50:09.075] Looking for peers                        peercount=0 tried=31 static=0
-[33mgeth_1  |[0m INFO [12-13|10:50:19.084] Looking for peers                        peercount=0 tried=40 static=0
-[33mgeth_1  |[0m INFO [12-13|10:50:29.358] Looking for peers                        peercount=0 tried=31 static=0
-[33mgeth_1  |[0m INFO [12-13|10:50:39.378] Looking for peers                        peercount=1 tried=34 static=0
-[33mgeth_1  |[0m WARN [12-13|10:50:42.057] Synchronisation failed, dropping peer    peer=ed7d49699461d09206f0498d69b7fcdbd19308de896f22ad5878b71f684b9c67 err=timeout
-[33mgeth_1  |[0m INFO [12-13|10:50:49.468] Looking for peers                        peercount=2 tried=38 static=0
+[0m[36mdb_1    |[0m 2021-12-13T10:59:38.874167Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.26) starting as process 88
+[36mdb_1    |[0m 2021-12-13T10:59:38.924771Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[36mdb_1    |[0m 2021-12-13T10:59:39.560904Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[36mdb_1    |[0m 2021-12-13T10:59:40.169748Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:40.170027Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:40.173232Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+[36mdb_1    |[0m 2021-12-13T10:59:40.173635Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+[36mdb_1    |[0m 2021-12-13T10:59:40.183347Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[36mdb_1    |[0m 2021-12-13T10:59:40.277014Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+[36mdb_1    |[0m 2021-12-13T10:59:40.277680Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.26'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+[36mdb_1    |[0m 2021-12-13 10:59:40+00:00 [Note] [Entrypoint]: Temporary server started.
+[33mgeth_1  |[0m INFO [12-13|10:59:40.747] Looking for peers                        peercount=0 tried=33 static=0
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+[33mgeth_1  |[0m INFO [12-13|10:59:44.335] Block synchronisation started 
+[33mgeth_1  |[0m WARN [12-13|10:59:44.340] Enabling snapshot sync prototype 
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+[36mdb_1    |[0m 2021-12-13 10:59:50+00:00 [Note] [Entrypoint]: Creating database my-app-db
+[36mdb_1    |[0m 2021-12-13 10:59:50+00:00 [Note] [Entrypoint]: Creating user user#123$
+[36mdb_1    |[0m 2021-12-13 10:59:50+00:00 [Note] [Entrypoint]: Giving user user#123$ access to schema my-app-db
+[36mdb_1    |[0m 
+[36mdb_1    |[0m 2021-12-13 10:59:50+00:00 [Note] [Entrypoint]: Stopping temporary server
+[36mdb_1    |[0m 2021-12-13T10:59:50.496659Z 13 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.26).
+[33mgeth_1  |[0m INFO [12-13|10:59:50.750] Looking for peers                        peercount=1 tried=30 static=0
+[36mdb_1    |[0m 2021-12-13T10:59:53.413675Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.26)  MySQL Community Server - GPL.
+[36mdb_1    |[0m 2021-12-13 10:59:53+00:00 [Note] [Entrypoint]: Temporary server stopped
+[36mdb_1    |[0m 
+[36mdb_1    |[0m 2021-12-13 10:59:53+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+[36mdb_1    |[0m 
+[36mdb_1    |[0m 2021-12-13T10:59:53.908976Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.26) starting as process 1
+[36mdb_1    |[0m 2021-12-13T10:59:53.947829Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[36mdb_1    |[0m 2021-12-13T10:59:54.430806Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[36mdb_1    |[0m 2021-12-13T10:59:54.800542Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:54.801049Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:54.803548Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+[36mdb_1    |[0m 2021-12-13T10:59:54.804165Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+[36mdb_1    |[0m 2021-12-13T10:59:54.815912Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[36mdb_1    |[0m 2021-12-13T10:59:54.846877Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+[36mdb_1    |[0m 2021-12-13T10:59:54.846961Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.26'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+[33mgeth_1  |[0m INFO [12-13|11:00:00.751] Looking for peers                        peercount=1 tried=35 static=0
+[33mgeth_1  |[0m INFO [12-13|11:00:11.084] Looking for peers                        peercount=1 tried=35 static=0
+[33mgeth_1  |[0m INFO [12-13|11:00:21.108] Looking for peers                        peercount=2 tried=33 static=0
+[33mgeth_1  |[0m INFO [12-13|11:00:31.206] Looking for peers                        peercount=2 tried=35 static=0
+[33mgeth_1  |[0m INFO [12-13|11:00:41.414] Looking for peers                        peercount=2 tried=37 static=0
+[33mgeth_1  |[0m WARN [12-13|11:00:44.356] Synchronisation failed, dropping peer    peer=f358548033e196f65177718509a55db07adfd926ff182deb22814424204f125b err=timeout
+[33mgeth_1  |[0m INFO [12-13|11:00:51.743] Looking for peers                        peercount=2 tried=35 static=0
+[33mgeth_1  |[0m WARN [12-13|11:01:54.358] Synchronisation failed, dropping peer    peer=97d418327f8627fb801abeed609c0c9464cf95ed76670d027c884eb697685f86 err=timeout
+[33mgeth_1  |[0m INFO [12-13|11:02:02.480] Looking for peers                        peercount=2 tried=39 static=0
+[33mgeth_1  |[0m INFO [12-13|11:02:12.581] Looking for peers                        peercount=2 tried=41 static=0
+[33mgeth_1  |[0m INFO [12-13|11:02:13.751] State sync in progress                   synced=+Inf% state=1.14KiB accounts=0@0.00B slots=0@0.00B codes=1@1.14KiB eta=-5.584s
+[33mgeth_1  |[0m INFO [12-13|11:02:15.231] Imported new block headers               count=192 elapsed=1.489s    number=192 hash=723899..123390 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:02:15.234] Downloader queue stats                   receiptTasks=0 blockTasks=188 itemSize=111.09B throttle=8192
+[33mgeth_1  |[0m INFO [12-13|11:02:15.243] Wrote genesis to ancients 
+[33mgeth_1  |[0m INFO [12-13|11:02:15.300] Imported new block receipts              count=2   elapsed=64.869ms  number=2   hash=b495a1..4698c9 age=6y5mo2w  size=926.00B
+[33mgeth_1  |[0m INFO [12-13|11:02:22.743] Looking for peers                        peercount=2 tried=27 static=0
+[33mgeth_1  |[0m INFO [12-13|11:02:22.785] State sync in progress                   synced=+Inf% state=90.19KiB accounts=0@0.00B slots=375@77.26KiB codes=12@12.93KiB eta=-14.618s
+[33mgeth_1  |[0m INFO [12-13|11:02:27.423] New local node record                    seq=1,639,393,160,648 id=60096d44b38f125d ip=103.60.198.233 udp=62841 tcp=30303
+[33mgeth_1  |[0m INFO [12-13|11:02:32.286] State sync in progress                   synced=+Inf% state=412.37KiB accounts=0@0.00B slots=1017@204.92KiB codes=141@207.45KiB eta=-24.119s
+[33mgeth_1  |[0m INFO [12-13|11:02:32.747] Looking for peers                        peercount=2 tried=38 static=0
+[33mgeth_1  |[0m INFO [12-13|11:02:40.347] State sync in progress                   synced=0.01% state=11.24MiB  accounts=10972@2.58MiB slots=37010@7.52MiB  codes=718@1.14MiB   eta=127h38m36.848s
+[33mgeth_1  |[0m INFO [12-13|11:02:42.773] Looking for peers                        peercount=2 tried=27 static=0
+[33mgeth_1  |[0m INFO [12-13|11:02:48.375] State sync in progress                   synced=0.03% state=30.81MiB  accounts=44088@10.38MiB slots=90603@18.26MiB codes=1136@2.17MiB  eta=39h43m59.517s
+[33mgeth_1  |[0m INFO [12-13|11:02:56.766] State sync in progress                   synced=0.04% state=48.15MiB  accounts=66015@15.56MiB slots=147,737@29.23MiB codes=1728@3.36MiB  eta=32h4m38.145s
+[33mgeth_1  |[0m INFO [12-13|11:03:05.049] State sync in progress                   synced=0.06% state=72.03MiB  accounts=88021@20.75MiB slots=240,560@46.77MiB codes=2173@4.51MiB  eta=28h10m43.861s
+[33mgeth_1  |[0m INFO [12-13|11:03:12.964] Imported new block receipts              count=190 elapsed=70.501ms  number=192 hash=723899..123390 age=6y5mo2w  size=75.52KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:13.210] State sync in progress                   synced=0.06% state=83.71MiB  accounts=99013@23.33MiB slots=282,393@54.98MiB codes=2611@5.39MiB  eta=28h36m36.922s
+[33mgeth_1  |[0m INFO [12-13|11:03:13.415] Looking for peers                        peercount=2 tried=37 static=0
+[33mgeth_1  |[0m INFO [12-13|11:03:13.506] Imported new block headers               count=2048 elapsed=495.545ms number=2240 hash=cbfe15..56865d age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:13.604] Imported new block receipts              count=5    elapsed=30.562ms  number=197  hash=56f455..b4a497 age=6y5mo2w  size=1.67KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:13.735] Imported new block headers               count=2048 elapsed=217.902ms number=4288 hash=00f13a..74ca37 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:13.821] Imported new block headers               count=512  elapsed=69.607ms  number=4800 hash=e26684..e91df7 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:17.215] Downloader queue stats                   receiptTasks=0 blockTasks=4138 itemSize=812.73B throttle=8192
+[33mgeth_1  |[0m INFO [12-13|11:03:17.273] Imported new block receipts              count=167  elapsed=55.245ms  number=364  hash=9bd8bd..dee9b4 age=6y5mo2w  size=69.93KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:21.627] State sync in progress                   synced=0.07% state=96.72MiB  accounts=111,334@26.24MiB slots=327,209@64.32MiB codes=2939@6.17MiB  eta=28h48m22.117s
+[33mgeth_1  |[0m INFO [12-13|11:03:29.960] State sync in progress                   synced=0.08% state=116.95MiB accounts=122,354@28.84MiB slots=400,607@79.63MiB codes=3883@8.48MiB  eta=29h7m57.292s
+[33mgeth_1  |[0m WARN [12-13|11:03:39.433] Dropping unsynced node during sync       id=68d7487db1aecfba conn=dyndial addr=65.21.159.138:30303 type=erigon/v2021.11.2/li...
+[33mgeth_1  |[0m INFO [12-13|11:03:40.467] State sync in progress                   synced=0.09% state=126.68MiB accounts=144,342@34.02MiB slots=420,145@83.70MiB codes=4078@8.96MiB  eta=27h48m49.500s
+[33mgeth_1  |[0m INFO [12-13|11:03:41.526] Imported new block headers               count=2048 elapsed=149.483ms number=6848 hash=b0de98..dd55f8 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:41.828] Imported new block headers               count=2048 elapsed=292.951ms number=8896 hash=0ad2ee..5dbc7e age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:41.855] Imported new block receipts              count=2048 elapsed=265.105ms number=2412 hash=29a587..ef855c age=6y5mo2w  size=832.01KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:42.034] Imported new block receipts              count=2048 elapsed=153.265ms number=4460 hash=bedfeb..4670cb age=6y5mo2w  size=787.67KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:42.081] Imported new block headers               count=2048 elapsed=242.291ms number=10944 hash=3f73b7..2ac7df age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:42.095] Imported new block receipts              count=341  elapsed=57.105ms  number=4801  hash=6065a9..7d8165 age=6y5mo2w  size=131.26KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:42.300] Imported new block headers               count=2048 elapsed=199.616ms number=12992 hash=f42b1f..f91e4c age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:42.394] Imported new block receipts              count=1057 elapsed=211.942ms number=5858  hash=5df49f..e3cc2b age=6y5mo2w  size=391.97KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:42.556] Imported new block headers               count=2048 elapsed=227.863ms number=15040 hash=b936b2..0b2bd8 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:42.885] Imported new block headers               count=2048 elapsed=292.918ms number=17088 hash=bc9fd0..542dd2 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:43.246] Imported new block headers               count=2048 elapsed=340.092ms number=19136 hash=170f90..ecd8ca age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:43.525] Imported new block headers               count=2048 elapsed=266.998ms number=21184 hash=980147..37eaa7 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:44.200] Imported new block headers               count=2048 elapsed=648.187ms number=23232 hash=50db47..7cd1aa age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:44.878] Imported new block headers               count=1344 elapsed=581.751ms number=24576 hash=32aa83..ca3c79 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:47.187] Imported new block headers               count=192  elapsed=566.387ms number=24768 hash=38e6be..9a5fbe age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:48.684] State sync in progress                   synced=0.09% state=133.71MiB accounts=144,342@34.02MiB slots=453,319@90.20MiB codes=4240@9.49MiB  eta=30h17m18.241s
+[33mgeth_1  |[0m INFO [12-13|11:03:50.248] Imported new block headers               count=1920 elapsed=540.337ms number=26688 hash=486883..9f02bd age=6y5mo2w
