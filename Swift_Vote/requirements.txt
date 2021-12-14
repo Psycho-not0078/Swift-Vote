@@ -1,7 +1,20 @@
+<<<<<<< HEAD
+mysqlclient>=2.0.1
+Django>=3.2.8
+django-mysql>=3.9
+web3
+py-solc>=3.2.0
+py-solc-x>=1.1.1
+solc>=0.0.0a0
+rlp
+ethtoken>=0.0.1a4
+py-geth>=1.4.0
+=======
 mysqlclient==2.0.1
 Django==3.2.8
 django-mysql==3.9
 web3==5.24.0
 py-solc==3.2.0
 py-solc-x==1.1.1
-solc==0.0.0a0
+# solc==0.0.0a0
+>>>>>>> d5e158fbfea6aea9bb10bc0a107c66dac0bbed45

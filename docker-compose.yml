@@ -10,8 +10,12 @@ services:
       - "30303:30303/udp"
       - "8545:8545"
   web:
-    build: ./Swift_Vote/
-    command: python manage.py makemigrations; python manage.py migrate; python manage.py runserver 0.0.0.0:8000
+    build: .
+    command: >
+      sh -c   " sleep 20 &&
+              python manage.py makemigrations &&
+              python manage.py migrate &&
+              python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/my_app_dir
     ports:
