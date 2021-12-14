@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css" />
+  
   <style>
     /*Navigation Bar Styling*/
     .nav-menu li {
@@ -128,6 +129,13 @@
         alert("Cannot be time elapsed!");
         return false;
       }
+      else if (date1.getMonth() == date2.getMonth() && date1.getFullYear() == date2.getFullYear()){
+        if(date1.getDate() > date2.getDate()){
+          alert("Cannot have Start Date later than End Date!");
+          return false;
+        }
+        
+      }
       else if (diffInDays > 3) {
         alert("Cannot set an election for more than 3 days!");
         return false;
@@ -203,12 +211,13 @@
                 </div>
 
                 <!--Election Select State Input-->
-                <select class="form-select" name="state" style="margin: 10px" aria-label="Default select example"
+                <input type="hidden" name="country" id="countryId" value="IN"/>
+                <select class="form-select states order-alpha" name="state"  id="stateId" style="margin: 10px" aria-label="Default select example"
                   required>
                   <option value="">Select State</option>
-                  <option value="Rajasthan">Rajasthan</option>
+                  <!--<option value="Rajasthan">Rajasthan</option>
                   <option value="Gujrat">Gujrat</option>
-                  <option value="Maharashtra">Maharashtra</option>
+                  <option value="Maharashtra">Maharashtra</option>-->
                 </select>
               </div>
               <div class="col">
@@ -224,7 +233,7 @@
                   <!--Election End Date Input-->
                   <span class="input-group-text" style="background-color: rgb(206, 206, 252); color: black"
                     id="inputGroup-sizing-default">End Date</span>
-                  <input type="date" name="endDate" min="" max="2040-01-01" class="form-control"
+                  <input type="date" name="endDate" id="end" min="" max="2040-01-01" class="form-control"
                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required />
                 </div>
                 <div class="input-group">
@@ -236,12 +245,12 @@
                 </div>
 
                 <!--Election Select City Input-->
-                <select class="form-select" name="city" style="margin: 10px" aria-label="Default select example"
+                <select class="form-select cities order-alpha" name="city" id="cityId" style="margin: 10px" aria-label="Default select example"
                   required>
                   <option value="">Select City</option>
-                  <option value="Alwar">Alwar</option>
+                  <!--<option value="Alwar">Alwar</option>
                   <option value="Jaipur">Jaipur</option>
-                  <option value="City">City 3</option>
+                  <option value="City">City 3</option>-->
                 </select>
               </div>
             </div>
@@ -304,6 +313,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+  <!--Add country related state-city options-->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+  <script src="//geodata.solutions/includes/statecity.js"></script> 
+
+  
     
   <!--To set limits on the date (Js loads before HTML)-->
   <script>
@@ -322,6 +336,7 @@
     t = y + '-' + m + '-' + d;
     //Disable dates other than today.
     document.getElementById('start').setAttribute("min", t);
+    document.getElementById('end').setAttribute("min", t);
   </script>
 
 
