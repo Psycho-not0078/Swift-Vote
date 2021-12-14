@@ -3,6 +3,8 @@ from .models import candidateHistory, userDetails, election, location
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import auth
 from .forms import UserForm
+
+from datetime import datetime
 # Create your views here.
 def index(request):
     return render(request,"home.html")
@@ -69,11 +71,21 @@ def createElection(request):
     if request.method == "POST":
         ec = election()
         ec.ec_name = request.POST.get('ecName')
-        ec.sDate = request.POST.get('startDate')
+        #Converting data to datetime format
+        st = request.POST.get('startTime')
+        et = request.POST.get('endTime')
+        sd = request.POST.get('startDate')
+        ed = request.POST.get('endDate')
+        sdt = str(sd) + ' ' + str(st)
+        edt = str(ed) + ' ' +str(et)
+        datetime_object1 = datetime.strptime( sdt, '%Y-%m-%d %H:%M')
+        datetime_object2 = datetime.strptime(edt, '%Y-%m-%d %H:%M')
+        
+        ec.sDate = datetime_object1
         ec.electionType  = request.POST.get('ecType')
-        ec.fDate = request.POST.get('endDate')
+        ec.fDate = datetime_object2
         ec.save()
-
+        #Enter Data to Location Table
         locate = location()
         locate.locationName = request.POST.get('state')
         locate.save()
