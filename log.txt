@@ -1,0 +1,238 @@
+Attaching to swift-vote_geth_1, swift-vote_db_1, swift-vote_web_1
+[36mdb_1    |[0m 2021-12-14 09:11:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.27-1debian10 started.
+[33mgeth_1  |[0m INFO [12-14|09:11:23.671] Starting Geth on Ethereum mainnet... 
+[33mgeth_1  |[0m INFO [12-14|09:11:23.705] Bumping default cache on mainnet         provided=1024 updated=4096
+[33mgeth_1  |[0m INFO [12-14|09:11:23.708] Maximum peer count                       ETH=50 LES=0 total=50
+[33mgeth_1  |[0m INFO [12-14|09:11:23.763] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+[33mgeth_1  |[0m WARN [12-14|09:11:23.845] Sanitizing cache to Go's GC limits       provided=4096 updated=3036
+[33mgeth_1  |[0m INFO [12-14|09:11:23.874] Set global gas cap                       cap=50,000,000
+[33mgeth_1  |[0m INFO [12-14|09:11:23.875] Allocated trie memory caches             clean=455.00MiB dirty=759.00MiB
+[33mgeth_1  |[0m INFO [12-14|09:11:23.878] Allocated cache and file handles         database=/root/.ethereum/devchain/geth/chaindata cache=1.48GiB handles=524,288
+[36mdb_1    |[0m 2021-12-14 09:11:27+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+[36mdb_1    |[0m 2021-12-14 09:11:28+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.27-1debian10 started.
+[36mdb_1    |[0m 2021-12-14 09:11:28+00:00 [Note] [Entrypoint]: Initializing database files
+[36mdb_1    |[0m 2021-12-14T09:11:28.786674Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.27) initializing of server in progress as process 45
+[36mdb_1    |[0m 2021-12-14T09:11:29.093408Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[36mdb_1    |[0m 2021-12-14T09:11:33.396631Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[36mdb_1    |[0m 2021-12-14T09:11:45.617145Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-14T09:11:45.617180Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-14T09:11:45.968674Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+[36mdb_1    |[0m 2021-12-14 09:11:54+00:00 [Note] [Entrypoint]: Database files initialized
+[36mdb_1    |[0m 2021-12-14 09:11:54+00:00 [Note] [Entrypoint]: Starting temporary server
+[36mdb_1    |[0m 2021-12-14T09:12:12.718734Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.27) starting as process 94
+[36mdb_1    |[0m 2021-12-14T09:12:14.883511Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[36mdb_1    |[0m 2021-12-14T09:12:29.323003Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[32mweb_1   |[0m /usr/local/lib/python3.10/site-packages/django/core/management/commands/makemigrations.py:105: RuntimeWarning: Got an error checking a consistent migration history performed for database connection 'default': (2002, "Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)")
+[32mweb_1   |[0m   warnings.warn(
+[32mweb_1   |[0m No changes detected
+[36mdb_1    |[0m 2021-12-14T09:12:37.349958Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-14T09:12:37.350000Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-14T09:12:37.350778Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+[36mdb_1    |[0m 2021-12-14T09:12:37.350805Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+[36mdb_1    |[0m 2021-12-14T09:12:37.352481Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[36mdb_1    |[0m 2021-12-14T09:12:37.376780Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+[36mdb_1    |[0m 2021-12-14T09:12:37.377479Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.27'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+[36mdb_1    |[0m 2021-12-14 09:12:37+00:00 [Note] [Entrypoint]: Temporary server started.
+[32mweb_1   |[0m Traceback (most recent call last):
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 230, in ensure_connection
+[32mweb_1   |[0m     self.connect()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 25, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 211, in connect
+[32mweb_1   |[0m     self.connection = self.get_new_connection(conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 25, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 233, in get_new_connection
+[32mweb_1   |[0m     connection = Database.connect(**conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/__init__.py", line 123, in Connect
+[32mweb_1   |[0m     return Connection(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 185, in __init__
+[32mweb_1   |[0m     super().__init__(*args, **kwargs2)
+[32mweb_1   |[0m MySQLdb._exceptions.OperationalError: (2002, "Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)")
+[32mweb_1   |[0m 
+[32mweb_1   |[0m The above exception was the direct cause of the following exception:
+[32mweb_1   |[0m 
+[32mweb_1   |[0m Traceback (most recent call last):
+[32mweb_1   |[0m   File "/code/manage.py", line 22, in <module>
+[32mweb_1   |[0m     main()
+[32mweb_1   |[0m   File "/code/manage.py", line 18, in main
+[32mweb_1   |[0m     execute_from_command_line(sys.argv)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/__init__.py", line 425, in execute_from_command_line
+[32mweb_1   |[0m     utility.execute()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/__init__.py", line 419, in execute
+[32mweb_1   |[0m     self.fetch_command(subcommand).run_from_argv(self.argv)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 373, in run_from_argv
+[32mweb_1   |[0m     self.execute(*args, **cmd_options)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 417, in execute
+[32mweb_1   |[0m     output = self.handle(*args, **options)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 90, in wrapped
+[32mweb_1   |[0m     res = handle_func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/commands/migrate.py", line 75, in handle
+[32mweb_1   |[0m     self.check(databases=[database])
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 438, in check
+[32mweb_1   |[0m     all_issues = checks.run_checks(
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/checks/registry.py", line 77, in run_checks
+[32mweb_1   |[0m     new_errors = check(app_configs=app_configs, databases=databases)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/checks/database.py", line 13, in check_database_backends
+[32mweb_1   |[0m     issues.extend(conn.validation.check(**kwargs))
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/validation.py", line 9, in check
+[32mweb_1   |[0m     issues.extend(self._check_sql_mode(**kwargs))
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/validation.py", line 13, in _check_sql_mode
+[32mweb_1   |[0m     if not (self.connection.sql_mode & {'STRICT_TRANS_TABLES', 'STRICT_ALL_TABLES'}):
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 48, in __get__
+[32mweb_1   |[0m     res = instance.__dict__[self.name] = self.func(instance)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 404, in sql_mode
+[32mweb_1   |[0m     sql_mode = self.mysql_server_data['sql_mode']
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 48, in __get__
+[32mweb_1   |[0m     res = instance.__dict__[self.name] = self.func(instance)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 365, in mysql_server_data
+[32mweb_1   |[0m     with self.temporary_connection() as cursor:
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/contextlib.py", line 135, in __enter__
+[32mweb_1   |[0m     return next(self.gen)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 614, in temporary_connection
+[32mweb_1   |[0m     with self.cursor() as cursor:
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 25, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 270, in cursor
+[32mweb_1   |[0m     return self._cursor()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 246, in _cursor
+[32mweb_1   |[0m     self.ensure_connection()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 25, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 229, in ensure_connection
+[32mweb_1   |[0m     with self.wrap_database_errors:
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/utils.py", line 90, in __exit__
+[32mweb_1   |[0m     raise dj_exc_value.with_traceback(traceback) from exc_value
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 230, in ensure_connection
+[32mweb_1   |[0m     self.connect()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 25, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 211, in connect
+[32mweb_1   |[0m     self.connection = self.get_new_connection(conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 25, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 233, in get_new_connection
+[32mweb_1   |[0m     connection = Database.connect(**conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/__init__.py", line 123, in Connect
+[32mweb_1   |[0m     return Connection(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 185, in __init__
+[32mweb_1   |[0m     super().__init__(*args, **kwargs2)
+[32mweb_1   |[0m django.db.utils.OperationalError: (2002, "Can't connect to local MySQL server through socket '/run/mysqld/mysqld.sock' (2)")
+[32mswift-vote_web_1 exited with code 1
+[0m[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+[36mdb_1    |[0m 2021-12-14 09:12:45+00:00 [Note] [Entrypoint]: Creating database my-app-db
+[36mdb_1    |[0m 2021-12-14 09:12:45+00:00 [Note] [Entrypoint]: Creating user user#123$
+[33mgeth_1  |[0m INFO [12-14|09:12:45.941] Opened ancient database                  database=/root/.ethereum/devchain/geth/chaindata/ancient readonly=false
+[36mdb_1    |[0m 2021-12-14 09:12:45+00:00 [Note] [Entrypoint]: Giving user user#123$ access to schema my-app-db
+[36mdb_1    |[0m 
+[36mdb_1    |[0m 2021-12-14 09:12:45+00:00 [Note] [Entrypoint]: Stopping temporary server
+[33mgeth_1  |[0m INFO [12-14|09:12:46.192] Initialised chain configuration          config="{ChainID: 1 Homestead: 1150000 DAO: 1920000 DAOSupport: true EIP150: 2463000 EIP155: 2675000 EIP158: 2675000 Byzantium: 4370000 Constantinople: 7280000 Petersburg: 7280000 Istanbul: 9069000, Muir Glacier: 9200000, Berlin: 12244000, London: 12965000, Arrow Glacier: 13773000, Engine: ethash}"
+[33mgeth_1  |[0m INFO [12-14|09:12:46.311] Disk storage enabled for ethash caches   dir=/root/.ethereum/devchain/geth/ethash count=3
+[33mgeth_1  |[0m INFO [12-14|09:12:46.311] Disk storage enabled for ethash DAGs     dir=/root/.ethash                        count=2
+[36mdb_1    |[0m 2021-12-14T09:12:46.362481Z 13 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.27).
+[33mgeth_1  |[0m INFO [12-14|09:12:46.417] Initialising Ethereum protocol           network=1 dbversion=8
+[33mgeth_1  |[0m INFO [12-14|09:12:46.714] Loaded most recent local header          number=86784 hash=6aa89c..feeeeb td=122,986,091,825,277,847 age=6y5mo3d
+[33mgeth_1  |[0m INFO [12-14|09:12:46.714] Loaded most recent local full block      number=0     hash=d4e567..cb8fa3 td=17,179,869,184          age=52y8mo2w
+[33mgeth_1  |[0m INFO [12-14|09:12:46.714] Loaded most recent local fast block      number=64192 hash=b35ad4..49608f td=72,064,220,138,590,090  age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:12:46.714] Loaded last fast-sync pivot marker       number=13,772,972
+[33mgeth_1  |[0m ERROR[12-14|09:12:46.714] Truncating ancient chain                 from=86784 to=64192
+[33mgeth_1  |[0m WARN [12-14|09:12:46.715] Rewinding blockchain                     target=64192
+[36mdb_1    |[0m 2021-12-14T09:12:47.786597Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.27)  MySQL Community Server - GPL.
+[36mdb_1    |[0m 2021-12-14 09:12:48+00:00 [Note] [Entrypoint]: Temporary server stopped
+[36mdb_1    |[0m 
+[36mdb_1    |[0m 2021-12-14 09:12:48+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+[36mdb_1    |[0m 
+[36mdb_1    |[0m 2021-12-14T09:12:48.653613Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.27) starting as process 1
+[36mdb_1    |[0m 2021-12-14T09:12:48.681735Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[33mgeth_1  |[0m INFO [12-14|09:12:48.882] Loaded most recent local header          number=64192      hash=b35ad4..49608f td=72,064,220,138,590,090  age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:12:48.882] Loaded most recent local full block      number=0          hash=d4e567..cb8fa3 td=17,179,869,184          age=52y8mo2w
+[33mgeth_1  |[0m INFO [12-14|09:12:48.882] Loaded most recent local fast block      number=64192      hash=b35ad4..49608f td=72,064,220,138,590,090  age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:12:48.882] Loaded last fast-sync pivot marker       number=13,772,972
+[33mgeth_1  |[0m WARN [12-14|09:12:48.883] Snapshot maintenance disabled (syncing) 
+[33mgeth_1  |[0m INFO [12-14|09:12:48.883] Loaded local transaction journal         transactions=0 dropped=0
+[33mgeth_1  |[0m INFO [12-14|09:12:48.884] Upgrading chain index                    type=bloombits percentage=20
+[33mgeth_1  |[0m INFO [12-14|09:12:48.884] Regenerated local transaction journal    transactions=0 accounts=0
+[36mdb_1    |[0m 2021-12-14T09:12:48.892981Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[33mgeth_1  |[0m INFO [12-14|09:12:48.918] Gasprice oracle is ignoring threshold set threshold=2
+[33mgeth_1  |[0m WARN [12-14|09:12:48.939] Unclean shutdown detected                booted=2021-12-13T14:01:51+0000 age=19h10m57s
+[33mgeth_1  |[0m WARN [12-14|09:12:48.939] Unclean shutdown detected                booted=2021-12-13T15:45:30+0000 age=17h27m18s
+[33mgeth_1  |[0m INFO [12-14|09:12:48.939] Starting peer-to-peer node               instance=Geth/v1.10.13-unstable-16341e05-20211117/linux-amd64/go1.17.3
+[36mdb_1    |[0m 2021-12-14T09:12:49.168506Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-14T09:12:49.168552Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-14T09:12:49.171105Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+[36mdb_1    |[0m 2021-12-14T09:12:49.171189Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+[36mdb_1    |[0m 2021-12-14T09:12:49.174487Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[36mdb_1    |[0m 2021-12-14T09:12:49.193404Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.27'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+[36mdb_1    |[0m 2021-12-14T09:12:49.193424Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+[33mgeth_1  |[0m INFO [12-14|09:12:49.359] New local node record                    seq=1,639,404,111,506 id=65613b7306507d19 ip=127.0.0.1 udp=30303 tcp=30303
+[33mgeth_1  |[0m INFO [12-14|09:12:49.376] IPC endpoint opened                      url=/root/.ethereum/devchain/geth.ipc
+[33mgeth_1  |[0m INFO [12-14|09:12:49.377] HTTP server started                      endpoint=[::]:8545 prefix= cors=* vhosts=localhost
+[33mgeth_1  |[0m INFO [12-14|09:12:49.379] Started P2P networking                   self=enode://bfb0196bb28c03e6e768addf1dd1fdb05d0cf0d1f483100566f35ede8023f072a66502d126bcfdeaf5170166084ddccccc019c2444df9d227b05edbe5ce57065@127.0.0.1:30303
+[33mgeth_1  |[0m INFO [12-14|09:12:51.476] Finished upgrading chain index           type=bloombits
+[33mgeth_1  |[0m INFO [12-14|09:12:58.897] New local node record                    seq=1,639,404,111,507 id=65613b7306507d19 ip=49.206.117.219 udp=18366 tcp=30303
+[33mgeth_1  |[0m INFO [12-14|09:12:59.394] Block synchronisation started 
+[33mgeth_1  |[0m WARN [12-14|09:12:59.394] Enabling snapshot sync prototype 
+[33mgeth_1  |[0m INFO [12-14|09:12:59.834] Looking for peers                        peercount=1 tried=18 static=0
+[33mgeth_1  |[0m INFO [12-14|09:13:04.585] Imported new block headers               count=192 elapsed=771.306ms number=64384      hash=c9014e..41ad0e age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:04.588] Downloader queue stats                   receiptTasks=35 blockTasks=184 itemSize=304.30B throttle=8192
+[33mgeth_1  |[0m INFO [12-14|09:13:04.595] Imported new block receipts              count=7   elapsed=6.246ms   number=64199      hash=7439be..1a9414 age=6y5mo1w   size=2.35KiB
+[33mgeth_1  |[0m INFO [12-14|09:13:04.612] Imported new block headers               count=192 elapsed=25.875ms  number=64576      hash=4979bd..58ba41 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:04.747] Imported new block headers               count=960 elapsed=33.227ms  number=65536      hash=186b05..cb5a0a age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:05.058] Imported new block headers               count=192 elapsed=12.435ms  number=65728      hash=b514ec..8c5ac6 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:05.206] Imported new block headers               count=192 elapsed=10.631ms  number=65920      hash=76d766..eaee96 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:05.355] Imported new block headers               count=192 elapsed=9.834ms   number=66112      hash=06cff3..0099e9 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:05.521] Imported new block headers               count=192 elapsed=26.097ms  number=66304      hash=a8e08e..3b3b2f age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:05.657] Imported new block headers               count=192 elapsed=10.401ms  number=66496      hash=fb84fa..0a4702 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:05.805] Imported new block headers               count=192 elapsed=8.833ms   number=66688      hash=c7b305..5a3fe7 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:05.954] Imported new block headers               count=192 elapsed=8.757ms   number=66880      hash=2fa05e..76cc0d age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:06.138] Imported new block headers               count=192 elapsed=19.332ms  number=67072      hash=1b992a..9df226 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:06.441] Imported new block headers               count=192 elapsed=12.115ms  number=67264      hash=92e02a..f9abc4 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:06.591] Imported new block headers               count=192 elapsed=14.009ms  number=67456      hash=3522cc..01fc46 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:06.738] Imported new block headers               count=192 elapsed=11.259ms  number=67648      hash=ea933d..eaad66 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:06.925] Imported new block headers               count=192 elapsed=9.960ms   number=67840      hash=781c83..863e2d age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:07.136] Imported new block headers               count=192 elapsed=41.804ms  number=68032      hash=35c7ce..c57e91 age=6y5mo1w
+[33mgeth_1  |[0m INFO [12-14|09:13:07.264] Imported new block headers               count=192 elapsed=10.168ms  number=68224      hash=8453a0..ef5b46 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:07.493] Imported new block headers               count=192 elapsed=57.192ms  number=68416      hash=315d5a..e2796e age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:07.618] Imported new block headers               count=192 elapsed=12.056ms  number=68608      hash=bb5a38..275ce9 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:07.778] Imported new block headers               count=192 elapsed=9.311ms   number=68800      hash=198adb..d18064 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:07.949] Imported new block headers               count=192 elapsed=9.233ms   number=68992      hash=119613..e08904 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:08.140] Imported new block headers               count=192 elapsed=8.465ms   number=69184      hash=38e284..f7e2df age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:08.298] Imported new block headers               count=192 elapsed=8.647ms   number=69376      hash=fbe649..10fa1c age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:08.449] Imported new block headers               count=192 elapsed=9.383ms   number=69568      hash=3af966..46cc94 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:08.600] Imported new block headers               count=192 elapsed=8.097ms   number=69760      hash=19c1fa..cf6b4a age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:08.751] Imported new block headers               count=192 elapsed=10.464ms  number=69952      hash=76dc9c..33606e age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:08.900] Imported new block headers               count=192 elapsed=10.914ms  number=70144      hash=2be111..5c30e1 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:09.049] Imported new block headers               count=192 elapsed=9.638ms   number=70336      hash=5fc097..444a16 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:09.195] Imported new block headers               count=192 elapsed=7.657ms   number=70528      hash=f49dce..569265 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:09.349] Imported new block headers               count=192 elapsed=11.063ms  number=70720      hash=0674c6..692792 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:09.496] Imported new block headers               count=192 elapsed=7.994ms   number=70912      hash=d28861..a13f8c age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:09.648] Imported new block headers               count=192 elapsed=8.291ms   number=71104      hash=a63efc..623e2f age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:09.798] Imported new block headers               count=192 elapsed=9.074ms   number=71296      hash=5e76e6..175e49 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:09.836] Looking for peers                        peercount=1 tried=32 static=0
+[33mgeth_1  |[0m INFO [12-14|09:13:09.955] Imported new block headers               count=192 elapsed=8.858ms   number=71488      hash=334eaf..334e41 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:10.105] Imported new block headers               count=192 elapsed=9.193ms   number=71680      hash=2541ed..719c95 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:10.257] Imported new block headers               count=192 elapsed=9.292ms   number=71872      hash=2b3382..c12ffc age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:10.514] Imported new block headers               count=192 elapsed=7.714ms   number=72064      hash=770cb2..eb4a23 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:10.666] Imported new block headers               count=192 elapsed=8.857ms   number=72256      hash=35888e..d2521a age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:10.818] Imported new block headers               count=192 elapsed=8.569ms   number=72448      hash=d12f2f..dd623a age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:10.971] Imported new block headers               count=192 elapsed=10.663ms  number=72640      hash=2096a1..e18421 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:11.123] Imported new block headers               count=192 elapsed=11.096ms  number=72832      hash=fadb17..4f6335 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:11.277] Imported new block headers               count=192 elapsed=15.631ms  number=73024      hash=e2aa20..379f68 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:11.424] Imported new block headers               count=192 elapsed=13.415ms  number=73216      hash=dda7a1..25a4c6 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:11.568] Imported new block headers               count=192 elapsed=8.490ms   number=73408      hash=16f09e..dc1027 age=6y5mo6d
+[33mgeth_1  |[0m INFO [12-14|09:13:11.723] Imported new block headers               count=192 elapsed=13.389ms  number=73600      hash=8f1f9a..1fb951 age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:11.873] Imported new block headers               count=192 elapsed=10.413ms  number=73792      hash=7d2df0..602923 age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:12.026] Imported new block headers               count=192 elapsed=13.961ms  number=73984      hash=a6bbdb..968a66 age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:12.192] Imported new block headers               count=192 elapsed=10.022ms  number=74176      hash=f6a3bf..23a69e age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:12.445] Imported new block headers               count=192 elapsed=8.354ms   number=74368      hash=4e61f1..6190a4 age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:12.697] Imported new block headers               count=192 elapsed=82.036ms  number=74560      hash=2877d2..41bb15 age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:12.824] Imported new block headers               count=192 elapsed=20.169ms  number=74752      hash=efb791..194030 age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:12.977] Imported new block headers               count=192 elapsed=8.690ms   number=74944      hash=f9ed1e..018172 age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:13.131] Imported new block headers               count=192 elapsed=9.162ms   number=75136      hash=05d4ee..b9e294 age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:13.279] Imported new block headers               count=192 elapsed=6.842ms   number=75328      hash=662ab9..697186 age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:13.440] Imported new block headers               count=192 elapsed=11.273ms  number=75520      hash=97ec53..e851ee age=6y5mo5d
+[33mgeth_1  |[0m INFO [12-14|09:13:13.588] Imported new block headers               count=192 elapsed=10.326ms  number=75712      hash=b03ea1..a443c9 age=6y5mo5d
+Gracefully stopping... (press Ctrl+C again to force)

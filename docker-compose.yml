@@ -12,7 +12,8 @@ services:
   web:
     build: .
     command: >
-      sh -c   "python manage.py makemigrations &&
+      sh -c   "sleep 20 && 
+              python manage.py makemigrations &&
               python manage.py migrate &&
               python manage.py runserver 0.0.0.0:8000"
     volumes:
@@ -21,8 +22,13 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    links:
+      - db
   db:
-    image: mysql
+    image: mysql:latest
+    restart: always
+    volumes:
+    # - ./db/:/var/lib/
     ports:
       - '3306:3306'
     environment:
@@ -30,6 +36,7 @@ services:
        MYSQL_USER: 'user#123$$'
        MYSQL_PASSWORD: 'password#123'
        MYSQL_ROOT_PASSWORD: 'password'
+       DMYSQL_UNIX_ADDR: "/var/lib/mysql/mysql.sock"
 
 
 
