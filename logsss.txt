@@ -1,337 +1,229 @@
-Step 1/12 : FROM python:3.10.0-alpine3.14
- ---> 382a63bb2f25
-Step 2/12 : ENV PYTHONUNBUFFERED 1
- ---> Using cache
- ---> 4deec4dd75c9
-Step 3/12 : ENV PATH="${PATH}:/sbin"
- ---> Using cache
- ---> 61617cf6f124
-Step 4/12 : RUN mkdir /code
- ---> Using cache
- ---> 6e5bb36780fa
-Step 5/12 : WORKDIR /code
- ---> Using cache
- ---> a29bfa703faf
-Step 6/12 : RUN apk update && apk upgrade
- ---> Using cache
- ---> 9e5ec4b465b1
-Step 7/12 : COPY ./Swift_Vote/requirements.txt /code/
- ---> b3ca1f762192
-Step 8/12 : RUN apk add --update python3 --no-cache py3-pip gcc musl-dev mariadb-connector-c-dev
- ---> Running in 53b4001d1ba9
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/main/x86_64/APKINDEX.tar.gz
-fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/community/x86_64/APKINDEX.tar.gz
-(1/44) Installing libgcc (10.3.1_git20210424-r2)
-(2/44) Installing libstdc++ (10.3.1_git20210424-r2)
-(3/44) Installing binutils (2.35.2-r2)
-(4/44) Installing libgomp (10.3.1_git20210424-r2)
-(5/44) Installing libatomic (10.3.1_git20210424-r2)
-(6/44) Installing libgphobos (10.3.1_git20210424-r2)
-(7/44) Installing gmp (6.2.1-r0)
-(8/44) Installing isl22 (0.22-r0)
-(9/44) Installing mpfr4 (4.1.0-r0)
-(10/44) Installing mpc1 (1.2.1-r0)
-(11/44) Installing gcc (10.3.1_git20210424-r2)
-(12/44) Installing pkgconf (1.7.4-r0)
-(13/44) Installing openssl-dev (1.1.1l-r0)
-(14/44) Installing zlib-dev (1.2.11-r3)
-(15/44) Installing mariadb-connector-c (3.1.13-r0)
-(16/44) Installing mariadb-connector-c-dev (3.1.13-r0)
-(17/44) Installing musl-dev (1.2.2-r3)
-(18/44) Installing mpdecimal (2.5.1-r1)
-(19/44) Installing python3 (3.9.5-r2)
-(20/44) Installing py3-appdirs (1.4.4-r2)
-(21/44) Installing py3-chardet (4.0.0-r2)
-(22/44) Installing py3-idna (3.2-r0)
-(23/44) Installing py3-urllib3 (1.26.5-r0)
-(24/44) Installing py3-certifi (2020.12.5-r1)
-(25/44) Installing py3-requests (2.25.1-r4)
-(26/44) Installing py3-msgpack (1.0.2-r1)
-(27/44) Installing py3-lockfile (0.12.2-r4)
-(28/44) Installing py3-cachecontrol (0.12.6-r1)
-(29/44) Installing py3-colorama (0.4.4-r1)
-(30/44) Installing py3-contextlib2 (0.6.0-r1)
-(31/44) Installing py3-distlib (0.3.1-r3)
-(32/44) Installing py3-distro (1.5.0-r3)
-(33/44) Installing py3-six (1.15.0-r1)
-(34/44) Installing py3-webencodings (0.5.1-r4)
-(35/44) Installing py3-html5lib (1.1-r1)
-(36/44) Installing py3-parsing (2.4.7-r2)
-(37/44) Installing py3-packaging (20.9-r1)
-(38/44) Installing py3-toml (0.10.2-r2)
-(39/44) Installing py3-pep517 (0.10.0-r2)
-(40/44) Installing py3-progress (1.5-r2)
-(41/44) Installing py3-retrying (1.3.3-r1)
-(42/44) Installing py3-ordered-set (4.0.2-r1)
-(43/44) Installing py3-setuptools (52.0.0-r3)
-(44/44) Installing py3-pip (20.3.4-r1)
-Executing busybox-1.33.1-r6.trigger
-OK: 205 MiB in 80 packages
-Removing intermediate container 53b4001d1ba9
- ---> 769b5d6b08f7
-Step 9/12 : RUN pip3 install -r requirements.txt
- ---> Running in b735be87a26a
-Collecting mysqlclient>=2.0.1
-  Downloading mysqlclient-2.1.0.tar.gz (87 kB)
-Collecting Django>=3.2.8
-  Downloading Django-4.0-py3-none-any.whl (8.0 MB)
-Collecting django-mysql>=3.9
-  Downloading django_mysql-4.3.0-py3-none-any.whl (56 kB)
-Collecting web3
-  Downloading web3-5.25.0-py3-none-any.whl (485 kB)
-Collecting py-solc>=3.2.0
-  Downloading py_solc-3.2.0-py3-none-any.whl (12 kB)
-Collecting py-solc-x>=1.1.1
-  Downloading py_solc_x-1.1.1-py3-none-any.whl (15 kB)
-Collecting solc>=0.0.0a0
-  Downloading solc-0.0.0a0-py3-none-any.whl (1.4 kB)
-Collecting rlp
-  Downloading rlp-3.0.0-py2.py3-none-any.whl (20 kB)
-Collecting ethtoken>=0.0.1a4
-  Downloading ethtoken-0.0.1a4-py3-none-any.whl (4.1 kB)
-Collecting py-geth>=1.4.0
-  Downloading py_geth-3.7.0-py3-none-any.whl (23 kB)
-Collecting asgiref<4,>=3.4.1
-  Downloading asgiref-3.4.1-py3-none-any.whl (25 kB)
-Collecting sqlparse>=0.2.2
-  Downloading sqlparse-0.4.2-py3-none-any.whl (42 kB)
-Collecting aiohttp<4,>=3.7.4.post0
-  Downloading aiohttp-3.8.1-cp310-cp310-musllinux_1_1_x86_64.whl (1.2 MB)
-Collecting eth-hash[pycryptodome]<1.0.0,>=0.2.0
-  Downloading eth_hash-0.3.2-py3-none-any.whl (8.8 kB)
-Collecting jsonschema<4.0.0,>=3.2.0
-  Downloading jsonschema-3.2.0-py2.py3-none-any.whl (56 kB)
-Collecting ipfshttpclient==0.8.0a2
-  Downloading ipfshttpclient-0.8.0a2-py3-none-any.whl (82 kB)
-Collecting eth-utils<2.0.0,>=1.9.5
-  Downloading eth_utils-1.10.0-py3-none-any.whl (24 kB)
-Collecting requests<3.0.0,>=2.16.0
-  Downloading requests-2.26.0-py2.py3-none-any.whl (62 kB)
-Collecting eth-abi<3.0.0,>=2.0.0b6
-  Downloading eth_abi-2.1.1-py3-none-any.whl (27 kB)
-Collecting websockets<10,>=9.1
-  Downloading websockets-9.1.tar.gz (76 kB)
-Collecting eth-typing<3.0.0,>=2.0.0
-  Downloading eth_typing-2.2.2-py3-none-any.whl (6.2 kB)
-Collecting hexbytes<1.0.0,>=0.1.0
-  Downloading hexbytes-0.2.2-py3-none-any.whl (6.1 kB)
-Collecting eth-account<0.6.0,>=0.5.6
-  Downloading eth_account-0.5.6-py3-none-any.whl (101 kB)
-Collecting lru-dict<2.0.0,>=1.1.6
-  Downloading lru-dict-1.1.7.tar.gz (10 kB)
-Collecting protobuf<4,>=3.10.0
-  Downloading protobuf-3.19.1-py2.py3-none-any.whl (162 kB)
-Collecting multiaddr>=0.0.7
-  Downloading multiaddr-0.0.9-py2.py3-none-any.whl (16 kB)
-Collecting semantic-version>=2.6.0
-  Downloading semantic_version-2.8.5-py2.py3-none-any.whl (15 kB)
-Collecting rlp
-  Downloading rlp-2.0.1-py2.py3-none-any.whl (20 kB)
-Collecting web3
-  Downloading web3-4.10.0-py3-none-any.whl (124 kB)
-  Downloading web3-4.9.2-py3-none-any.whl (124 kB)
-  Downloading web3-4.9.1-py3-none-any.whl (124 kB)
-  Downloading web3-4.9.0-py3-none-any.whl (124 kB)
-  Downloading web3-4.8.3-py3-none-any.whl (124 kB)
-  Downloading web3-4.8.2-py3-none-any.whl (124 kB)
-  Downloading web3-4.8.1-py3-none-any.whl (127 kB)
-  Downloading web3-4.8.0-py3-none-any.whl (127 kB)
-  Downloading web3-4.7.2-py3-none-any.whl (126 kB)
-  Downloading web3-4.7.1-py3-none-any.whl (126 kB)
-  Downloading web3-4.6.0-py3-none-any.whl (125 kB)
-  Downloading web3-4.5.0-py3-none-any.whl (123 kB)
-  Downloading web3-4.4.1-py3-none-any.whl (123 kB)
-  Downloading web3-4.4.0-py3-none-any.whl (123 kB)
-  Downloading web3-4.3.0-py3-none-any.whl (121 kB)
-  Downloading web3-4.2.1-py3-none-any.whl (115 kB)
-  Downloading web3-4.2.0-py3-none-any.whl (113 kB)
-  Downloading web3-4.1.0-py3-none-any.whl (112 kB)
-  Downloading web3-4.0.0-py3-none-any.whl (111 kB)
-INFO: pip is looking at multiple versions of ethtoken to determine which version is compatible with other requirements. This could take a while.
-INFO: pip is looking at multiple versions of rlp to determine which version is compatible with other requirements. This could take a while.
-Collecting rlp
-  Downloading rlp-2.0.0-py2.py3-none-any.whl (20 kB)
-  Downloading rlp-1.2.0-py2.py3-none-any.whl (19 kB)
-  Downloading rlp-1.1.0-py2.py3-none-any.whl (18 kB)
-  Downloading rlp-1.0.3-py2.py3-none-any.whl (18 kB)
-  Downloading rlp-1.0.2-py2.py3-none-any.whl (18 kB)
-  Downloading rlp-1.0.1-py2.py3-none-any.whl (18 kB)
-  Downloading rlp-1.0.0-py2.py3-none-any.whl (18 kB)
-INFO: pip is looking at multiple versions of ethtoken to determine which version is compatible with other requirements. This could take a while.
-INFO: pip is looking at multiple versions of rlp to determine which version is compatible with other requirements. This could take a while.
-  Downloading rlp-0.6.0.tar.gz (31 kB)
-  Downloading rlp-0.5.1-py2.py3-none-any.whl (16 kB)
-  Downloading rlp-0.5.0-py2.py3-none-any.whl (16 kB)
-  Downloading rlp-0.4.7.tar.gz (30 kB)
-  Downloading rlp-0.4.6-py2.py3-none-any.whl (16 kB)
-INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. If you want to abort this run, you can press Ctrl + C to do so. To improve how pip performs, tell us what happened here: https://pip.pypa.io/surveys/backtracking
-INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. If you want to abort this run, you can press Ctrl + C to do so. To improve how pip performs, tell us what happened here: https://pip.pypa.io/surveys/backtracking
-  Downloading rlp-0.4.5-py2.py3-none-any.whl (16 kB)
-  Downloading rlp-0.4.4-py2.py3-none-any.whl (16 kB)
-  Downloading rlp-0.4.3-py2.py3-none-any.whl (16 kB)
-  Downloading rlp-0.4.2.tar.gz (30 kB)
-  Downloading rlp-0.4.1-py2.py3-none-any.whl (16 kB)
-  Downloading rlp-0.4.0-py2.py3-none-any.whl (16 kB)
-  Downloading rlp-0.3.10-py2.py3-none-any.whl (16 kB)
-  Downloading rlp-0.3.9-py2.py3-none-any.whl (16 kB)
-  Downloading rlp-0.3.8-py2.py3-none-any.whl (13 kB)
-  Downloading rlp-0.3.7.tar.gz (23 kB)
-  Downloading rlp-0.3.6.tar.gz (23 kB)
-  Downloading rlp-0.3.5.tar.gz (23 kB)
-  Downloading rlp-0.3.4-py2.py3-none-any.whl (12 kB)
-  Downloading rlp-0.3.3-py2.py3-none-any.whl (11 kB)
-  Downloading rlp-0.3.2-py2.py3-none-any.whl (11 kB)
-  Downloading rlp-0.3-py2.py3-none-any.whl (11 kB)
-  Downloading rlp-0.2.2.tar.gz (2.9 kB)
-INFO: pip is looking at multiple versions of solc to determine which version is compatible with other requirements. This could take a while.
-INFO: pip is looking at multiple versions of py-solc-x to determine which version is compatible with other requirements. This could take a while.
-INFO: pip is looking at multiple versions of py-solc to determine which version is compatible with other requirements. This could take a while.
-INFO: pip is looking at multiple versions of ipfshttpclient to determine which version is compatible with other requirements. This could take a while.
-INFO: pip is looking at multiple versions of web3 to determine which version is compatible with other requirements. This could take a while.
-Collecting web3
-  Downloading web3-5.24.0-py3-none-any.whl (487 kB)
-  Downloading web3-5.23.1-py3-none-any.whl (486 kB)
-  Downloading web3-5.23.0-py3-none-any.whl (485 kB)
-Collecting ipfshttpclient==0.7.0
-  Downloading ipfshttpclient-0.7.0-py3-none-any.whl (82 kB)
-Collecting web3
-  Downloading web3-5.22.0-py3-none-any.whl (484 kB)
-  Downloading web3-5.21.0-py3-none-any.whl (482 kB)
-  Downloading web3-5.20.1-py3-none-any.whl (479 kB)
-  Downloading web3-5.20.0-py3-none-any.whl (480 kB)
-Collecting websockets<9.0.0,>=8.1.0
-  Downloading websockets-8.1.tar.gz (58 kB)
-INFO: pip is looking at multiple versions of solc to determine which version is compatible with other requirements. This could take a while.
-INFO: pip is looking at multiple versions of py-solc-x to determine which version is compatible with other requirements. This could take a while.
-INFO: pip is looking at multiple versions of py-solc to determine which version is compatible with other requirements. This could take a while.
-INFO: pip is looking at multiple versions of ipfshttpclient to determine which version is compatible with other requirements. This could take a while.
-INFO: pip is looking at multiple versions of web3 to determine which version is compatible with other requirements. This could take a while.
-Collecting web3
-  Downloading web3-5.19.0-py3-none-any.whl (470 kB)
-Collecting ipfshttpclient==0.7.0a1
-  Downloading ipfshttpclient-0.7.0a1-py3-none-any.whl (231 kB)
-Collecting web3
-  Downloading web3-5.18.0-py3-none-any.whl (469 kB)
-  Downloading web3-5.17.0-py3-none-any.whl (469 kB)
-  Downloading web3-5.16.0-py3-none-any.whl (469 kB)
-  Downloading web3-5.15.0-py3-none-any.whl (468 kB)
-INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. If you want to abort this run, you can press Ctrl + C to do so. To improve how pip performs, tell us what happened here: https://pip.pypa.io/surveys/backtracking
-INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. If you want to abort this run, you can press Ctrl + C to do so. To improve how pip performs, tell us what happened here: https://pip.pypa.io/surveys/backtracking
-INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. If you want to abort this run, you can press Ctrl + C to do so. To improve how pip performs, tell us what happened here: https://pip.pypa.io/surveys/backtracking
-INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. If you want to abort this run, you can press Ctrl + C to do so. To improve how pip performs, tell us what happened here: https://pip.pypa.io/surveys/backtracking
-INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. If you want to abort this run, you can press Ctrl + C to do so. To improve how pip performs, tell us what happened here: https://pip.pypa.io/surveys/backtracking
-  Downloading web3-5.14.0-py3-none-any.whl (467 kB)
-  Downloading web3-5.13.1-py3-none-any.whl (466 kB)
-  Downloading web3-5.13.0-py3-none-any.whl (470 kB)
-  Downloading web3-5.12.3-py3-none-any.whl (468 kB)
-  Downloading web3-5.12.2-py3-none-any.whl (468 kB)
-  Downloading web3-5.12.1-py3-none-any.whl (467 kB)
-  Downloading web3-5.12.0-py3-none-any.whl (467 kB)
-  Downloading web3-5.11.1-py3-none-any.whl (467 kB)
-  Downloading web3-5.11.0-py3-none-any.whl (467 kB)
-  Downloading web3-5.10.0-py3-none-any.whl (467 kB)
-  Downloading web3-5.9.0-py3-none-any.whl (467 kB)
-  Downloading web3-5.8.0-py3-none-any.whl (467 kB)
-Collecting eth-account<0.5.0,>=0.4.0
-  Downloading eth_account-0.4.0-py3-none-any.whl (26 kB)
-Collecting web3
-  Downloading web3-5.7.0-py3-none-any.whl (460 kB)
-  Downloading web3-5.6.0-py3-none-any.whl (459 kB)
-  Downloading web3-5.5.1-py3-none-any.whl (459 kB)
-  Downloading web3-5.5.0-py3-none-any.whl (459 kB)
-  Downloading web3-5.4.0-py3-none-any.whl (455 kB)
-Collecting mypy-extensions<1.0.0,>=0.4.1
-  Downloading mypy_extensions-0.4.3-py2.py3-none-any.whl (4.5 kB)
-Collecting typing-extensions<4,>=3.7.4.1
-  Downloading typing_extensions-3.10.0.2-py3-none-any.whl (26 kB)
-Collecting web3
-  Downloading web3-5.3.1-py3-none-any.whl (454 kB)
-  Downloading web3-5.3.0-py3-none-any.whl (440 kB)
-  Downloading web3-5.2.2-py3-none-any.whl (436 kB)
-Collecting websockets<8.0.0,>=7.0.0
-  Downloading websockets-7.0.tar.gz (49 kB)
-Collecting web3
-  Downloading web3-5.2.1-py3-none-any.whl (436 kB)
-  Downloading web3-5.2.0-py3-none-any.whl (436 kB)
-  Downloading web3-5.1.0-py3-none-any.whl (433 kB)
-  Downloading web3-5.0.2-py3-none-any.whl (433 kB)
-Collecting jsonschema<3,>=2.6.0
-  Downloading jsonschema-2.6.0-py2.py3-none-any.whl (39 kB)
-Collecting web3
-  Downloading web3-5.0.1-py3-none-any.whl (433 kB)
-  Downloading web3-5.0.0-py3-none-any.whl (433 kB)
-Collecting eth-abi<2.0.0,>=1.2.0
-  Downloading eth_abi-1.3.0-py3-none-any.whl (21 kB)
-Collecting eth-account<0.4.0,>=0.2.1
-  Downloading eth_account-0.3.0-py3-none-any.whl (18 kB)
-Collecting cytoolz<1.0.0,>=0.9.0
-  Downloading cytoolz-0.11.2.tar.gz (481 kB)
-Collecting websockets<7.0.0,>=6.0.0
-  Downloading websockets-6.0.tar.gz (70 kB)
-Collecting toolz>=0.8.0
-  Downloading toolz-0.11.2-py3-none-any.whl (55 kB)
-Collecting parsimonious<0.9.0,>=0.8.0
-  Downloading parsimonious-0.8.1.tar.gz (45 kB)
-Collecting attrdict<3,>=2.0.0
-  Downloading attrdict-2.0.1-py2.py3-none-any.whl (9.9 kB)
-Collecting eth-keys<0.3.0,>=0.2.0b3
-  Downloading eth_keys-0.2.4-py3-none-any.whl (24 kB)
-Collecting eth-keyfile<0.6.0,>=0.5.0
-  Downloading eth_keyfile-0.5.1-py3-none-any.whl (8.3 kB)
-Collecting eth-rlp<1,>=0.1.2
-  Downloading eth_rlp-0.2.1-py3-none-any.whl (5.0 kB)
-Collecting six
-  Downloading six-1.16.0-py2.py3-none-any.whl (11 kB)
-Collecting pycryptodome<4,>=3.6.6
-  Downloading pycryptodome-3.12.0.zip (3.7 MB)
-Collecting urllib3<1.27,>=1.21.1
-  Downloading urllib3-1.26.7-py2.py3-none-any.whl (138 kB)
-Collecting certifi>=2017.4.17
-  Downloading certifi-2021.10.8-py2.py3-none-any.whl (149 kB)
-Collecting idna<4,>=2.5
-  Downloading idna-3.3-py3-none-any.whl (61 kB)
-Collecting charset-normalizer~=2.0.0
-  Downloading charset_normalizer-2.0.9-py3-none-any.whl (39 kB)
-Building wheels for collected packages: mysqlclient, cytoolz, lru-dict, parsimonious, pycryptodome, websockets
-  Building wheel for mysqlclient (setup.py): started
-  Building wheel for mysqlclient (setup.py): finished with status 'done'
-  Created wheel for mysqlclient: filename=mysqlclient-2.1.0-cp310-cp310-linux_x86_64.whl size=57134 sha256=459174144bcdf885d4b8c41e4d769142151696e0829b5f1ee90b77e4933c74dc
-  Stored in directory: /root/.cache/pip/wheels/4c/84/4e/81d895d665bc0c6b6e9e081d319478e8859e6f209f2e4ebca5
-  Building wheel for cytoolz (setup.py): started
-  Building wheel for cytoolz (setup.py): finished with status 'done'
-  Created wheel for cytoolz: filename=cytoolz-0.11.2-cp310-cp310-linux_x86_64.whl size=412256 sha256=1251e3433058b8c23a60730b3bcf763d35269f7ee44ccdbcaa96e1dcc62de6bc
-  Stored in directory: /root/.cache/pip/wheels/07/9b/dd/46e07d1466c9ec2e4bc7395d8c68b55bf3786593534179f679
-  Building wheel for lru-dict (setup.py): started
-  Building wheel for lru-dict (setup.py): finished with status 'done'
-  Created wheel for lru-dict: filename=lru_dict-1.1.7-cp310-cp310-linux_x86_64.whl size=10580 sha256=86a3bf16d0be2034c66c367234a0735b610f8497c936c5495a20a1899380dd26
-  Stored in directory: /root/.cache/pip/wheels/47/0a/dc/b156cb52954bbc1c31b4766ca3f0ed9eae9b218812bca89d7b
-  Building wheel for parsimonious (setup.py): started
-  Building wheel for parsimonious (setup.py): finished with status 'done'
-  Created wheel for parsimonious: filename=parsimonious-0.8.1-py3-none-any.whl size=42724 sha256=07a75d5d810c69d1c6d4379f38944989468a558d411b5b49c9b1bfc25c601bff
-  Stored in directory: /root/.cache/pip/wheels/b1/12/f1/7a2f39b30d6780ae9f2be9a52056595e0d97c1b4531d183085
-  Building wheel for pycryptodome (setup.py): started
-  Building wheel for pycryptodome (setup.py): finished with status 'done'
-  Created wheel for pycryptodome: filename=pycryptodome-3.12.0-cp35-abi3-linux_x86_64.whl size=1507647 sha256=119385ac411532585497ed02db9ed5f91bc2f8477de0e22b98198dfd25f15ef7
-  Stored in directory: /root/.cache/pip/wheels/8f/d5/04/bf54e6bdce39ccc420d4363f59453ecf4deea0e0b03149033e
-  Building wheel for websockets (setup.py): started
-  Building wheel for websockets (setup.py): finished with status 'done'
-  Created wheel for websockets: filename=websockets-6.0-cp310-cp310-linux_x86_64.whl size=82601 sha256=39318ee34a3eb4758008dff0d20b0329642754c6baf53d6ef0ab79451a2aed25
-  Stored in directory: /root/.cache/pip/wheels/42/5b/bd/143fad580368ebaba04b0cb4ca4f3986da1eae1a3f0d58793b
-Successfully built mysqlclient cytoolz lru-dict parsimonious pycryptodome websockets
-Installing collected packages: toolz, eth-typing, eth-hash, cytoolz, eth-utils, six, rlp, pycryptodome, hexbytes, eth-keys, urllib3, parsimonious, idna, eth-rlp, eth-keyfile, charset-normalizer, certifi, attrdict, websockets, sqlparse, requests, lru-dict, eth-account, eth-abi, asgiref, web3, semantic-version, Django, solc, py-solc-x, py-solc, py-geth, mysqlclient, ethtoken, django-mysql
-Successfully installed Django-4.0 asgiref-3.4.1 attrdict-2.0.1 certifi-2021.10.8 charset-normalizer-2.0.9 cytoolz-0.11.2 django-mysql-4.3.0 eth-abi-1.3.0 eth-account-0.3.0 eth-hash-0.3.2 eth-keyfile-0.5.1 eth-keys-0.2.4 eth-rlp-0.2.1 eth-typing-2.2.2 eth-utils-1.10.0 ethtoken-0.0.1a4 hexbytes-0.2.2 idna-3.3 lru-dict-1.1.7 mysqlclient-2.1.0 parsimonious-0.8.1 py-geth-3.7.0 py-solc-3.2.0 py-solc-x-1.1.1 pycryptodome-3.12.0 requests-2.26.0 rlp-2.0.1 semantic-version-2.8.5 six-1.16.0 solc-0.0.0a0 sqlparse-0.4.2 toolz-0.11.2 urllib3-1.26.7 web3-4.10.0 websockets-6.0
-[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
-[0m[91mWARNING: You are using pip version 21.2.4; however, version 21.3.1 is available.
-You should consider upgrading via the '/usr/local/bin/python -m pip install --upgrade pip' command.
-[0mRemoving intermediate container b735be87a26a
- ---> a0e316e68b38
-Step 10/12 : COPY ./Swift_Vote/ /code/
- ---> 951f8e245e77
-Step 11/12 : COPY ./init.sh /code/init.sh
- ---> 79a16fff89b8
-Step 12/12 : RUN chmod +x init.sh
- ---> Running in 6ae0ad132e12
-Removing intermediate container 6ae0ad132e12
- ---> 625d4f1865c5
-Successfully built 625d4f1865c5
-Successfully tagged swift-vote_web:latest
+Attaching to swift-vote_db_1, swift-vote_geth_1, swift-vote_web_1
+[36mdb_1    |[0m 2021-12-13 10:59:18+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.26-1debian10 started.
+[36mdb_1    |[0m 2021-12-13 10:59:18+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+[36mdb_1    |[0m 2021-12-13 10:59:19+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.26-1debian10 started.
+[33mgeth_1  |[0m INFO [12-13|10:59:19.049] Starting Geth on Ethereum mainnet... 
+[33mgeth_1  |[0m INFO [12-13|10:59:19.049] Bumping default cache on mainnet         provided=1024 updated=4096
+[36mdb_1    |[0m 2021-12-13 10:59:19+00:00 [Note] [Entrypoint]: Initializing database files
+[33mgeth_1  |[0m INFO [12-13|10:59:19.054] Maximum peer count                       ETH=50 LES=0 total=50
+[33mgeth_1  |[0m INFO [12-13|10:59:19.054] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+[33mgeth_1  |[0m WARN [12-13|10:59:19.057] Sanitizing cache to Go's GC limits       provided=4096 updated=660
+[33mgeth_1  |[0m INFO [12-13|10:59:19.057] Set global gas cap                       cap=50,000,000
+[33mgeth_1  |[0m INFO [12-13|10:59:19.063] Allocated trie memory caches             clean=99.00MiB dirty=165.00MiB
+[33mgeth_1  |[0m INFO [12-13|10:59:19.063] Allocated cache and file handles         database=/root/.ethereum/devchain/geth/chaindata cache=329.00MiB handles=524,288
+[33mgeth_1  |[0m INFO [12-13|10:59:19.240] Opened ancient database                  database=/root/.ethereum/devchain/geth/chaindata/ancient readonly=false
+[33mgeth_1  |[0m INFO [12-13|10:59:19.240] Writing default main-net genesis block 
+[36mdb_1    |[0m 2021-12-13T10:59:19.692978Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.26) initializing of server in progress as process 41
+[33mgeth_1  |[0m INFO [12-13|10:59:20.416] Persisted trie from memory database      nodes=12356 size=1.78MiB time=216.5427ms gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+[36mdb_1    |[0m 2021-12-13T10:59:19.719347Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[33mgeth_1  |[0m INFO [12-13|10:59:20.425] Initialised chain configuration          config="{ChainID: 1 Homestead: 1150000 DAO: 1920000 DAOSupport: true EIP150: 2463000 EIP155: 2675000 EIP158: 2675000 Byzantium: 4370000 Constantinople: 7280000 Petersburg: 7280000 Istanbul: 9069000, Muir Glacier: 9200000, Berlin: 12244000, London: 12965000, Arrow Glacier: 13773000, Engine: ethash}"
+[33mgeth_1  |[0m INFO [12-13|10:59:20.427] Disk storage enabled for ethash caches   dir=/root/.ethereum/devchain/geth/ethash count=3
+[33mgeth_1  |[0m INFO [12-13|10:59:20.427] Disk storage enabled for ethash DAGs     dir=/root/.ethash                        count=2
+[33mgeth_1  |[0m INFO [12-13|10:59:20.430] Initialising Ethereum protocol           network=1 dbversion=<nil>
+[33mgeth_1  |[0m INFO [12-13|10:59:20.434] Loaded most recent local header          number=0 hash=d4e567..cb8fa3 td=17,179,869,184 age=52y8mo2w
+[33mgeth_1  |[0m INFO [12-13|10:59:20.435] Loaded most recent local full block      number=0 hash=d4e567..cb8fa3 td=17,179,869,184 age=52y8mo2w
+[33mgeth_1  |[0m INFO [12-13|10:59:20.435] Loaded most recent local fast block      number=0 hash=d4e567..cb8fa3 td=17,179,869,184 age=52y8mo2w
+[33mgeth_1  |[0m WARN [12-13|10:59:20.435] Failed to load snapshot, regenerating    err="missing or corrupted snapshot"
+[33mgeth_1  |[0m INFO [12-13|10:59:20.435] Rebuilding state snapshot 
+[33mgeth_1  |[0m INFO [12-13|10:59:20.437] Resuming state snapshot generation       root=d7f897..0f0544 accounts=0 slots=0 storage=0.00B elapsed=1.970ms
+[33mgeth_1  |[0m INFO [12-13|10:59:20.441] Regenerated local transaction journal    transactions=0 accounts=0
+[33mgeth_1  |[0m INFO [12-13|10:59:20.510] Gasprice oracle is ignoring threshold set threshold=2
+[33mgeth_1  |[0m WARN [12-13|10:59:20.527] Error reading unclean shutdown markers   error="leveldb: not found"
+[33mgeth_1  |[0m INFO [12-13|10:59:20.532] Starting peer-to-peer node               instance=Geth/v1.10.12-unstable-31870a59/linux-amd64/go1.17.2
+[33mgeth_1  |[0m INFO [12-13|10:59:20.702] New local node record                    seq=1,639,393,160,646 id=60096d44b38f125d ip=127.0.0.1 udp=30303 tcp=30303
+[33mgeth_1  |[0m INFO [12-13|10:59:20.707] IPC endpoint opened                      url=/root/.ethereum/devchain/geth.ipc
+[33mgeth_1  |[0m INFO [12-13|10:59:20.725] Started P2P networking                   self=enode://f40c147309dd66f535e28daff228d880a686fff9f31d1f2604904bd1fd6db6b855cab0a516277c5dda30650f547b58001279b56026c8e882c8f943c1ed1c618f@127.0.0.1:30303
+[33mgeth_1  |[0m INFO [12-13|10:59:20.726] HTTP server started                      endpoint=[::]:8545 prefix= cors=* vhosts=localhost
+[33mgeth_1  |[0m INFO [12-13|10:59:21.039] Generated state snapshot                 accounts=8893 slots=0 storage=409.64KiB elapsed=603.443ms
+[36mdb_1    |[0m 2021-12-13T10:59:22.583115Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[33mgeth_1  |[0m INFO [12-13|10:59:24.815] New local node record                    seq=1,639,393,160,647 id=60096d44b38f125d ip=103.60.198.233 udp=1024  tcp=30303
+[36mdb_1    |[0m 2021-12-13T10:59:26.216411Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:26.217331Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:26.383709Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+[33mgeth_1  |[0m INFO [12-13|10:59:30.730] Looking for peers                        peercount=0 tried=31 static=0
+[32mweb_1   |[0m /usr/local/lib/python3.10/site-packages/django/core/management/commands/makemigrations.py:105: RuntimeWarning: Got an error checking a consistent migration history performed for database connection 'default': (2002, "Can't connect to MySQL server on 'db' (115)")
+[32mweb_1   |[0m   warnings.warn(
+[32mweb_1   |[0m No changes detected
+[32mweb_1   |[0m Traceback (most recent call last):
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
+[32mweb_1   |[0m     self.connect()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 200, in connect
+[32mweb_1   |[0m     self.connection = self.get_new_connection(conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 234, in get_new_connection
+[32mweb_1   |[0m     connection = Database.connect(**conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/__init__.py", line 130, in Connect
+[32mweb_1   |[0m     return Connection(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 185, in __init__
+[32mweb_1   |[0m     super().__init__(*args, **kwargs2)
+[32mweb_1   |[0m MySQLdb._exceptions.OperationalError: (2002, "Can't connect to MySQL server on 'db' (115)")
+[32mweb_1   |[0m 
+[32mweb_1   |[0m The above exception was the direct cause of the following exception:
+[32mweb_1   |[0m 
+[32mweb_1   |[0m Traceback (most recent call last):
+[32mweb_1   |[0m   File "/code/manage.py", line 22, in <module>
+[32mweb_1   |[0m     main()
+[32mweb_1   |[0m   File "/code/manage.py", line 18, in main
+[32mweb_1   |[0m     execute_from_command_line(sys.argv)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/__init__.py", line 419, in execute_from_command_line
+[32mweb_1   |[0m     utility.execute()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/__init__.py", line 413, in execute
+[32mweb_1   |[0m     self.fetch_command(subcommand).run_from_argv(self.argv)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 354, in run_from_argv
+[32mweb_1   |[0m     self.execute(*args, **cmd_options)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 398, in execute
+[32mweb_1   |[0m     output = self.handle(*args, **options)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 89, in wrapped
+[32mweb_1   |[0m     res = handle_func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/commands/migrate.py", line 75, in handle
+[32mweb_1   |[0m     self.check(databases=[database])
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/management/base.py", line 419, in check
+[32mweb_1   |[0m     all_issues = checks.run_checks(
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/checks/registry.py", line 76, in run_checks
+[32mweb_1   |[0m     new_errors = check(app_configs=app_configs, databases=databases)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/core/checks/database.py", line 13, in check_database_backends
+[32mweb_1   |[0m     issues.extend(conn.validation.check(**kwargs))
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/validation.py", line 9, in check
+[32mweb_1   |[0m     issues.extend(self._check_sql_mode(**kwargs))
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/validation.py", line 13, in _check_sql_mode
+[32mweb_1   |[0m     if not (self.connection.sql_mode & {'STRICT_TRANS_TABLES', 'STRICT_ALL_TABLES'}):
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 48, in __get__
+[32mweb_1   |[0m     res = instance.__dict__[self.name] = self.func(instance)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 405, in sql_mode
+[32mweb_1   |[0m     sql_mode = self.mysql_server_data['sql_mode']
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/functional.py", line 48, in __get__
+[32mweb_1   |[0m     res = instance.__dict__[self.name] = self.func(instance)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 366, in mysql_server_data
+[32mweb_1   |[0m     with self.temporary_connection() as cursor:
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/contextlib.py", line 135, in __enter__
+[32mweb_1   |[0m     return next(self.gen)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 603, in temporary_connection
+[32mweb_1   |[0m     with self.cursor() as cursor:
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 259, in cursor
+[32mweb_1   |[0m     return self._cursor()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 235, in _cursor
+[32mweb_1   |[0m     self.ensure_connection()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 218, in ensure_connection
+[32mweb_1   |[0m     with self.wrap_database_errors:
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/utils.py", line 90, in __exit__
+[32mweb_1   |[0m     raise dj_exc_value.with_traceback(traceback) from exc_value
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 219, in ensure_connection
+[32mweb_1   |[0m     self.connect()
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/base/base.py", line 200, in connect
+[32mweb_1   |[0m     self.connection = self.get_new_connection(conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/utils/asyncio.py", line 26, in inner
+[32mweb_1   |[0m     return func(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/django/db/backends/mysql/base.py", line 234, in get_new_connection
+[32mweb_1   |[0m     connection = Database.connect(**conn_params)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/__init__.py", line 130, in Connect
+[32mweb_1   |[0m     return Connection(*args, **kwargs)
+[32mweb_1   |[0m   File "/usr/local/lib/python3.10/site-packages/MySQLdb/connections.py", line 185, in __init__
+[32mweb_1   |[0m     super().__init__(*args, **kwargs2)
+[32mweb_1   |[0m django.db.utils.OperationalError: (2002, "Can't connect to MySQL server on 'db' (115)")
+[36mdb_1    |[0m 2021-12-13 10:59:38+00:00 [Note] [Entrypoint]: Database files initialized
+[36mdb_1    |[0m 2021-12-13 10:59:38+00:00 [Note] [Entrypoint]: Starting temporary server
+[32mswift-vote_web_1 exited with code 1
+[0m[36mdb_1    |[0m 2021-12-13T10:59:38.874167Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.26) starting as process 88
+[36mdb_1    |[0m 2021-12-13T10:59:38.924771Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[36mdb_1    |[0m 2021-12-13T10:59:39.560904Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[36mdb_1    |[0m 2021-12-13T10:59:40.169748Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:40.170027Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:40.173232Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+[36mdb_1    |[0m 2021-12-13T10:59:40.173635Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+[36mdb_1    |[0m 2021-12-13T10:59:40.183347Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[36mdb_1    |[0m 2021-12-13T10:59:40.277014Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+[36mdb_1    |[0m 2021-12-13T10:59:40.277680Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.26'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+[36mdb_1    |[0m 2021-12-13 10:59:40+00:00 [Note] [Entrypoint]: Temporary server started.
+[33mgeth_1  |[0m INFO [12-13|10:59:40.747] Looking for peers                        peercount=0 tried=33 static=0
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+[33mgeth_1  |[0m INFO [12-13|10:59:44.335] Block synchronisation started 
+[33mgeth_1  |[0m WARN [12-13|10:59:44.340] Enabling snapshot sync prototype 
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+[36mdb_1    |[0m Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+[36mdb_1    |[0m 2021-12-13 10:59:50+00:00 [Note] [Entrypoint]: Creating database my-app-db
+[36mdb_1    |[0m 2021-12-13 10:59:50+00:00 [Note] [Entrypoint]: Creating user user#123$
+[36mdb_1    |[0m 2021-12-13 10:59:50+00:00 [Note] [Entrypoint]: Giving user user#123$ access to schema my-app-db
+[36mdb_1    |[0m 
+[36mdb_1    |[0m 2021-12-13 10:59:50+00:00 [Note] [Entrypoint]: Stopping temporary server
+[36mdb_1    |[0m 2021-12-13T10:59:50.496659Z 13 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.26).
+[33mgeth_1  |[0m INFO [12-13|10:59:50.750] Looking for peers                        peercount=1 tried=30 static=0
+[36mdb_1    |[0m 2021-12-13T10:59:53.413675Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.26)  MySQL Community Server - GPL.
+[36mdb_1    |[0m 2021-12-13 10:59:53+00:00 [Note] [Entrypoint]: Temporary server stopped
+[36mdb_1    |[0m 
+[36mdb_1    |[0m 2021-12-13 10:59:53+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+[36mdb_1    |[0m 
+[36mdb_1    |[0m 2021-12-13T10:59:53.908976Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.26) starting as process 1
+[36mdb_1    |[0m 2021-12-13T10:59:53.947829Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+[36mdb_1    |[0m 2021-12-13T10:59:54.430806Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+[36mdb_1    |[0m 2021-12-13T10:59:54.800542Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:54.801049Z 0 [Warning] [MY-013746] [Server] A deprecated TLS version TLSv1.1 is enabled for channel mysql_main
+[36mdb_1    |[0m 2021-12-13T10:59:54.803548Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+[36mdb_1    |[0m 2021-12-13T10:59:54.804165Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+[36mdb_1    |[0m 2021-12-13T10:59:54.815912Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+[36mdb_1    |[0m 2021-12-13T10:59:54.846877Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+[36mdb_1    |[0m 2021-12-13T10:59:54.846961Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.26'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+[33mgeth_1  |[0m INFO [12-13|11:00:00.751] Looking for peers                        peercount=1 tried=35 static=0
+[33mgeth_1  |[0m INFO [12-13|11:00:11.084] Looking for peers                        peercount=1 tried=35 static=0
+[33mgeth_1  |[0m INFO [12-13|11:00:21.108] Looking for peers                        peercount=2 tried=33 static=0
+[33mgeth_1  |[0m INFO [12-13|11:00:31.206] Looking for peers                        peercount=2 tried=35 static=0
+[33mgeth_1  |[0m INFO [12-13|11:00:41.414] Looking for peers                        peercount=2 tried=37 static=0
+[33mgeth_1  |[0m WARN [12-13|11:00:44.356] Synchronisation failed, dropping peer    peer=f358548033e196f65177718509a55db07adfd926ff182deb22814424204f125b err=timeout
+[33mgeth_1  |[0m INFO [12-13|11:00:51.743] Looking for peers                        peercount=2 tried=35 static=0
+[33mgeth_1  |[0m WARN [12-13|11:01:54.358] Synchronisation failed, dropping peer    peer=97d418327f8627fb801abeed609c0c9464cf95ed76670d027c884eb697685f86 err=timeout
+[33mgeth_1  |[0m INFO [12-13|11:02:02.480] Looking for peers                        peercount=2 tried=39 static=0
+[33mgeth_1  |[0m INFO [12-13|11:02:12.581] Looking for peers                        peercount=2 tried=41 static=0
+[33mgeth_1  |[0m INFO [12-13|11:02:13.751] State sync in progress                   synced=+Inf% state=1.14KiB accounts=0@0.00B slots=0@0.00B codes=1@1.14KiB eta=-5.584s
+[33mgeth_1  |[0m INFO [12-13|11:02:15.231] Imported new block headers               count=192 elapsed=1.489s    number=192 hash=723899..123390 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:02:15.234] Downloader queue stats                   receiptTasks=0 blockTasks=188 itemSize=111.09B throttle=8192
+[33mgeth_1  |[0m INFO [12-13|11:02:15.243] Wrote genesis to ancients 
+[33mgeth_1  |[0m INFO [12-13|11:02:15.300] Imported new block receipts              count=2   elapsed=64.869ms  number=2   hash=b495a1..4698c9 age=6y5mo2w  size=926.00B
+[33mgeth_1  |[0m INFO [12-13|11:02:22.743] Looking for peers                        peercount=2 tried=27 static=0
+[33mgeth_1  |[0m INFO [12-13|11:02:22.785] State sync in progress                   synced=+Inf% state=90.19KiB accounts=0@0.00B slots=375@77.26KiB codes=12@12.93KiB eta=-14.618s
+[33mgeth_1  |[0m INFO [12-13|11:02:27.423] New local node record                    seq=1,639,393,160,648 id=60096d44b38f125d ip=103.60.198.233 udp=62841 tcp=30303
+[33mgeth_1  |[0m INFO [12-13|11:02:32.286] State sync in progress                   synced=+Inf% state=412.37KiB accounts=0@0.00B slots=1017@204.92KiB codes=141@207.45KiB eta=-24.119s
+[33mgeth_1  |[0m INFO [12-13|11:02:32.747] Looking for peers                        peercount=2 tried=38 static=0
+[33mgeth_1  |[0m INFO [12-13|11:02:40.347] State sync in progress                   synced=0.01% state=11.24MiB  accounts=10972@2.58MiB slots=37010@7.52MiB  codes=718@1.14MiB   eta=127h38m36.848s
+[33mgeth_1  |[0m INFO [12-13|11:02:42.773] Looking for peers                        peercount=2 tried=27 static=0
+[33mgeth_1  |[0m INFO [12-13|11:02:48.375] State sync in progress                   synced=0.03% state=30.81MiB  accounts=44088@10.38MiB slots=90603@18.26MiB codes=1136@2.17MiB  eta=39h43m59.517s
+[33mgeth_1  |[0m INFO [12-13|11:02:56.766] State sync in progress                   synced=0.04% state=48.15MiB  accounts=66015@15.56MiB slots=147,737@29.23MiB codes=1728@3.36MiB  eta=32h4m38.145s
+[33mgeth_1  |[0m INFO [12-13|11:03:05.049] State sync in progress                   synced=0.06% state=72.03MiB  accounts=88021@20.75MiB slots=240,560@46.77MiB codes=2173@4.51MiB  eta=28h10m43.861s
+[33mgeth_1  |[0m INFO [12-13|11:03:12.964] Imported new block receipts              count=190 elapsed=70.501ms  number=192 hash=723899..123390 age=6y5mo2w  size=75.52KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:13.210] State sync in progress                   synced=0.06% state=83.71MiB  accounts=99013@23.33MiB slots=282,393@54.98MiB codes=2611@5.39MiB  eta=28h36m36.922s
+[33mgeth_1  |[0m INFO [12-13|11:03:13.415] Looking for peers                        peercount=2 tried=37 static=0
+[33mgeth_1  |[0m INFO [12-13|11:03:13.506] Imported new block headers               count=2048 elapsed=495.545ms number=2240 hash=cbfe15..56865d age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:13.604] Imported new block receipts              count=5    elapsed=30.562ms  number=197  hash=56f455..b4a497 age=6y5mo2w  size=1.67KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:13.735] Imported new block headers               count=2048 elapsed=217.902ms number=4288 hash=00f13a..74ca37 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:13.821] Imported new block headers               count=512  elapsed=69.607ms  number=4800 hash=e26684..e91df7 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:17.215] Downloader queue stats                   receiptTasks=0 blockTasks=4138 itemSize=812.73B throttle=8192
+[33mgeth_1  |[0m INFO [12-13|11:03:17.273] Imported new block receipts              count=167  elapsed=55.245ms  number=364  hash=9bd8bd..dee9b4 age=6y5mo2w  size=69.93KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:21.627] State sync in progress                   synced=0.07% state=96.72MiB  accounts=111,334@26.24MiB slots=327,209@64.32MiB codes=2939@6.17MiB  eta=28h48m22.117s
+[33mgeth_1  |[0m INFO [12-13|11:03:29.960] State sync in progress                   synced=0.08% state=116.95MiB accounts=122,354@28.84MiB slots=400,607@79.63MiB codes=3883@8.48MiB  eta=29h7m57.292s
+[33mgeth_1  |[0m WARN [12-13|11:03:39.433] Dropping unsynced node during sync       id=68d7487db1aecfba conn=dyndial addr=65.21.159.138:30303 type=erigon/v2021.11.2/li...
+[33mgeth_1  |[0m INFO [12-13|11:03:40.467] State sync in progress                   synced=0.09% state=126.68MiB accounts=144,342@34.02MiB slots=420,145@83.70MiB codes=4078@8.96MiB  eta=27h48m49.500s
+[33mgeth_1  |[0m INFO [12-13|11:03:41.526] Imported new block headers               count=2048 elapsed=149.483ms number=6848 hash=b0de98..dd55f8 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:41.828] Imported new block headers               count=2048 elapsed=292.951ms number=8896 hash=0ad2ee..5dbc7e age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:41.855] Imported new block receipts              count=2048 elapsed=265.105ms number=2412 hash=29a587..ef855c age=6y5mo2w  size=832.01KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:42.034] Imported new block receipts              count=2048 elapsed=153.265ms number=4460 hash=bedfeb..4670cb age=6y5mo2w  size=787.67KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:42.081] Imported new block headers               count=2048 elapsed=242.291ms number=10944 hash=3f73b7..2ac7df age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:42.095] Imported new block receipts              count=341  elapsed=57.105ms  number=4801  hash=6065a9..7d8165 age=6y5mo2w  size=131.26KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:42.300] Imported new block headers               count=2048 elapsed=199.616ms number=12992 hash=f42b1f..f91e4c age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:42.394] Imported new block receipts              count=1057 elapsed=211.942ms number=5858  hash=5df49f..e3cc2b age=6y5mo2w  size=391.97KiB
+[33mgeth_1  |[0m INFO [12-13|11:03:42.556] Imported new block headers               count=2048 elapsed=227.863ms number=15040 hash=b936b2..0b2bd8 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:42.885] Imported new block headers               count=2048 elapsed=292.918ms number=17088 hash=bc9fd0..542dd2 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:43.246] Imported new block headers               count=2048 elapsed=340.092ms number=19136 hash=170f90..ecd8ca age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:43.525] Imported new block headers               count=2048 elapsed=266.998ms number=21184 hash=980147..37eaa7 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:44.200] Imported new block headers               count=2048 elapsed=648.187ms number=23232 hash=50db47..7cd1aa age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:44.878] Imported new block headers               count=1344 elapsed=581.751ms number=24576 hash=32aa83..ca3c79 age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:47.187] Imported new block headers               count=192  elapsed=566.387ms number=24768 hash=38e6be..9a5fbe age=6y5mo2w
+[33mgeth_1  |[0m INFO [12-13|11:03:48.684] State sync in progress                   synced=0.09% state=133.71MiB accounts=144,342@34.02MiB slots=453,319@90.20MiB codes=4240@9.49MiB  eta=30h17m18.241s
+[33mgeth_1  |[0m INFO [12-13|11:03:50.248] Imported new block headers               count=1920 elapsed=540.337ms number=26688 hash=486883..9f02bd age=6y5mo2w
