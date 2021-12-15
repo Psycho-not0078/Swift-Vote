@@ -11,6 +11,7 @@ urlpatterns = [
     path('myAccount', views.myAccount, name='myAccount'),
     path('dashboard', views.candidateDB, name='candidateDB'),
     path('ecDB', views.ecDB, name='ecDB'),
+    path('logout', views.logout),
     path('voterDB', views.voterDB, name='voterDB'),
     path('update', views.updateProfile, name='update'),
     path('createElection', views.createElection, name='createElection'),
