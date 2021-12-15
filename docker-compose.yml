@@ -1,7 +1,7 @@
 version: '3'
 services:
   geth:
-    image: ethereum/client-go
+    image: ethereum/client-go:stable
     command: --datadir=/root/.ethereum/devchain  --http --http.addr 0.0.0.0 --http.corsdomain "*" --http.api "admin,debug,web3,eth,txpool,personal,ethash,miner,net" --allow-insecure-unlock 
     volumes:
       - ./genesis.json:/root/files/geth/genesis.json:ro
@@ -12,39 +12,29 @@ services:
   web:
     build: .
     command: >
-      sh -c   "
+      sh -c   "sleep 10 &&
               python manage.py makemigrations &&
-              python manage.py migrate &&
+              python manage.py migrate --fake &&
               python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/my_app_dir
     
     ports:
       - "8001:8000"
-  #   depends_on:
-  #     - db
-  #   environment:
-  #     - WAIT_HOSTS=mariadb:3306
-  #     - WAIT_HOSTS_TIMEOUT=300
-  #     - WAIT_SLEEP_INTERVAL=20
-  #     - WAIT_HOST_CONNECT_TIMEOUT=30
-    
-  # db:
-  #   image: mariadb:latest
-  #   volumes:
-  #   - ./db/:/var/lib/
-  #   ports:
-  #     - '3307:3306'
-  #   environment:
-  #      MYSQL_DATABASE: 'my-app-db'
-  #      MYSQL_USER: 'toor'
-  #      MYSQL_PASSWORD: 'password#123'
-  #      MYSQL_ROOT_PASSWORD: 'password#123'
-  #      DMYSQL_UNIX_ADDR: "/var/lib/mysql/mysql.sock"
-  #   healthcheck:
-  #     test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-  #     timeout: 20s
-  #     retries: 10
+    depends_on:
+      - db
+  db:
+    image: mariadb:latest
+    volumes:
+    - ./db/:/var/lib/
+    ports:
+      - '3307:3306'
+    environment:
+       MYSQL_DATABASE: my-app-db
+       MYSQL_USER: toor
+       MYSQL_PASSWORD: password#123
+       MYSQL_ROOT_PASSWORD: password#123
+       DMYSQL_UNIX_ADDR: "/var/lib/mysql/mysql.sock"
 
 
 
