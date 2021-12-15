@@ -1,6 +1,7 @@
 from django import forms
 from .models import userDetails
 class UserForm(forms.ModelForm):
-    class Meta:  
-        model = userDetails
-        fields = ['fName','lName','username','email','contactNumber','dob','Address']
+    pass
+    # class Meta:  
+    #     model = userDetails
+    #     fields = ['fName','lName','username','email','contactNumber','dob','Address']
