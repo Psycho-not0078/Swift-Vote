@@ -1,0 +1,39 @@
+running clean
+'build/lib' does not exist -- can't clean it
+'build/bdist.macosx-10.9-x86_64' does not exist -- can't clean it
+'build/scripts-3.8' does not exist -- can't clean it
+running sdist
+running egg_info
+creating myproject.egg-info
+writing myproject.egg-info/PKG-INFO
+writing dependency_links to myproject.egg-info/dependency_links.txt
+writing namespace_packages to myproject.egg-info/namespace_packages.txt
+writing top-level names to myproject.egg-info/top_level.txt
+writing manifest file 'myproject.egg-info/SOURCES.txt'
+reading manifest file 'myproject.egg-info/SOURCES.txt'
+writing manifest file 'myproject.egg-info/SOURCES.txt'
+warning: sdist: standard file not found: should have one of README, README.rst, README.txt, README.md
+
+running check
+warning: Check: missing required meta-data: url
+
+warning: Check: missing meta-data: either (author and author_email) or (maintainer and maintainer_email) must be supplied
+
+creating myproject-1.0.dev0
+creating myproject-1.0.dev0/myproject
+creating myproject-1.0.dev0/myproject.egg-info
+creating myproject-1.0.dev0/scripts
+copying files to myproject-1.0.dev0...
+copying setup.py -> myproject-1.0.dev0
+copying myproject/__init__.py -> myproject-1.0.dev0/myproject
+copying myproject.egg-info/PKG-INFO -> myproject-1.0.dev0/myproject.egg-info
+copying myproject.egg-info/SOURCES.txt -> myproject-1.0.dev0/myproject.egg-info
+copying myproject.egg-info/dependency_links.txt -> myproject-1.0.dev0/myproject.egg-info
+copying myproject.egg-info/namespace_packages.txt -> myproject-1.0.dev0/myproject.egg-info
+copying myproject.egg-info/top_level.txt -> myproject-1.0.dev0/myproject.egg-info
+copying myproject.egg-info/zip-safe -> myproject-1.0.dev0/myproject.egg-info
+copying scripts/greeter -> myproject-1.0.dev0/scripts
+Writing myproject-1.0.dev0/setup.cfg
+creating dist
+Creating tar archive
+removing 'myproject-1.0.dev0' (and everything under it)
