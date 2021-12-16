@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="unittest.loader._FailedTest-20211216133626" tests="1" file="unittest/loader.py" time="0.005" timestamp="2021-12-16T13:36:28" failures="0" errors="1" skipped="0">
+	<testcase classname="unittest.loader._FailedTest" name="myproject_tests" time="0.005" timestamp="2021-12-16T13:36:28">
+		<error type="ImportError" message="Failed to import test module: myproject_tests
+Traceback (most recent call last):
+  File &quot;/Users/sarthakbanerjee/opt/anaconda3/lib/python3.8/unittest/loader.py&quot;, line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File &quot;/Users/sarthakbanerjee/GitHub/Swift-Vote/Swift_Vote/myproject/src/unittest/python/myproject_tests.py&quot;, line 5, in &lt;module&gt;
+    from myproject import greet
+ModuleNotFoundError: No module named 'myproject'
+"><![CDATA[Traceback (most recent call last):
+  File "/Users/sarthakbanerjee/opt/anaconda3/lib/python3.8/unittest/case.py", line 60, in testPartExecutor
+    yield
+  File "/Users/sarthakbanerjee/opt/anaconda3/lib/python3.8/unittest/case.py", line 676, in run
+    self._callTestMethod(testMethod)
+  File "/Users/sarthakbanerjee/opt/anaconda3/lib/python3.8/unittest/case.py", line 633, in _callTestMethod
+    method()
+  File "/Users/sarthakbanerjee/opt/anaconda3/lib/python3.8/unittest/loader.py", line 34, in testFailure
+    raise self._exception
+ImportError: Failed to import test module: myproject_tests
+Traceback (most recent call last):
+  File "/Users/sarthakbanerjee/opt/anaconda3/lib/python3.8/unittest/loader.py", line 154, in loadTestsFromName
+    module = __import__(module_name)
+  File "/Users/sarthakbanerjee/GitHub/Swift-Vote/Swift_Vote/myproject/src/unittest/python/myproject_tests.py", line 5, in <module>
+    from myproject import greet
+ModuleNotFoundError: No module named 'myproject'
+
+]]></error>
+	</testcase>
+</testsuite>
