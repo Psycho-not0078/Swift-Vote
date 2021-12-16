@@ -2,13 +2,30 @@ version: '3'
 services:
   geth:
     image: ethereum/client-go:stable
-    command: --datadir=/root/.ethereum/devchain  --http --http.addr 0.0.0.0 --http.corsdomain "*" --http.api "admin,debug,web3,eth,txpool,personal,ethash,miner,net" --allow-insecure-unlock 
     volumes:
-      - ./genesis.json:/root/files/geth/genesis.json:ro
+      - ./blockchain/genesis.json:/opt/genesis.json
+      - ./blockchain/data:~/.ethereum
+      - ./blockchain/gethInit.sh:~/init-script.sh
     ports:
       - "30303:30303"
       - "30303:30303/udp"
       - "8545:8545"
+    entrypoint: ~/init-script.sh
+    command: --datadir=/root/.ethereum/devchain  --http --http.addr 0.0.0.0 --http.corsdomain "*" --http.api "admin,debug,web3,eth,txpool,personal,ethash,miner,net" --allow-insecure-unlock 
+
+  db:
+    image: mariadb:latest
+    volumes:
+    - ./db/:/var/lib/
+    ports:
+      - '3307:3306'
+    environment:
+       MYSQL_DATABASE: my-app-db
+       MYSQL_USER: toor
+       MYSQL_PASSWORD: password#123
+       MYSQL_ROOT_PASSWORD: password#123
+       DMYSQL_UNIX_ADDR: "/var/lib/mysql/mysql.sock"
+
   web:
     build: .
     command: >
@@ -23,18 +40,7 @@ services:
       - "8001:8000"
     depends_on:
       - db
-  db:
-    image: mariadb:latest
-    volumes:
-    - ./db/:/var/lib/
-    ports:
-      - '3307:3306'
-    environment:
-       MYSQL_DATABASE: my-app-db
-       MYSQL_USER: toor
-       MYSQL_PASSWORD: password#123
-       MYSQL_ROOT_PASSWORD: password#123
-       DMYSQL_UNIX_ADDR: "/var/lib/mysql/mysql.sock"
+
 
 
 
