@@ -13,6 +13,7 @@ urlpatterns = [
     path('candidateApplication', views.candidateApplication, name="candidateApplication"),
     path('cResults', views.cResults, name='cResults'),
     path('ecDB', views.ecDB, name='ecDB'),
+    path('logout', views.logout),
     path('voterDB', views.voterDB, name='voterDB'),
     path('update', views.updateProfile, name='update'),
     path('createElection', views.createElection, name='createElection'),

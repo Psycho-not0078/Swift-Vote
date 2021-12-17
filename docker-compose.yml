@@ -1,42 +1,45 @@
 version: '3'
 services:
   geth:
-    image: ethereum/client-go
+    image: ethereum/client-go:stable
     command: --datadir=/root/.ethereum/devchain  --http --http.addr 0.0.0.0 --http.corsdomain "*" --http.api "admin,debug,web3,eth,txpool,personal,ethash,miner,net" --allow-insecure-unlock 
     volumes:
-      - ./genesis.json:/root/files/geth/genesis.json:ro
+      - ./blockchain/genesis.json:/opt/genesis.json
+      - ./blockchain/gethInit.sh:/root/gethInit.sh
+      - ./blockchain/data:/root/.ethereum
     ports:
       - "30303:30303"
       - "30303:30303/udp"
       - "8545:8545"
-  web:
-    build: .
-    command: >
-      sh -c   " sleep 20 &&
-              python manage.py makemigrations &&
-              python manage.py migrate &&
-              python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - .:/my_app_dir
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-    links:
-      - db
   db:
-    image: mysql:latest
+    image: mariadb:latest
     restart: always
     volumes:
     - ./db/:/var/lib/
     ports:
-      - '3306:3306'
+      - '3307:3306'
     environment:
-       MYSQL_DATABASE: 'my-app-db'
-       MYSQL_USER: 'user#123$$'
-       MYSQL_PASSWORD: 'password#123'
-       MYSQL_ROOT_PASSWORD: 'password'
+       MYSQL_DATABASE: my-app-db
+       MYSQL_USER: toor
+       MYSQL_PASSWORD: password#123
+       MYSQL_ROOT_PASSWORD: password#123
        DMYSQL_UNIX_ADDR: "/var/lib/mysql/mysql.sock"
+  web:
+    build: .
+    command: >
+      sh -c   "sleep 30 &&
+              python manage.py makemigrations &&
+              python manage.py makemigrations frontend &&
+              python manage.py migrate --fake &&
+              python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/my_app_dir
+    
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
+
 
 
 

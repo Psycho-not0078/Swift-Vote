@@ -37,7 +37,7 @@ def register(request):
         username = request.POST['username']
         address = request.POST['address']
         user = userDetails.objects.create_user(
-            username=username,email=email,dob=dob,Address=address ,fName=fname,lName=lname, contactNumber=contact,password = password)
+            username=username,email=email,dob=dob,address=address ,fName=fname,lName=lname, contactNumber=contact,password = password)
         user.save()
         return redirect('/login')
     else:
