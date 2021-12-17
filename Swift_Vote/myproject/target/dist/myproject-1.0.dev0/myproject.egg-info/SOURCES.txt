@@ -1,9 +1,0 @@
-setup.py
-myproject/__init__.py
-myproject.egg-info/PKG-INFO
-myproject.egg-info/SOURCES.txt
-myproject.egg-info/dependency_links.txt
-myproject.egg-info/namespace_packages.txt
-myproject.egg-info/top_level.txt
-myproject.egg-info/zip-safe
-scripts/greeter
