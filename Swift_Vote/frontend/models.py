@@ -33,7 +33,12 @@ class userDetails(AbstractUser):
 
 class candidates(models.Model):
     cid=models.AutoField(primary_key=True)
-    uid=models.ForeignKey(userDetails,on_delete=models.CASCADE)
+    candidateName=models.CharField(max_length=120)
+    cDob=models.DateField()
+    cState=models.CharField(max_length=240)
+    cCity=models.CharField(max_length=240)
+    electionType=models.CharField(max_length=120)
+    uid=models.ForeignKey(userDetails,on_delete=models.CASCADE, default=1)
     party=models.CharField(max_length=60)
 
 class Accounts(models.Model):
@@ -62,10 +67,12 @@ class election(models.Model):
     sDate=models.DateTimeField()
     fDate=models.DateTimeField()
     inCharge=models.ForeignKey(userDetails,null=True,blank=True,to_field="uid",on_delete=models.CASCADE)
+    status=models.CharField(max_length=7, default='enable')
 
 class candidateHistory(models.Model):
     hid=models.AutoField(primary_key=True)
     candidate=models.ForeignKey(candidates,on_delete=models.CASCADE,to_field="cid")
+    
     election=models.ForeignKey(election,on_delete=models.CASCADE,to_field="eid")
     voteCount=models.BigIntegerField()
 

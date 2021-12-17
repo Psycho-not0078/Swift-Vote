@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import candidateHistory, userDetails, election, location
+from .models import candidateHistory, userDetails, election, location, candidates
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import auth
 from .forms import UserForm
@@ -52,6 +52,20 @@ def error(request):
 def candidateDB(request):
     return render(request,"candidate_db.html")
 
+def candidateApplication(request):
+    if request.method == "POST":
+        cd = candidates()
+        cd.candidateName = request.POST.get('cName')
+        cd.cDob = request.POST.get('doB')
+        cd.cState  = request.POST.get('state')
+        cd.cCity = request.POST.get('city')
+        cd.electionType = request.POST.get('ecType')
+        cd.party = request.POST.get('party')
+        cd.save()
+        return redirect('/candidateApplication')
+    else:
+        return render(request, "candidateApplication.html")
+    
 def ecDB(request):
     return render(request,"ec_db.html")
 
@@ -98,12 +112,18 @@ def disableElection(request):
     if request.method == "POST":
         try:
             sTerm = request.POST.get('ecSearch')
-            term = election.objects.get(ec_name=sTerm)
-            print(term)
-            return render(request,"disable_election.html", {'st':term})
+            term = election.objects.filter(ec_name=sTerm)
+            dell = request.POST.get('toBeDel')
+            delete = request.POST.get('delete')
+            if delete == "delete":
+                election.objects.filter(ec_name=dell).delete()
+                return redirect('electionHistory')
+            else:
+                pass
+            return render(request,"disable_election.html", {'st':term})       
+            
         except election.DoesNotExist:
             return redirect("disableElection")
-
     else:
         return render(request, "disable_election.html")
 
@@ -111,3 +131,18 @@ def electionHistory(request):
     history = election.objects.all()
     print(history)
     return render(request,"election_history.html", {'hist': history})
+
+def cResults(request):
+    return render(request, "results.html")
+
+def startElection():
+    # datetime object containing current date and time
+    now = datetime.now()
+    # dd/mm/YY I:M:
+    dt_string = now.strftime("%d/%m/%Y %I:%M %p")
+    print(dt_string)
+
+
+def stopElection():
+    #somecode
+    pass

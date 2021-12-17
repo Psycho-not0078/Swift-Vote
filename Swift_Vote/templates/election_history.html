@@ -117,28 +117,28 @@
     <div class="main">
       <div class="card">
         <div class="card-header">Election Settings</div>
-        <div class="card-body">
+        <div class="card-body overflow-auto">
           <h5 class="card-title">Election History</h5>
           <!--Display Table-->
           {% if hist %}
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Election Name</th>
                 <th scope="col">Type</th>
                 <th scope="col">Start Date/Time</th>
                 <th scope="col">End Date/Time</th>
+                <th scope="col">Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 {% for h in hist %}
-                <th scope="row">1</th>
                 <td>{{h.ec_name}}</td>
                 <td>{{h.electionType}}</td>
                 <td>{{h.sDate}}</td>
                 <td>{{h.fDate}}</td>
+                <td>{{h.status}}</td>
               </tr>
               {% endfor %}
             </tbody>

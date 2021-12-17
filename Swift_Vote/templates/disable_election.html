@@ -73,6 +73,27 @@
       height: 400px;
     }
   </style>
+  <script>
+    function funcDelete() {
+      var v = document.getElementById("delete");
+      if (v.style.display === "none") {
+         v.style.display = "block";
+      } else {
+         v.style.display = "none";
+      }
+      
+    }
+
+    function funcDisable() {
+      var v = document.getElementById("disable");
+      if (v.style.display === "none") {
+         v.style.display = "block";
+      } else {
+         v.style.display = "none";
+      }
+    }
+
+  </script>
 </head>
 
 <body>
@@ -102,46 +123,101 @@
   <div class="main">
     <div class="card">
       <div class="card-header">Election Settings</div>
-      <div class="card-body">
-        <p>Disabe Election</p>
-        <form class="form-inline my-2 my-lg-0" action="" method="POST">
-          {% csrf_token %}
-          <input class="form-control mr-sm-2" name="ecSearch" type="search" placeholder="Search Election"
-            aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0"
-            style="background-color:rgb(206, 206, 252) ; color: black; border: none;" type="submit">Search</button>
-        </form>
-        <!--Display Table-->
-        {% if st %}
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Election Name</th>
-              <th scope="col">Type</th>
-              <th scope="col">Start Date/Time</th>
-              <th scope="col">End Date/Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              {% for t in st %}
-              <th scope="row">1</th>
-              <td>{{t.ec_name}}</td>
-              <td>{{t.electionType}}</td>
-              <td>{{t.sDate}}</td>
-              <td>{{t.fDate}}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        {% else %}
-        <h6 style="margin: 10px;">No Data</h6>
-        {% endif %}
+      <div class="card-body overflow-auto">
+        <!--Disable & Delete Buttons-->
+        <input type="button" class="btn btn-primary" style="margin: 10px;" name="del" value="Delete" onclick="funcDelete()" />
+        <input type="button" class="btn btn-primary" style="margin: 10px;" name="dis" value="Disable" onclick="funcDisable()" />
+        <!--Delete Section-->
+        <div id="delete" style="display:none;">
+          <p>Delete Election</p>
+          <form class="form-inline my-2 my-lg-0" action="" method="POST">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" name="ecSearch" type="search" placeholder="Search Election"
+              aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0"
+              style="background-color:rgb(206, 206, 252) ; color: black; border: none;" type="submit">Search</button>
+          </form>
+          <!--Display Table-->
+          {% if st %}
+          <form action="" method="POST">
+            {% csrf_token %}
+            <table class="table" style="margin: 8px;">
+              <thead>
+                <tr>
+                  <th scope="col">Check</th>
+                  <th scope="col">#</th>
+                  <th scope="col">Election Name</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Start Date/Time</th>
+                  <th scope="col">End Date/Time</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  {% for t in st %}
+                  <td><input type="checkbox" name="toBeDel" value={{t.ec_name}} /></td>
+                  <th scope="row">1</th>
+                  <td>{{t.ec_name}}</td>
+                  <td>{{t.electionType}}</td>
+                  <td>{{t.sDate}}</td>
+                  <td>{{t.fDate}}</td>
+                  <td>{{t.status}}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            {% else %}
+            <h6 style="margin: 10px;">No Data</h6>
+            {% endif %}
 
-        <textarea class="form-control" placeholder=">>To confirm, type 'disable'"
-          style="margin-top: 10px; border:none; width: auto;" id="floatingTextarea"></textarea>
-        <button type="button" style="margin-top: 20px;" class="btn btn-primary">Disable</button>
+            <textarea class="form-control" name="delete" placeholder=">>To confirm, type 'delete'"
+              style="margin-top: 10px; border:none; width: auto;" id="floatingTextarea" required></textarea>
+
+            <button type="submit" style="margin-top: 20px; margin-bottom: 10px;" class="btn btn-primary">Delete</button>
+          </form>
+        </div>
+        <!--Disable Section-->
+        <div id="disable" style="display:none;">
+          {% if hist %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Election Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Start Date/Time</th>
+                <th scope="col">End Date/Time</th>
+                <th scope="col">Status</th>
+                <th scope="col">Change Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for h in hist %}
+                <th scope="row">1</th>
+                <td>{{h.ec_name}}</td>
+                <td>{{h.electionType}}</td>
+                <td>{{h.sDate}}</td>
+                <td>{{h.fDate}}</td>
+                <td>{{h.status}}</td>
+                <td>
+                  <form action="" method="POST" id="fstatus">
+                    {% csrf_token %}
+                    <input type="range" min="0" max="1" step="1" class="form-range" name="state" id="status" style="width: 110px;">
+                    <button type="submit" class="btn btn-primary" style="margin-left: 15px;" >Save</button>
+                  </form>  
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+          <h1>No Data</h1>
+          {% endif %}
+
+        </div>
+
       </div>
     </div>
   </div>
