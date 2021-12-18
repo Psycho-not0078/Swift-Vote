@@ -8,4 +8,6 @@ def function1(out):
 
 def function2(out):
     print("yo")
+    #a = solcx.compile_files(['/Users/sarthakbanerjee/GitHub/Swift-Vote/Swift_Vote/backend/static/other/contract/elections.sol'])
+    #print(a)
     out.write("Hello")
