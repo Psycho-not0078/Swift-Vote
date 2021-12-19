@@ -7,7 +7,7 @@ def function1(out):
     out.write(w3.isConnected())
 
 def function2(out):
-    print("yo")
+    print("running")
     #a = solcx.compile_files(['/Users/sarthakbanerjee/GitHub/Swift-Vote/Swift_Vote/backend/static/other/contract/elections.sol'])
     #print(a)
     out.write("Hello")
