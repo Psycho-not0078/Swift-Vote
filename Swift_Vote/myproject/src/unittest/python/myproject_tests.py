@@ -10,7 +10,7 @@ class Test(TestCase):
 
         greet(mock_stdout)
 
-        mock_stdout.write.assert_called_with("Hello world\n")
+        mock_stdout.write.assert_called_with("Hello world!\n")
 
     
         w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
