@@ -15,7 +15,7 @@ class userDetails(AbstractUser):
     fName=models.CharField(max_length=30)
     lName=models.CharField(max_length=30)
     contactNumber=models.CharField(max_length=10)
-    username=models.CharField(max_length=30,unique=True)
+    username=models.CharField(max_length=30)
     dob=models.DateField()
     # password = models.CharField(max_length=500,null=True)
     documentLocation=models.CharField(max_length=500,null=True,blank=True)

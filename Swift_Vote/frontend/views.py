@@ -22,7 +22,7 @@ def login(request):
             else:
                 return render(request, 'Log In.html', {'msg': 'Invalid Credentials'})
         except Exception as e:
-            return render(request, 'Log In.html', {'msg': 'Invalid Credentials' +"  "+ str(e)})
+            return render(request, 'Log In.html', {'msg': 'Invalid Credentials'}) #  +"  "+ str(e)
     else:
         return render(request,"Log In.html")
 
