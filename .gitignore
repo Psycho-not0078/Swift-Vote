@@ -114,4 +114,4 @@ logs.txt
 
 #spam
 ./genesis.json/
-./Swift-Vote/blockchain/data/
+./blockchain/data/
