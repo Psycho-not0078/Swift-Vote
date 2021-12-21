@@ -1,16 +1,13 @@
 version: '3'
 services:
-  geth:
-    image: ethereum/client-go:stable
-    command: --datadir=/root/.ethereum/devchain  --http --http.addr 0.0.0.0 --http.corsdomain "*" --http.api "admin,debug,web3,eth,txpool,personal,ethash,miner,net" --allow-insecure-unlock 
-    volumes:
-      - ./blockchain/genesis.json:/opt/genesis.json
-      - ./blockchain/gethInit.sh:/root/gethInit.sh
-      - ./blockchain/data:/root/.ethereum
+  blockchain:
+    image: trufflesuite/ganache-cli:latest
     ports:
-      - "30303:30303"
-      - "30303:30303/udp"
       - "8545:8545"
+    volumes:
+      - ./blockchain/data:/root/.data:rw
+      - ./blockchain/blog.txt:/root/blog.txt:rw
+    command: ganache-cli 0.0.0.0:8545 --db /root/.data -i 4545 -d -m "myth like bonus scare over problem client lizard pioneer submit female collect" > /root/blog.txt
   db:
     image: mariadb:latest
     restart: always

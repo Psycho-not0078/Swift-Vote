@@ -1,6 +1,0 @@
-FROM ethereum/client-go:stable
-run chmod +x ./
-COPY . /files
-
-RUN chmod +x /files/gethInit.sh
-RUN geth init /opt/genesis.json

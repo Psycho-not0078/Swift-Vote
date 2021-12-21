@@ -3,8 +3,11 @@ from .models import candidateHistory, userDetails, election, location, candidate
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import auth
 from .forms import UserForm
+import web3
 
 from datetime import datetime
+
+w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
 # Create your views here.
 def index(request):
     return render(request,"home.html")
