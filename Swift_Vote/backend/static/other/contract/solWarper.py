@@ -31,6 +31,9 @@ def addUser(contract_handle,location):
     hsh=contract_handle.functions.addUser(newAddress,location).transact({"from":w3.personal.listAccounts[0]})
     print(hsh)
 
+def vote(contract_handle, addr, cid, location, date):
+    hsh=contract_handle.functions.vote(cid, location, date).transact({'from':addr})
+
 contract_source_path = 'elections.sol'
 
 contract_handle= deploy_contract(contract_source_path)
