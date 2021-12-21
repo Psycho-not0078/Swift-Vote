@@ -67,8 +67,9 @@ class election(models.Model):
     voteCount=models.BigIntegerField(default=0)
     sDate=models.DateTimeField()
     fDate=models.DateTimeField()
+    location=models.CharField(max_length=250)
     inCharge=models.ForeignKey(userDetails,null=True,blank=True,to_field="uid",on_delete=models.CASCADE)
-    status=models.CharField(max_length=7, default='enable')
+    status=models.CharField(max_length=7, default='disable')
 
 class candidateHistory(models.Model):
     hid=models.AutoField(primary_key=True)

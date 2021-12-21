@@ -19,4 +19,5 @@ urlpatterns = [
     path('createElection', views.createElection, name='createElection'),
     path('disableElection', views.disableElection, name='disableElection'),
     path('electionHistory', views.electionHistory, name='electionHistory'),
+    path('voting', views.voting, name='voting'),
 ]

@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css" />
-  
+
   <style>
     /*Navigation Bar Styling*/
     .nav-menu li {
@@ -129,12 +129,12 @@
         alert("Cannot be time elapsed!");
         return false;
       }
-      else if (date1.getMonth() == date2.getMonth() && date1.getFullYear() == date2.getFullYear()){
-        if(date1.getDate() > date2.getDate()){
+      else if (date1.getMonth() == date2.getMonth() && date1.getFullYear() == date2.getFullYear()) {
+        if (date1.getDate() > date2.getDate()) {
           alert("Cannot have Start Date later than End Date!");
           return false;
         }
-        
+
       }
       else if (diffInDays > 3) {
         alert("Cannot set an election for more than 3 days!");
@@ -146,6 +146,23 @@
 
 
     }
+    function dis(){
+      var x = document.getElementById('type');
+      var y = x.value;
+      console.log(y);
+
+      if (y == "General Elections") {
+        document.getElementById("stateId").disabled = true;
+        document.getElementById("cityId").disabled = true;
+      }
+      else{
+        document.getElementById("stateId").disabled = false;
+        document.getElementById("cityId").disabled = false;
+      }
+    }
+
+    
+
 
 
   </script>
@@ -211,16 +228,16 @@
                 </div>
 
                 <!--Election Select State Input-->
-                <input type="hidden" name="country" id="countryId" value="IN"/>
-                <select class="form-select states order-alpha" name="state"  id="stateId" style="margin: 10px" aria-label="Default select example"
-                  required>
+                <input type="hidden" name="country" id="countryId" value="IN" />
+                <select class="form-select states order-alpha" name="state" id="stateId" style="margin: 10px"
+                  aria-label="Default select example" disabled required>
                   <option value="">Select State</option>
                 </select>
               </div>
               <div class="col">
                 <!--Election Type Input-->
-                <select class="form-select" name="ecType" style="margin: 10px" aria-label="Default select example"
-                  required>
+                <select class="form-select" name="ecType" id="type" style="margin: 10px"
+                  aria-label="Default select example" onchange="dis()" required>
                   <option value="">Select Election Type</option>
                   <option value="General Elections">General Election</option>
                   <option value="State Elections">State Election</option>
@@ -242,8 +259,8 @@
                 </div>
 
                 <!--Election Select City Input-->
-                <select class="form-select cities order-alpha" name="city" id="cityId" style="margin: 10px" aria-label="Default select example"
-                  required>
+                <select class="form-select cities order-alpha" name="city" id="cityId" style="margin: 10px"
+                  aria-label="Default select example" disabled required>
                   <option value="">Select City</option>
                 </select>
               </div>
@@ -308,11 +325,11 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
   <!--Add country related state-city options-->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
-  <script src="//geodata.solutions/includes/statecity.js"></script> 
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//geodata.solutions/includes/statecity.js"></script>
 
-  
-    
+
+
   <!--To set limits on the date (Js loads before HTML)-->
   <script>
     //Get Current Date & Time
@@ -331,6 +348,9 @@
     //Disable dates other than today.
     document.getElementById('start').setAttribute("min", t);
     document.getElementById('end').setAttribute("min", t);
+
+
+    
   </script>
 
 

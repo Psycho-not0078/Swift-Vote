@@ -1,3 +1,4 @@
+from django.db.models import deletion
 from django.shortcuts import render,redirect
 from .models import candidateHistory, userDetails, election, location, candidates
 from django.contrib.auth.hashers import check_password
@@ -96,36 +97,49 @@ def createElection(request):
         datetime_object2 = datetime.strptime(edt, '%Y-%m-%d %H:%M')
         
         ec.sDate = datetime_object1
-        ec.electionType  = request.POST.get('ecType')
+        x = request.POST.get('ecType')
+
+        if x == 'General Elections':
+            ec.electionType  = x
+            ec.location = 'all'
+        else:
+            ec.electionType = x
+            ec.location = request.POST.get('state')
+            
         ec.fDate = datetime_object2
         ec.save()
-        #Enter Data to Location Table
-        locate = location()
-        locate.locationName = request.POST.get('state')
-        locate.save()
 
         return redirect('/electionSetting')
     else:
         return render(request, "create_election.html")
 
 def disableElection(request):
+    context = {}
+    context['toDis'] = election.objects.all()
     if request.method == "POST":
+        sTerm = request.POST.get('ecSearch')
+        
         try:
-            sTerm = request.POST.get('ecSearch')
-            term = election.objects.filter(ec_name=sTerm)
+            context['term'] = election.objects.filter(ec_name=sTerm)
             dell = request.POST.get('toBeDel')
             delete = request.POST.get('delete')
             if delete == "delete":
                 election.objects.filter(ec_name=dell).delete()
                 return redirect('electionHistory')
-            else:
-                pass
-            return render(request,"disable_election.html", {'st':term})       
+           
+
+            return render(request,"disable_election.html", context)
             
+
+
         except election.DoesNotExist:
-            return redirect("disableElection")
+            return redirect('disableElection')
+
     else:
-        return render(request, "disable_election.html")
+        return render(request,"disable_election.html",context)
+
+
+
 
 def electionHistory(request):
     history = election.objects.all()
@@ -135,11 +149,18 @@ def electionHistory(request):
 def cResults(request):
     return render(request, "results.html")
 
+def voting(request):
+    return render(request, "voting.html")
+
 def startElection():
     # datetime object containing current date and time
     now = datetime.now()
     # dd/mm/YY I:M:
     dt_string = now.strftime("%d/%m/%Y %I:%M %p")
+    new_status = 'enable'
+    
+
+
     print(dt_string)
 
 

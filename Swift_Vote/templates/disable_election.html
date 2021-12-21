@@ -138,7 +138,7 @@
               style="background-color:rgb(206, 206, 252) ; color: black; border: none;" type="submit">Search</button>
           </form>
           <!--Display Table-->
-          {% if st %}
+          {% if term %}
           <form action="" method="POST">
             {% csrf_token %}
             <table class="table" style="margin: 8px;">
@@ -150,18 +150,20 @@
                   <th scope="col">Type</th>
                   <th scope="col">Start Date/Time</th>
                   <th scope="col">End Date/Time</th>
+                  <th scope="col">Location</th>
                   <th scope="col">Status</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  {% for t in st %}
+                  {% for t in term %}
                   <td><input type="checkbox" name="toBeDel" value={{t.ec_name}} /></td>
                   <th scope="row">1</th>
                   <td>{{t.ec_name}}</td>
                   <td>{{t.electionType}}</td>
                   <td>{{t.sDate}}</td>
                   <td>{{t.fDate}}</td>
+                  <td>{{t.location}}</td>
                   <td>{{t.status}}</td>
                 </tr>
                 {% endfor %}
@@ -179,27 +181,28 @@
         </div>
         <!--Disable Section-->
         <div id="disable" style="display:none;">
-          {% if hist %}
+          {% if toDis %}
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Election Name</th>
                 <th scope="col">Type</th>
                 <th scope="col">Start Date/Time</th>
                 <th scope="col">End Date/Time</th>
+                <th scope="col">Location</th>
                 <th scope="col">Status</th>
                 <th scope="col">Change Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                {% for h in hist %}
-                <th scope="row">1</th>
+                {% for h in toDis %}
+                
                 <td>{{h.ec_name}}</td>
                 <td>{{h.electionType}}</td>
                 <td>{{h.sDate}}</td>
                 <td>{{h.fDate}}</td>
+                <td>{{h.location}}</td>
                 <td>{{h.status}}</td>
                 <td>
                   <form action="" method="POST" id="fstatus">
