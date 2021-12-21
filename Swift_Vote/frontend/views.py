@@ -41,9 +41,8 @@ def register(request):
         password = request.POST['password']
         username = request.POST['username']
         address = request.POST['address']
-        utype = request.POST['utype']
         user = userDetails.objects.create_user(
-            username=username,email=email,dob=dob,address=address ,fName=fname,lName=lname, contactNumber=contact,password = password, type=utype)
+            username=username,email=email,dob=dob,address=address ,fName=fname,lName=lname, contactNumber=contact,password = password)
         user.save()
         return redirect('/login')
     else:
@@ -137,9 +136,23 @@ def createElection(request):
 def disableElection(request):
     context = {}
     context['toDis'] = election.objects.all()
+
     if request.method == "POST":
+        disable = request.POST.get('toBeDis')
+        print(disable)
+        state = request.POST.get('state')
+        print(state)
+        if state == '1' and disable != 'None':
+            record = election.objects.get(ec_name = disable)
+            record.status = "enable"
+            record.save(update_fields=['status'])
+            return redirect('electionHistory')
+        elif state == '0' and disable != 'None':
+            election.objects.filter(ec_name=disable).update(status="disable")
+            return redirect('electionHistory')
+        else:
+            pass
         sTerm = request.POST.get('ecSearch')
-        
         try:
             context['term'] = election.objects.filter(ec_name=sTerm)
             dell = request.POST.get('toBeDel')
@@ -147,11 +160,7 @@ def disableElection(request):
             if delete == "delete":
                 election.objects.filter(ec_name=dell).delete()
                 return redirect('electionHistory')
-           
-
             return render(request,"disable_election.html", context)
-            
-
 
         except election.DoesNotExist:
             return redirect('disableElection')
@@ -169,6 +178,9 @@ def electionHistory(request):
 
 def cResults(request):
     return render(request, "results.html")
+
+def vResults(request):
+    return render(request, "voterResults.html")
 
 def voting(request):
     return render(request, "voting.html")

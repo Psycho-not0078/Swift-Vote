@@ -39,6 +39,7 @@ def voteCount(contract_handle, cid):
 #adding start
 def addCandidate(contract_handle, name, location):
     hsh=contract_handle.functions.addCandidate(name,location).transact({"from":w3.personal.listAccounts[0]})
+    print(hsh)
 
 def listVoters(contract_handle):
     addresses=contract_handle.functions.listVoters().call()
