@@ -1,355 +1,534 @@
 {% load static %}
 <html>
-    <head>
-        <title>Swift Vote</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css">
-        <style>
-            /*Navigation Bar Styling*/
-            .nav-menu li{
-                display: inline;
-                list-style: none;
-                margin: 10px;
-            }
-            .nav-links{
-                background-color:white;
-                color: black;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                display:inline-block;
-                margin-top: 32px;
-            }
-           .nav-links:hover {
-                background-color: rgb(206, 206, 252);
-                color: rgb(0, 0, 0);
-                }
+  <head>
+    <title>Swift Vote</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+      integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+      integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.css"
+    />
+    <style>
+      /*Navigation Bar Styling*/
+      .nav-menu li {
+        display: inline;
+        list-style: none;
+        margin: 10px;
+      }
+      .nav-links {
+        background-color: rgb(206, 206, 252);
+        color: black;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 32px;
+      }
+      .nav-links:hover {
+        background-color: rgb(206, 206, 252);
+        color: rgb(0, 0, 0);
+      }
 
-            /* Carousel Styling*/
-            .carousel-inner{
-                width: 98%;
-                margin: 0 auto;
-                margin-bottom: 10px;
-            }
+      /* Carousel Styling*/
+      .carousel-inner {
+        width: 98%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+      }
 
-            .carousel-inner img{
-                height: 450px;
-                object-fit: cover;                
-            }
+      .carousel-inner img {
+        height: 450px;
+        object-fit: cover;
+      }
 
-            /*News Cards*/
-            .card{
-                
-                margin-bottom: 10px;
-            }
+      /*News Cards*/
+      .card {
+        margin-bottom: 10px;
+      }
 
-            /* Carousel cards*/
-          .cards-wrapper {
-            display: flex;
-            justify-content: center;
-          }
-          .card img {
-            max-width: 100%;
-            max-height: 100%;
-          }
-          .card {
-            margin: 0 0.5em;
-            box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
-            border: none;
-            border-radius: 0;
-          }
-          .carousel-inner {
-            padding: 1em;
-          }
-          .carousel-control-prev,
-          .carousel-control-next {
-            background-color: #e1e1e1;
-            width: 5vh;
-            height: 5vh;
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
-          }
-          @media (min-width: 768px) {
-            .card img {
-              height: 15em;
-            }
-          }
+      /* Carousel cards*/
+      .cards-wrapper {
+        display: flex;
+        justify-content: center;
+      }
+      .card img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+      .card {
+        margin: 0 0.5em;
+        box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+        border: none;
+        border-radius: 0;
+      }
+      .carousel-inner {
+        padding: 1em;
+      }
+      .carousel-control-prev,
+      .carousel-control-next {
+        background-color: #e1e1e1;
+        width: 5vh;
+        height: 5vh;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      @media (min-width: 768px) {
+        .card img {
+          height: 15em;
+        }
+      }
 
-          /*Footer styling*/
-          footer {
-            text-align: center;
-            padding: 3px;
-            background-color: rgb(206, 206, 252);
-            color: black;
-          }
+      /*Footer styling*/
+      footer {
+        text-align: center;
+        padding: 3px;
+        background-color: rgb(206, 206, 252);
+        color: black;
+      }
 
-          .footer-container{
-            margin: 20px;
-          }
+      .footer-container {
+        margin: 20px;
+      }
 
-          .footer-container ul{
-            list-style: none;
-            display: inline-block;
-            text-align: left;
-            line-height: 1.6;
-          }
-
-        </style>
-    </head>
-    <body>
-        <!-- Navigation Bar -->
-        <nav class="navbar navbar-light " style="margin:10px; background-color: white;">
-            <a class="navbar-brand" href="#">
-                <!--Logo-->
-            <img src="{% static 'images\CaptureLogo.PNG' %}" width="152px" height="80px" class="d-inline-block align-top" alt="Swift-Vote" style="margin-left: 10px;">
-            </a>
-            <!--Navigation Bar Menu Items-->
-            <ul class="nav-menu">
-              {% if user.is_authenticated %}
-                <li><a class="nav-links" id="loginusername logtest" href='#'>Hi, {{user.fName}} {{user.lName}}</a></li>
-              {% else %}
-                <p id="loginusername"></p>
-                <li><a class="nav-links" id="login logtest" href='login'>LOGIN</a></li>
-                <li><a class="nav-links" id="register" href='register'>REGISTER</a></li>
-              {% endif %}
-                <li><a class="nav-links" href='#'>NEWS</a></li>
-                <li><a class="nav-links" href='#'>MORE</a></li>
-              {% if user.is_authenticated %}
-                <li><a class="nav-links" id="logout" href='logout'>LOGOUT</a></li>
-              {% endif %}
-            </ul>   
-        </nav>
-        <!--Carousel To Display News Or Other Related Posts-->
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <!--Slide 1-->
-            <div class="carousel-inner">
-              <div class="carousel-item active ">
-                <img src="{% static 'images\vote1.jpg' %}" class="d-block w-100 " alt="..." >
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Welcome to Swift Vote!</h5>
-                  <p>Vote with ease from anywhere.</p>
-                </div>
-              </div>
-              <!--Slide 2-->
-              <div class="carousel-item ">
-                <img src="{% static 'images\vote2.jpg' %}" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>New Elections Coming up soon!</h5>
-                  <p>Checkout the regions where you will be voting.</p>
-                </div>
-              </div>
-              <!--Slide 3-->
-              <div class="carousel-item ">
-                <img src="{% static 'images\vote3.jpg' %}" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Third slide label</h5>
-                  <p>Some representative placeholder content for the third slide.</p>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
+      .footer-container ul {
+        list-style: none;
+        display: inline-block;
+        text-align: left;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <nav
+      class="navbar navbar-light"
+      style="margin: 10px; background-color: rgb(206, 206, 252)"
+    >
+      <a class="navbar-brand" href="#">
+        <!--Logo-->
+        <img
+          src="{% static 'images\CaptureLogo.PNG' %}"
+          width="152px"
+          height="80px"
+          class="d-inline-block align-top"
+          alt="Swift-Vote"
+          style="margin-left: 10px"
+        />
+      </a>
+      <!--Navigation Bar Menu Items-->
+      <ul class="nav-menu">
+        {% if user.is_authenticated %}
+        <li>
+          <a class="nav-links" id="loginusername logtest" href="#"
+            >Hi, {{user.fName}} {{user.lName}}</a
+          >
+        </li>
+        <li><a class="nav-links" href="update">Update Profile</a></li>
+        <li><a class="nav-links" href="voting">Vote</a></li>
+        {% else %}
+        <li><a class="nav-links" id="login logtest" href="login">Login</a></li>
+        <li><a class="nav-links" id="register" href="register">Register</a></li>
+        {% endif %} {% if obj.type == "Official" %}
+        <li>
+          <a class="nav-links" href="electionSetting">Elections Settings</a>
+        </li>
+        {% endif %} {% if user.is_authenticated %}
+        <li><a class="nav-links" id="logout" href="logout">Logout</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <!--Carousel To Display News Or Other Related Posts-->
+    <div
+      id="carouselExampleCaptions"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-indicators">
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="0"
+          class="active"
+          aria-current="true"
+          aria-label="Slide 1"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="1"
+          aria-label="Slide 2"
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide-to="2"
+          aria-label="Slide 3"
+        ></button>
+      </div>
+      <!--Slide 1-->
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            src="{% static 'images\vote1.jpg' %}"
+            class="d-block w-100"
+            alt="..."
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Welcome to Swift Vote!</h5>
+            <p>Vote with ease from anywhere.</p>
+          </div>
         </div>
-
-          <!--News Flash Nav-Bar-->
-          <ul class="nav" style="margin-bottom: 10px;">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#" style="font-size: 20px; margin-left: 20px;">CURRENTLY TRENDING</a>
-            </li>
-          </ul>
-
-          <!-- Card Carousel-->
-          <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-              <!--Slide-1-->
-              <div class="carousel-item active">
-                <div class="cards-wrapper">
-                <!--Crad-1.1-->
-                <div class="card">
-                  <img src="{% static 'images\vote6.jpg' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Uttarakhand Elections</h5>
-                    <p class="card-text">Legislative Assembly elections will be held in Uttarakhand in February 2022 to elect 70 members of the Uttarakhand Legislative Assembly. The term of current assembly elected in 2017 will expire on 23 March 2022.</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                  </div>
-                </div>
-                <!--Card-1.2-->
-                <div class="card d-none d-md-block">
-                  <img src="{% static 'images\vote7.jpg' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Goa Elections</h5>
-                    <p class="card-text">Legislative Assembly elections will be held in Goa in month of February 2022 to elect 40 members of the Goa Legislative Assembly.</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                  </div>
-                </div>
-                <!--Card-1.3-->
-                <div class="card d-none d-md-block">
-                  <img src="{% static 'images\vote8.jpg' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">UP Elections</h5>
-                    <p class="card-text">Legislative Assembly elections will be held in Uttar Pradesh in month of February to March 2022 to elect 403 members of the Uttar Pradesh Legislative Assembly. The term of current assembly elected in 2017 will expire on 14 May 2022.</p>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
-                  </div>
-                </div>
-              </div>
-              </div>
-              <!--Slide-2-->
-              <div class="carousel-item">
-                <div class="cards-wrapper">
-                  <!--Card-2.1-->
-                  <div class="card">
-                    <img src="{% static 'images\vote1.jpg' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Vote Now</h5>
-                      <p class="card-text">Now no need to visit the booth. Vote from the comfort of your home.</p>
-                      <!-- <a href="#" class="btn btn-primary">Know More</a> -->
-                    </div>
-                  </div>
-                  <!--Card-2.2-->
-                  
-                  <div class="card d-none d-md-block">
-                  <img src="{% static 'images\vote2.jpg' %}" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Register for Elections</h5>
-                    <p class="card-text">New elections in your area? Register Now!.</p>
-                    <!-- <a href="#" class="btn btn-primary">Know More</a> -->
-                  </div>
-                </div>
-                  <!--Card-2.3-->
-                  <div class="card d-none d-md-block">
-                    <img src="{% static 'images\vote4.jpg' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">State Elections Released</h5>
-                      <p class="card-text">You can now check yur dashboard to view results.</p>
-                      <!-- <a href="#" class="btn btn-primary">Know More</a> -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-            </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+        <!--Slide 2-->
+        <div class="carousel-item">
+          <img
+            src="{% static 'images\vote2.jpg' %}"
+            class="d-block w-100"
+            alt="..."
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>New Elections Coming up soon!</h5>
+            <p>Checkout the regions where you will be voting.</p>
           </div>
+        </div>
+        <!--Slide 3-->
+        <div class="carousel-item">
+          <img
+            src="{% static 'images\vote3.jpg' %}"
+            class="d-block w-100"
+            alt="..."
+          />
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Third slide label</h5>
+            <p>Some representative placeholder content for the third slide.</p>
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
 
-          <!--Featured Items #1-->
-          <div class="card" style="width: 95%; margin:40px;">
-            <div class="card-header" style="background-color: rgb(206, 206, 252);">
-              Featured
+    <!--News Flash Nav-Bar-->
+    <ul class="nav" style="margin-bottom: 10px">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          aria-current="page"
+          href="#"
+          style="font-size: 20px; margin-left: 20px"
+          >CURRENTLY TRENDING</a
+        >
+      </li>
+    </ul>
+
+    <!-- Card Carousel-->
+    <div
+      id="carouselExampleControls"
+      class="carousel slide"
+      data-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <!--Slide-1-->
+        <div class="carousel-item active">
+          <div class="cards-wrapper">
+            <!--Crad-1.1-->
+            <div class="card">
+              <img
+                src="{% static 'images\vote6.jpg' %}"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Uttarakhand Elections</h5>
+                <p class="card-text">
+                  Legislative Assembly elections will be held in Uttarakhand in
+                  February 2022 to elect 70 members of the Uttarakhand
+                  Legislative Assembly. The term of current assembly elected in
+                  2017 will expire on 23 March 2022.
+                </p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
             </div>
+            <!--Card-1.2-->
+            <div class="card d-none d-md-block">
+              <img
+                src="{% static 'images\vote7.jpg' %}"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Goa Elections</h5>
+                <p class="card-text">
+                  Legislative Assembly elections will be held in Goa in month of
+                  February 2022 to elect 40 members of the Goa Legislative
+                  Assembly.
+                </p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+            </div>
+            <!--Card-1.3-->
+            <div class="card d-none d-md-block">
+              <img
+                src="{% static 'images\vote8.jpg' %}"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">UP Elections</h5>
+                <p class="card-text">
+                  Legislative Assembly elections will be held in Uttar Pradesh
+                  in month of February to March 2022 to elect 403 members of the
+                  Uttar Pradesh Legislative Assembly. The term of current
+                  assembly elected in 2017 will expire on 14 May 2022.
+                </p>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Slide-2-->
+        <div class="carousel-item">
+          <div class="cards-wrapper">
+            <!--Card-2.1-->
+            <div class="card">
+              <img
+                src="{% static 'images\vote1.jpg' %}"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Vote Now</h5>
+                <p class="card-text">
+                  Now no need to visit the booth. Vote from the comfort of your
+                  home.
+                </p>
+                <!-- <a href="#" class="btn btn-primary">Know More</a> -->
+              </div>
+            </div>
+            <!--Card-2.2-->
+
+            <div class="card d-none d-md-block">
+              <img
+                src="{% static 'images\vote2.jpg' %}"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">Register for Elections</h5>
+                <p class="card-text">
+                  New elections in your area? Register Now!.
+                </p>
+                <!-- <a href="#" class="btn btn-primary">Know More</a> -->
+              </div>
+            </div>
+            <!--Card-2.3-->
+            <div class="card d-none d-md-block">
+              <img
+                src="{% static 'images\vote4.jpg' %}"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">State Elections Released</h5>
+                <p class="card-text">
+                  You can now check yur dashboard to view results.
+                </p>
+                <!-- <a href="#" class="btn btn-primary">Know More</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#carouselExampleControls"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#carouselExampleControls"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+    <!--Featured Items #1-->
+    <div class="card" style="width: 95%; margin: 40px">
+      <div class="card-header" style="background-color: rgb(206, 206, 252)">
+        Featured
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">
+          With supporting text below as a natural lead-in to additional content.
+        </p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+
+    <!--Featured Items #2-->
+    <ul class="list-group" style="width: 95%; margin: 40px">
+      <li class="list-group-item" style="background-color: rgb(206, 206, 252)">
+        Quick Links
+      </li>
+      <li class="list-group-item">Register Now</li>
+      <li class="list-group-item">How to get your verification done?</li>
+      <li class="list-group-item">
+        Get notified on elections. Turn on Notifications!
+      </li>
+      <li class="list-group-item">FAQs</li>
+    </ul>
+
+    <!--Feature Items #3-->
+    <div class="container" style="margin-left: 10%; margin-bottom: 20px">
+      <div class="row">
+        <div class="col-8">
+          <div
+            class="card"
+            style="
+              width: 100%;
+              height: 200px;
+              background-color: rgb(215, 203, 247);
+              border-radius: 20px;
+            "
+          >
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h5 class="card-title">Need Help?</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                Get help from us to use Swift Vote.
+              </h6>
+              <p class="card-text">
+                Talk to us so that we can help you better.
+              </p>
+              <a href="#" class="card-link">Click Here</a>
+              <a href="#" class="card-link">FAQs</a>
             </div>
           </div>
-
-          <!--Featured Items #2-->
-          <ul class="list-group" style="width: 95%; margin:40px;">
-            <li class="list-group-item" style="background-color: rgb(206, 206, 252);">Quick Links</li>
-            <li class="list-group-item">Register Now</li>
-            <li class="list-group-item">How to get your verification done?</li>
-            <li class="list-group-item">Get notified on elections. Turn on Notifications!</li>
-            <li class="list-group-item">FAQs</li>
-          </ul>
-
-          <!--Feature Items #3-->
-          <div class="container" style="margin-left: 10%; margin-bottom: 20px;">
-            <div class="row">
-              <div class="col-8">
-                <div class="card" style="width: 100%; height: 200px; background-color: rgb(215, 203, 247); border-radius: 20px;">
-                  <div class="card-body">
-                    <h5 class="card-title">Need Help?</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Get help from us to use Swift Vote.</h6>
-                    <p class="card-text">Talk to us so that we can help you better.</p>
-                    <a href="#" class="card-link">Click Here</a>
-                    <a href="#" class="card-link">FAQs</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-4" style="display:inline-flex; padding:0; margin: 0;">
-                <div class="card" style="width: 98%;height: 200px; border-radius: 20px; ">
-                  <div class="card-body">
-                    <h5 class="card-title">New Voter?</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Know your Swfit Vote.</h6>
-                    <p class="card-text">You can share your feedbacks and let us know how we can make Swift Vote better.</p>
-                    <a href="#" class="card-link">Click here</a>
-                    <a href="#" class="card-link">FAQs</a>
-                  </div>
-                </div>
-
-              </div>
+        </div>
+        <div class="col-4" style="display: inline-flex; padding: 0; margin: 0">
+          <div
+            class="card"
+            style="width: 98%; height: 200px; border-radius: 20px"
+          >
+            <div class="card-body">
+              <h5 class="card-title">New Voter?</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                Know your Swfit Vote.
+              </h6>
+              <p class="card-text">
+                You can share your feedbacks and let us know how we can make
+                Swift Vote better.
+              </p>
+              <a href="#" class="card-link">Click here</a>
+              <a href="#" class="card-link">FAQs</a>
             </div>
           </div>
-          
-          <!--Footer-->
-          <footer>
-            <div class="footer-container">
-              <div class="row">
-                <div class="col">
-                  <ul>
-                    <li><b>ORGANIZATION</b></li>
-                    <li>About</li>
-                    <li>FAQs</li>
-                    <li>Contact Us</li>
+        </div>
+      </div>
+    </div>
 
-                  </ul>
-                </div>
-                <div class="col">
-                  <ul>
-                    <li><b>CONNECT WITH US</b></li>
-                    <li>Administration</li>
-                    <li>Volunteer</li>
-                    <li>Complaints</li>
+    <!--Footer-->
+    <footer>
+      <div class="footer-container">
+        <div class="row">
+          <div class="col">
+            <ul>
+              <li><b>ORGANIZATION</b></li>
+              <li>About</li>
+              <li>FAQs</li>
+              <li>Contact Us</li>
+            </ul>
+          </div>
+          <div class="col">
+            <ul>
+              <li><b>CONNECT WITH US</b></li>
+              <li>Administration</li>
+              <li>Volunteer</li>
+              <li>Complaints</li>
+            </ul>
+          </div>
+          <div class="col">
+            <ul style="line-height: 2.5">
+              <li><i class="bi bi-twitter"></i> Twitter</li>
+              <li><i class="bi bi-instagram"></i> Instagram</li>
+              <li><i class="bi bi-facebook"></i> Facebook</li>
+            </ul>
+          </div>
 
-                  </ul>
-                </div>
-                <div class="col">
-                  
-                  <ul style="line-height: 2.5;">
-                    <li><i class="bi bi-twitter"></i> Twitter</li>
-                    <li><i class="bi bi-instagram"></i> Instagram</li>
-                    <li><i class="bi bi-facebook"></i> Facebook</li>
-                    
-                  </ul>
-                </div>
+          <div class="col">
+            <img
+              src="{% static 'images\CaptureLogo.PNG' %}"
+              width="152px"
+              height="80px"
+              class="d-inline-block align-top"
+              alt="Swift-Vote"
+              style="margin-left: 10px; margin-top: 10px"
+            />
+          </div>
+        </div>
+      </div>
 
-                <div class="col">
-                  <img src="{% static 'images\CaptureLogo.PNG' %}" width="152px" height="80px" class="d-inline-block align-top" alt="Swift-Vote" style="margin-left: 10px; margin-top: 10px;">
-                </div>
-              </div>
-            </div>
+      <p>SwfitVote © 2021</p>
+    </footer>
 
-            <p>SwfitVote © 2021</p>
-            
-          </footer>
-          
-
-          <!--Some Bootstrap v4.0 Scripts for card carousel -->
-          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    </body>
+    <!--Some Bootstrap v4.0 Scripts for card carousel -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

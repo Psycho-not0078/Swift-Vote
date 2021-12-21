@@ -87,7 +87,7 @@
       class="navbar navbar-light"
       style="margin: 10px; background-color: rgb(206, 206, 252)"
     >
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <!--Logo-->
         <img
           src="{% static 'images\CaptureLogo.PNG' %}"
@@ -102,16 +102,22 @@
       <ul class="nav-menu">
         {% if user.is_authenticated %}
         <li>
-          <a class="nav-links" href="login">Hi {{user.fName}} {{user.lName}}</a>
-          <li><a class="nav-links" href="/">HOME</a></li>
+          <a class="nav-links" id="loginusername logtest" href="#"
+            >Hi, {{user.fName}} {{user.lName}}</a
+          >
         </li>
+        <li><a class="nav-links" href="update">Update Profile</a></li>
+        <li><a class="nav-links" href="voting">Vote</a></li>
         {% else %}
-        <li><a class="nav-links" href="/">HOME</a></li>
-        <li><a class="nav-links" href="login">LOGIN</a></li>
-        <li><a class="nav-links" href="register">REGISTER</a></li>
+        <li><a class="nav-links" id="login logtest" href="login">Login</a></li>
+        <li><a class="nav-links" id="register" href="register">Register</a></li>
+        {% endif %} {% if obj.type == "Official" %}
+        <li>
+          <a class="nav-links" href="#">Elections Settings</a>
+        </li>
+        {% endif %} {% if user.is_authenticated %}
+        <li><a class="nav-links" id="logout" href="logout">Logout</a></li>
         {% endif %}
-        <li><a class="nav-links" href="#">NEWS</a></li>
-        <li><a class="nav-links" href="#">MORE</a></li>
       </ul>
     </nav>
     <div class="main">
@@ -120,9 +126,15 @@
         <div class="card-body">
           <h5 class="card-title">Account Functions</h5>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href="{% url 'createElection' %}">Create Election</a></li>
-            <li class="list-group-item"><a href="{% url 'disableElection' %}">Disable/Delete Election</a></li>
-            <li class="list-group-item"><a href="{% url 'electionHistory' %}">Election History</a></li>
+            <li class="list-group-item">
+              <a href="{% url 'createElection' %}">Create Election</a>
+            </li>
+            <li class="list-group-item">
+              <a href="{% url 'disableElection' %}">Disable/Delete Election</a>
+            </li>
+            <li class="list-group-item">
+              <a href="{% url 'electionHistory' %}">Election History</a>
+            </li>
           </ul>
         </div>
       </div>

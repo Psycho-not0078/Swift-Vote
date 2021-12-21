@@ -11,7 +11,11 @@ from datetime import datetime
 w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
 # Create your views here.
 def index(request):
-    return render(request,"home.html")
+    if request.user.is_authenticated:
+        obj = userDetails.objects.get(email=request.user.get_username())
+    else:
+        obj = ""
+    return render(request,"home.html", {'obj': obj})
 
 def login(request):
     if request.method == 'POST':
@@ -103,6 +107,10 @@ def voterDB(request):
     return render(request,"voter_db.html")
 
 def createElection(request):
+    if request.user.is_authenticated:
+        obj = userDetails.objects.get(email=request.user.get_username())
+    else:
+        obj=""
     if request.method == "POST":
         ec = election()
         ec.ec_name = request.POST.get('ecName')
@@ -131,7 +139,7 @@ def createElection(request):
 
         return redirect('/electionSetting')
     else:
-        return render(request, "create_election.html")
+        return render(request, "create_election.html", {"obj":obj})
 
 def disableElection(request):
     context = {}
