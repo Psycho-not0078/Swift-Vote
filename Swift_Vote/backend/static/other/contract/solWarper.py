@@ -1,14 +1,10 @@
-import solcx
+from logging import exception
 import web3
-from web3.main import Web3
-from web3.auto import w3
-
-import os
-from frontend.models import *
-
-from web3 import Web3
-# from eth_tester import PyEVMBackend
 from solcx import compile_source
+import random
+
+# print(w3.personal.listAccounts, len(w3.personal.listAccounts))
+w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
 
 def compile_source_file(file_path):
    with open(file_path, 'r') as f:
@@ -17,54 +13,48 @@ def compile_source_file(file_path):
    return compile_source(source)
 
 
-def deploy_contract(w3, contract_interface):
-    tx_hash = w3.eth.contract(
-        abi=contract_interface['abi'],
-        bytecode=contract_interface['bin']).constructor().transact()
-
-    address = w3.eth.get_transaction_receipt(tx_hash)['contractAddress']
-    return address
-
-def __init__():
-    w3 = Web3("http:127.0.0.1:8545/")
-
-    contract_source_path = 'contract.sol'
-    compiled_sol = compile_source_file('/home/psych/github_related_stuff/Swift-Vote/Swift_Vote/backend/static/other/contract/contract.sol')
-
+def deploy_contract(file_name):
+    compiled_sol = compile_source_file(file_name)
     contract_id, contract_interface = compiled_sol.popitem()
+    contract = w3.eth.contract(
+        abi=contract_interface['abi'],
+        bytecode=contract_interface['bin'])
 
-    # print(deploy_contract(w3, contract_interface))
-    address = deploy_contract(w3, contract_interface)
+    contract_hash=contract.constructor().transact({'from': w3.personal.listAccounts[0]})
+    address = w3.eth.waitForTransactionReceipt(contract_hash)['contractAddress']
+    contract_handle=w3.eth.contract(address=address,abi=contract_interface['abi'])
 
-    if (w3.eth.get_accounts()[0]):
-        masterAccount = w3.eth.get_accounts()[0];
-        temp = w3.eth.contract(bytecode=bytecode, abi=abi)
-        txn = temp.constructor().buildTransaction({"from": masterAccount}); 
+    return contract_handle
 
-    else:
-        masterAccount=W3.eth.account.create(os.urandom(32))
-        newaccount=Accounts("official",masterAccount.address,masterAccount.privateKey)
-        newaccount.save()
+def addUser(contract_handle, location):
+    newAddress=w3.personal.newAccount("awefarw")
+    hsh=contract_handle.functions.addUser(newAddress,location).transact({"from":w3.personal.listAccounts[0]})
+    print(hsh)
 
-        
+def vote(contract_handle, addr, cid, location, date):
+    hsh=contract_handle.functions.vote(cid, location, date).transact({'from':addr})
+#adding start
 
+def addCandidate(contract_handle, name, location):
+    hsh=contract_handle.functions.addCandidate(name,location).transact({"from":w3.personal.listAccounts[0]})
+    print(hsh)
 
-    
-    
-def createAccount(type):
-    newAccount=W3.eth.account.create(os.urandom(32))
-    accAddress=newAccount.address
-    accPrivatekey=newAccount.privateKey
-    accountType=type
-    newaccount=Accounts(accountType,accAddress,accPrivatekey)
-    newaccount.save()
-    
-def vote(addr, id, location, date):
-    if (Accounts.objects.filter('accountAddress'==addr)["ablitytoVote"]==1):
-        print("vote")#will put the appropriate function call for voting here
-             
+def listVoters(contract_handle):
+    addrs=contract_handle.functions.listVoters().call()
     
 
+#adding closex
 
-        
-# print(out)
+contract_source_path = 'elections.sol'
+
+contract_handle= deploy_contract(contract_source_path)
+
+addUser(contract_handle,"fucklife")
+
+# txinfo=w3.eth.getTransaction(contract_tester1)
+# print(txinfo)
+# print(f'Deployed {contract_id} to: {address}\n')
+
+
+
+

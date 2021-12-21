@@ -110,10 +110,10 @@
             <!--Navigation Bar Menu Items-->
             <ul class="nav-menu">
               {% if user.is_authenticated %}
-                <li><a class="nav-links" id="loginusername" href='#'>Hi, {{user.fName}} {{user.lName}}</a></li>
+                <li><a class="nav-links" id="loginusername logtest" href='#'>Hi, {{user.fName}} {{user.lName}}</a></li>
               {% else %}
                 <p id="loginusername"></p>
-                <li><a class="nav-links" id="login" href='login'>LOGIN</a></li>
+                <li><a class="nav-links" id="login logtest" href='login'>LOGIN</a></li>
                 <li><a class="nav-links" id="register" href='register'>REGISTER</a></li>
               {% endif %}
                 <li><a class="nav-links" href='#'>NEWS</a></li>
@@ -181,29 +181,29 @@
                 <div class="cards-wrapper">
                 <!--Crad-1.1-->
                 <div class="card">
-                  <img src="{% static 'images\vote1.jpg' %}" class="card-img-top" alt="...">
+                  <img src="{% static 'images\vote6.jpg' %}" class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Vote Now</h5>
-                    <p class="card-text">Now no need to visit the booth. Vote from the comfort of your home.</p>
-                    <a href="#" class="btn btn-primary">Know More</a>
+                    <h5 class="card-title">Uttarakhand Elections</h5>
+                    <p class="card-text">Legislative Assembly elections will be held in Uttarakhand in February 2022 to elect 70 members of the Uttarakhand Legislative Assembly. The term of current assembly elected in 2017 will expire on 23 March 2022.</p>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                   </div>
                 </div>
                 <!--Card-1.2-->
                 <div class="card d-none d-md-block">
-                  <img src="{% static 'images\vote2.jpg' %}" class="card-img-top" alt="...">
+                  <img src="{% static 'images\vote7.jpg' %}" class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">Register for Elections</h5>
-                    <p class="card-text">New elections in your area? Register Now!.</p>
-                    <a href="#" class="btn btn-primary">Know More</a>
+                    <h5 class="card-title">Goa Elections</h5>
+                    <p class="card-text">Legislative Assembly elections will be held in Goa in month of February 2022 to elect 40 members of the Goa Legislative Assembly.</p>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                   </div>
                 </div>
                 <!--Card-1.3-->
                 <div class="card d-none d-md-block">
-                  <img src="{% static 'images\vote3.jpg' %}" class="card-img-top" alt="...">
+                  <img src="{% static 'images\vote8.jpg' %}" class="card-img-top" alt="...">
                   <div class="card-body">
-                    <h5 class="card-title">State Elections Released</h5>
-                    <p class="card-text">You can now check yur dashboard to view results.</p>
-                    <a href="#" class="btn btn-primary">Know More</a>
+                    <h5 class="card-title">UP Elections</h5>
+                    <p class="card-text">Legislative Assembly elections will be held in Uttar Pradesh in month of February to March 2022 to elect 403 members of the Uttar Pradesh Legislative Assembly. The term of current assembly elected in 2017 will expire on 14 May 2022.</p>
+                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                   </div>
                 </div>
               </div>
@@ -213,29 +213,30 @@
                 <div class="cards-wrapper">
                   <!--Card-2.1-->
                   <div class="card">
-                    <img src="{% static 'images\vote5.jpg' %}" class="card-img-top" alt="...">
+                    <img src="{% static 'images\vote1.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <h5 class="card-title">Vote Now</h5>
+                      <p class="card-text">Now no need to visit the booth. Vote from the comfort of your home.</p>
+                      <!-- <a href="#" class="btn btn-primary">Know More</a> -->
                     </div>
                   </div>
                   <!--Card-2.2-->
+                  
                   <div class="card d-none d-md-block">
-                    <img src="{% static 'images\vote3.jpg' %}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
+                  <img src="{% static 'images\vote2.jpg' %}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Register for Elections</h5>
+                    <p class="card-text">New elections in your area? Register Now!.</p>
+                    <!-- <a href="#" class="btn btn-primary">Know More</a> -->
                   </div>
+                </div>
                   <!--Card-2.3-->
                   <div class="card d-none d-md-block">
-                    <img src="{% static 'images\vote2.jpg' %}" class="card-img-top" alt="...">
+                    <img src="{% static 'images\vote4.jpg' %}" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <h5 class="card-title">State Elections Released</h5>
+                      <p class="card-text">You can now check yur dashboard to view results.</p>
+                      <!-- <a href="#" class="btn btn-primary">Know More</a> -->
                     </div>
                   </div>
                 </div>

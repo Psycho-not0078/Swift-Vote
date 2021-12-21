@@ -4,8 +4,11 @@ from .models import candidateHistory, userDetails, election, location, candidate
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import auth
 from .forms import UserForm
+import web3
 
 from datetime import datetime
+
+w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
 # Create your views here.
 def index(request):
     return render(request,"home.html")
@@ -23,7 +26,7 @@ def login(request):
             else:
                 return render(request, 'Log In.html', {'msg': 'Invalid Credentials'})
         except Exception as e:
-            return render(request, 'Log In.html', {'msg': 'Invalid Credentials' +"  "+ str(e)})
+            return render(request, 'Log In.html', {'msg': 'Invalid Credentials'}) #  +"  "+ str(e)
     else:
         return render(request,"Log In.html")
 
@@ -77,7 +80,23 @@ def myAccount(request):
     return render(request,"MyAccount.html")
 
 def updateProfile(request):
-    return render(request,"UpdateProfile.html")
+    if request.user.is_authenticated:
+        obj = userDetails.objects.get(email=request.user.get_username())
+    if request.method == 'POST':
+        obj.fName = request.POST['fname']
+        obj.lName = request.POST['lname']
+        obj.email = str(request.POST['email']).lower()
+        obj.contactNumber = request.POST['contact']
+        obj.dob = request.POST['dob']
+        obj.username = request.POST['username']
+        obj.address = request.POST['address']
+        obj.save()
+        return redirect('/')
+    else:
+        if request.user.is_authenticated:
+            return render(request,"UpdateProfile.html", {'obj': obj})
+        else:
+            return render(request,"UpdateProfile.html")
 
 def voterDB(request):
     return render(request,"voter_db.html")
