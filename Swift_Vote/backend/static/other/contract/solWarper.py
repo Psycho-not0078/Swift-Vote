@@ -37,10 +37,11 @@ def vote(contract_handle, addr, cid, location, date):
 
 def addCandidate(contract_handle, name, location):
     hsh=contract_handle.functions.addCandidate(name,location).transact({"from":w3.personal.listAccounts[0]})
-    print(hsh)
 
 def listVoters(contract_handle):
-    addrs=contract_handle.functions.listVoters().call()
+    addresses=contract_handle.functions.listVoters().call()
+    print(type(addresses))
+    return addresses[1]
     
 
 #adding closex
@@ -48,9 +49,8 @@ def listVoters(contract_handle):
 contract_source_path = 'elections.sol'
 
 contract_handle= deploy_contract(contract_source_path)
-
 addUser(contract_handle,"fucklife")
-
+listVoters(contract_handle)
 # txinfo=w3.eth.getTransaction(contract_tester1)
 # print(txinfo)
 # print(f'Deployed {contract_id} to: {address}\n')
