@@ -110,10 +110,10 @@
             <!--Navigation Bar Menu Items-->
             <ul class="nav-menu">
               {% if user.is_authenticated %}
-                <li><a class="nav-links" id="loginusername" href='#'>Hi, {{user.fName}} {{user.lName}}</a></li>
+                <li><a class="nav-links" id="loginusername logtest" href='#'>Hi, {{user.fName}} {{user.lName}}</a></li>
               {% else %}
                 <p id="loginusername"></p>
-                <li><a class="nav-links" id="login" href='login'>LOGIN</a></li>
+                <li><a class="nav-links" id="login logtest" href='login'>LOGIN</a></li>
                 <li><a class="nav-links" id="register" href='register'>REGISTER</a></li>
               {% endif %}
                 <li><a class="nav-links" href='#'>NEWS</a></li>
