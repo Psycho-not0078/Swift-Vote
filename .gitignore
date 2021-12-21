@@ -114,4 +114,4 @@ logs.txt
 
 #spam
 ./genesis.json/
-./blockchain/data/
+./blockchain/data

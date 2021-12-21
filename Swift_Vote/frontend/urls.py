@@ -12,6 +12,7 @@ urlpatterns = [
     path('dashboard', views.candidateDB, name='candidateDB'),
     path('candidateApplication', views.candidateApplication, name="candidateApplication"),
     path('cResults', views.cResults, name='cResults'),
+    path('vResults', views.vResults, name='vResults'),
     path('ecDB', views.ecDB, name='ecDB'),
     path('logout', views.logout),
     path('voterDB', views.voterDB, name='voterDB'),
