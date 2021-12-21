@@ -26,13 +26,24 @@ def deploy_contract(file_name):
 
     return contract_handle
 
-def addUser(contract_handle,location):
+def addUser(contract_handle, location):
     newAddress=w3.personal.newAccount("awefarw")
     hsh=contract_handle.functions.addUser(newAddress,location).transact({"from":w3.personal.listAccounts[0]})
     print(hsh)
 
 def vote(contract_handle, addr, cid, location, date):
     hsh=contract_handle.functions.vote(cid, location, date).transact({'from':addr})
+#adding start
+
+def addCandidate(contract_handle, name, location):
+    hsh=contract_handle.functions.addCandidate(name,location).transact({"from":w3.personal.listAccounts[0]})
+    print(hsh)
+
+def listVoters(contract_handle):
+    addrs=contract_handle.functions.listVoters().call()
+    
+
+#adding closex
 
 contract_source_path = 'elections.sol'
 
