@@ -14,7 +14,7 @@
       crossorigin="anonymous"
     />
 
-    <title>Sign Up</title>
+    <title>Update Profile</title>
     <style>
       * {
         padding: 0;
@@ -59,14 +59,16 @@
     <section class="Form my-4 mx-5">
       <div class="container">
         <div class="row g-0">
-          <div class="col-lg-5">
+          <div class="col-lg-1"></div>
+          <div class="col-lg-4">
+            <br><br><br><br><br><br>
             <img
-              src="{% static 'images\fgg.jpg' %}"
+              src="{% static 'images\update.jpg' %}"
               alt="Artist"
-              class="img-fluid"
+              class="img-fluid left"
             />
           </div>
-          <div class="col-lg-7 px-5 pt-5">
+          <div class="col-lg px-5 pt-5">
             <h1 class="font-weight-bold py-3">Update Profile</h1>
             <form action="update" method="POST">
               {% csrf_token %}
