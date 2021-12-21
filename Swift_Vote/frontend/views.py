@@ -79,7 +79,19 @@ def myAccount(request):
     return render(request,"MyAccount.html")
 
 def updateProfile(request):
-    return render(request,"UpdateProfile.html")
+    obj = userDetails.objects.get(email=request.user.get_username())
+    if request.method == 'POST':
+        obj.fName = request.POST['fname']
+        obj.lName = request.POST['lname']
+        obj.email = str(request.POST['email']).lower()
+        obj.contactNumber = request.POST['contact']
+        obj.dob = request.POST['dob']
+        obj.username = request.POST['username']
+        obj.address = request.POST['address']
+        obj.save()
+        return redirect('/')
+    else:
+        return render(request,"UpdateProfile.html", {'obj': obj})
 
 def voterDB(request):
     return render(request,"voter_db.html")
