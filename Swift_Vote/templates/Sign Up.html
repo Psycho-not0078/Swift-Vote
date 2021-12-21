@@ -61,7 +61,7 @@
         <div class="row g-0">
           <div class="col-lg-1"></div>
           <div class="col-lg-5">
-            <br><br><br><br><br><br><br><br><br><br><br>
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             <img
               src="{% static 'images\register.jpg' %}"
               alt="Artist"
@@ -162,10 +162,35 @@
                   />
                 </div>
               </div>
+              <label for="type">User Type:</label>
+              <div class="form-check" id="type">
+                <input class="form-check-input" type="radio" name="utype" id="utype1" value="Voter" checked>
+                <label class="form-check-label" for="utype1">
+                  Voter
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="utype" value="Candidate" id="utype2">
+                <label class="form-check-label" for="utype2">
+                  Candidate
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" value="Official" name="utype" id="utype3">
+                <label class="form-check-label" for="utype3">
+                  Official
+                </label>
+              </div>
               <!-- {{ form.as_p }}   -->
               <div class="form-row">
                 <div class="col-lg-7">
-                  <button type="submit" name="registerbutton" class="btn1 mt-3 mb-5">SIGN UP</button>
+                  <button
+                    type="submit"
+                    name="registerbutton"
+                    class="btn1 mt-3 mb-5"
+                  >
+                    SIGN UP
+                  </button>
                 </div>
               </div>
 
