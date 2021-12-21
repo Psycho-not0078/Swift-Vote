@@ -1,4 +1,3 @@
-from logging import Handler
 from django.db.models import deletion
 from django.shortcuts import render,redirect
 from .models import candidateHistory, userDetails, election, location, candidates
@@ -6,11 +5,10 @@ from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import auth
 from .forms import UserForm
 import web3
-from .solWarper import *
+
 from datetime import datetime
 
 w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
-Handler=deploy_contract("elections.sol")
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
