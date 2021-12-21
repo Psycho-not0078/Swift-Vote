@@ -79,7 +79,8 @@ def myAccount(request):
     return render(request,"MyAccount.html")
 
 def updateProfile(request):
-    obj = userDetails.objects.get(email=request.user.get_username())
+    if request.user.is_authenticated:
+        obj = userDetails.objects.get(email=request.user.get_username())
     if request.method == 'POST':
         obj.fName = request.POST['fname']
         obj.lName = request.POST['lname']
@@ -91,7 +92,10 @@ def updateProfile(request):
         obj.save()
         return redirect('/')
     else:
-        return render(request,"UpdateProfile.html", {'obj': obj})
+        if request.user.is_authenticated:
+            return render(request,"UpdateProfile.html", {'obj': obj})
+        else:
+            return render(request,"UpdateProfile.html")
 
 def voterDB(request):
     return render(request,"voter_db.html")

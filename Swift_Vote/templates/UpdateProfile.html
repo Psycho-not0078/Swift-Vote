@@ -78,7 +78,7 @@
                     placeholder="First Name"
                     class="form-control my-4 p-2"
                     name="fname"
-                    value={{ obj.fName }}
+                    value= {% if user.is_authenticated %} {{ obj.fName }} {% else %} "" {% endif %}
                   />
                 </div>
               </div>
@@ -89,7 +89,7 @@
                     placeholder="Last Name"
                     class="form-control my-4 p-2"
                     name="lname"
-                    value={{ obj.lName }}
+                    value={% if user.is_authenticated %} {{ obj.lName }} {% else %} "" {% endif %}
                   />
                 </div>
               </div>
@@ -100,7 +100,7 @@
                     placeholder="Username"
                     class="form-control my-4 p-2"
                     name="username"
-                    value={{ obj.username }}
+                    value={% if user.is_authenticated %} {{ obj.username }} {% else %} "" {% endif %}
                   />
                 </div>
               </div>
@@ -111,7 +111,7 @@
                     placeholder="Email-Address"
                     class="form-control my-4 p-2"
                     name="email"
-                    value={{ obj.email }}
+                    value={% if user.is_authenticated %} {{ obj.email }} {% else %} "" {% endif %}
                   />
                 </div>
               </div>
@@ -121,7 +121,7 @@
                     type="date"
                     class="form-control my-4 p-2"
                     name="dob"
-                    value={{ obj.dob }}
+                    value={% if user.is_authenticated %} {{ obj.dob }} {% else %} "" {% endif %}
                   />
                 </div>
               </div>
@@ -133,7 +133,7 @@
                     class="form-control my-4 p-2"
                     name="contact"
                     pattern="[0-9]{11}"
-                    value={{ obj.contactNumber }}
+                    value={% if user.is_authenticated %} {{ obj.contactNumber }} {% else %} "" {% endif %}
                   />
                 </div>
               </div>
@@ -144,7 +144,7 @@
                     placeholder="Address"
                     class="form-control my-4 p-2"
                     name="address"
-                    value={{ obj.address }}
+                    value={% if user.is_authenticated %} {{ obj.address }} {% else %} "" {% endif %}
                   />
                 </div>
               </div>
