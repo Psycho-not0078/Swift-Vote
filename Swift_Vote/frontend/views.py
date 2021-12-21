@@ -10,8 +10,7 @@ from .solWarper import *
 from datetime import datetime
 
 w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
-contract_source_path = 'elections.sol'
-Handler=deploy_contract(contract_source_path)
+Handler=deploy_contract("elections.sol")
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
