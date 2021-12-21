@@ -1,32 +1,32 @@
 // SPDX-License-Identifier: GPL-3.0
 
 pragma solidity >=0.7.0 <0.9.0;
-pragma experimental ABIEncoderV2;
 
 contract Election {
     struct vt { //maping a vote to candidate
         uint256 id;
         uint256 cid;//candidate id
-        string context;
+        string location;
         string date;
     }
     
     struct candidate {
         uint256 id;
         string name;
-        string context;
+        string location;
     }
     
     struct user {
         uint256 id;
         string tag;
-        string context;
+        string location;
         uint256 ablity_to_vote;
         uint256 ablity_to_add;
         uint256 ablity_to_change; 
     }
     
     uint256 voteCount;
+    uint256 officialCount;
     uint256 candidateCount;
     uint256 userCount;
     uint256 voterCount;
@@ -43,25 +43,26 @@ contract Election {
     function init(address _ad) private{
         //adding the init user 
         userCount+=1;
+        officialCount+=1;
         userAddress[userCount]=_ad;
         users[_ad]=user(userCount,"admin","central",0,1,1);
     }
     
-    function addUser(address _ad, string memory _context) public{
+    function addUser(address _ad, string memory _location) public{
         //function to add users, be it candidates or voters or officials.
         require(users[msg.sender].ablity_to_add==1,"the role doesnt allow it");
         userCount+=1;
         voterCount+=1;
         userAddress[userCount]=_ad;
-        users[_ad]=user(userCount,"user",_context,0,0,0);
+        users[_ad]=user(userCount,"user",_location,1,0,0);
     }  
 
 
-    function addCandidate( string memory _name, string memory _context) public {
+    function addCandidate( string memory _name, string memory _location) public {
         //function to add a candidate to the system
         require(users[msg.sender].ablity_to_add==1,"the role doesnt allow it");
         candidateCount+=1;
-        candidates[candidateCount]=candidate(candidateCount, _name, _context);
+        candidates[candidateCount]=candidate(candidateCount, _name, _location);
     }
 
     function changeAblity(address _ad, uint256 _ablityType, uint256 _value) public {
@@ -69,11 +70,25 @@ contract Election {
         if (_ablityType==1){
             users[_ad].ablity_to_vote=_value;
         }
+        
         else if(_ablityType==2){
             users[_ad].ablity_to_add=_value;
+            if (_value==1){
+                officialCount+=1;
+            }
+            else{
+                officialCount-=1;
+            }
         }
+
         else if(_ablityType==3){
             users[_ad].ablity_to_change=_value;
+            if (_value==1){
+                officialCount+=1;
+            }
+            else{
+                officialCount-=1;
+            }
         }
     }
 
@@ -85,14 +100,15 @@ contract Election {
         //have to write an event here
     }
 
+
     function listVoters() public view returns (address  [] memory){
-        // require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes("admin")),"the role doesnt allow it");
+        require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes("admin")),"the role doesnt allow it");
         address[] memory addressesses = new address[](voterCount);
         uint256 i=1;
         uint256 pos=0;
-        for(i=1;i<=userCount;i++){
-            if(users[userAddress[i]].ablity_to_vote==1){
-                addressesses[pos]=userAddress[i];
+        for(i=0;i<=userCount;i++){
+            if(users[userAddress[i+1]].ablity_to_vote==1){
+                addressesses[pos]=userAddress[i+1];
                 pos+=1;
             }
         }
@@ -101,7 +117,7 @@ contract Election {
 
     function listOfficials() public view returns (address  [] memory){
         require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes("admin")),"the role doesnt allow it");
-        address[] memory addressesses = new address[](voterCount);
+        address[] memory addressesses = new address[](officialCount);
         uint256 i=1;
         uint256 pos=0;
         for(i=1;i<=userCount;i++){
@@ -113,14 +129,14 @@ contract Election {
         return addressesses;
     }
 
-    function listCandidates(string memory _context)public view returns (string[] memory name, uint256[] memory id){
+    function listCandidates(string memory _location)public view returns (string[] memory name, uint256[] memory id){
         require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes("user")),"the role doesnt allow it");
         string[] memory names=new string[](candidateCount);
         uint256[] memory ids=new uint256[](candidateCount);
         uint256 i=1;
         uint256 pos=0;
         for(i=1;i<=candidateCount;i++){
-            if(keccak256(bytes(candidates[i].context))==keccak256(bytes(_context))){
+            if(keccak256(bytes(candidates[i].location))==keccak256(bytes(_location))){
                 ids[pos]=candidates[i].id;
                 names[pos]=candidates[i].name;
                 pos+=1;
@@ -129,12 +145,12 @@ contract Election {
         return (names,ids);
     }
 
-    function vote(uint256 _id, string memory _context,string memory _date) public{
+    function vote(uint256 _id, string memory _location,string memory _date) public{
         require(users[msg.sender].ablity_to_vote==1,"the role doesnt allow it");
         require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes("user")),"the role doesnt allow it");
-        require(keccak256(bytes(users[msg.sender].context))==keccak256(bytes(candidates[_id].context)),"error 404");
+        require(keccak256(bytes(users[msg.sender].location))==keccak256(bytes(candidates[_id].location)),"error 404");
         voteCount+=1;
-        votes[voteCount]=vt(voteCount, _id, _context, _date);
+        votes[voteCount]=vt(voteCount, _id, _location, _date);
         disableVoteAblity(msg.sender);
     }
     
