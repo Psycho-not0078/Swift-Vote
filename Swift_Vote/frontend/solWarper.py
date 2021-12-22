@@ -27,24 +27,32 @@ def deploy_contract(file_name):
     return contract_handle
 
 def addUser(contract_handle, location):
-    newAddress=w3.personal.newAccount("awefarw")
-    hsh=contract_handle.functions.addUser(newAddress,location).transact({"from":w3.personal.listAccounts[0]})
-    print(hsh)
+    try:
+        newAddress=w3.personal.newAccount("awefarw")
+        hsh=contract_handle.functions.addUser(newAddress,location).transact({"from":w3.personal.listAccounts[0]})
+        #print(hsh)
+    except Exception as e:
+        print(e)
 
 def vote(contract_handle, addr, cid, location, date):
-    hsh=contract_handle.functions.vote(cid, location, date).transact({'from':addr})
-#adding start
+    try:
+        hsh=contract_handle.functions.vote(cid, location, date).transact({'from':addr})
+    except Exception as e:
+        print(e)
 
 def addCandidate(contract_handle, name, location):
-    hsh=contract_handle.functions.addCandidate(name,location).transact({"from":w3.personal.listAccounts[0]})
+    try:
+        hsh=contract_handle.functions.addCandidate(name,location).transact({"from":w3.personal.listAccounts[0]})
+    except Exception as e:
+        print(e)
 
 def listVoters(contract_handle):
-    addresses=contract_handle.functions.listVoters().call()
-    print(type(addresses))
-    return addresses[1]
-    
-
-#adding closex
+    try:
+        addresses=contract_handle.functions.listVoters().call()
+        print(type(addresses))
+        return addresses[1]
+    except Exception as e:
+        print(e)
 
 contract_source_path = 'elections.sol'
 
