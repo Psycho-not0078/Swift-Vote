@@ -65,11 +65,11 @@ class election(models.Model):
     electionType=models.CharField(max_length=250)
     allowedContext=models.CharField(max_length=250)
     voteCount=models.BigIntegerField(default=0)
-    sDate=models.DateTimeField()
-    fDate=models.DateTimeField()
+    sDate=models.DateField()
+    fDate=models.DateField()
     location=models.CharField(max_length=250)
     inCharge=models.ForeignKey(userDetails,null=True,blank=True,to_field="uid",on_delete=models.CASCADE)
-    status=models.CharField(max_length=7, default='disable')
+    status=models.CharField(max_length=7, default='enable')
 
 class candidateHistory(models.Model):
     hid=models.AutoField(primary_key=True)

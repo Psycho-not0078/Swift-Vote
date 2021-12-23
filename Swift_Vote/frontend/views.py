@@ -106,27 +106,36 @@ def updateProfile(request):
             return render(request,"UpdateProfile.html")
 
 def voterDB(request):
-    return render(request,"voter_db.html")
+    # datetime object containing current date and time
+    now = datetime.now().date()
+    # dd/mm/YY I:M:
+    print(now)
+    get_ec = election.objects.filter(sDate=now).filter(status='enable').values('location')
+    loc_list = list(get_ec)
+
+    for i in loc_list:
+        if request.user.is_authenticated:
+            obj = userDetails.objects.get(email=request.user.get_username())
+            if obj.address == i['location'] :
+                start = True
+                return render(request,"voter_db.html", {'st': start})
+                #for all the locations - General Elections
+            if i['location'] == 'all':
+                start = True
+                return render(request,"voter_db.html", {'st': start})
 
 def createElection(request):
-    if request.user.is_authenticated:
-        obj = userDetails.objects.get(email=request.user.get_username())
-    else:
-        obj=""
     if request.method == "POST":
         ec = election()
         ec.ec_name = request.POST.get('ecName')
         #Converting data to datetime format
-        st = request.POST.get('startTime')
-        et = request.POST.get('endTime')
-        sd = request.POST.get('startDate')
-        ed = request.POST.get('endDate')
-        sdt = str(sd) + ' ' + str(st)
-        edt = str(ed) + ' ' +str(et)
-        datetime_object1 = datetime.strptime( sdt, '%Y-%m-%d %H:%M')
-        datetime_object2 = datetime.strptime(edt, '%Y-%m-%d %H:%M')
-        
-        ec.sDate = datetime_object1
+        ec.sDate = request.POST.get('startDate')
+        ec.fDate = request.POST.get('endDate')
+        # sdt = str(sd) + ' ' + str(st)
+        # edt = str(ed) + ' ' +str(et)
+        # datetime_object1 = datetime.strptime( sdt, '%Y-%m-%d %H:%M')
+        # datetime_object2 = datetime.strptime(edt, '%Y-%m-%d %H:%M')
+        # ec.sDate = datetime_object1
         x = request.POST.get('ecType')
 
         if x == 'General Elections':
@@ -136,12 +145,12 @@ def createElection(request):
             ec.electionType = x
             ec.location = request.POST.get('state')
             
-        ec.fDate = datetime_object2
+        
         ec.save()
 
         return redirect('/electionSetting')
     else:
-        return render(request, "create_election.html", {"obj":obj})
+        return render(request, "create_election.html")
 
 def disableElection(request):
     context = {}
@@ -180,20 +189,12 @@ def cResults(request):
     return render(request, "results.html")
 
 def voting(request):
-    return render(request, "voting.html")
+    now = datetime.now().date()
+    get_ec = election.objects.filter(sDate=now).filter(status='enable').values('location')
+    loc_list = list(get_ec)
+    for i in loc_list:
+        a = i['location']
+        b = list(election.objects.filter(location=a).values('ec_name', 'electionType'))
+        print(b)
 
-def startElection():
-    # datetime object containing current date and time
-    now = datetime.now()
-    # dd/mm/YY I:M:
-    dt_string = now.strftime("%d/%m/%Y %I:%M %p")
-    new_status = 'enable'
-    
-
-
-    print(dt_string)
-
-
-def stopElection():
-    #somecode
-    pass
+    return render(request, "voting.html", {'ec':b[0]})
