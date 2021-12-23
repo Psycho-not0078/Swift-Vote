@@ -109,8 +109,13 @@
                   <i class="material-icons">check</i>
                 </div>
                 <div class="stock-info">
-                  <div class="stock-name">Vote</div>
-                  <div class="stock-fullname">Exercise your right to vote!</div>
+                  <div class="stock-name">
+                    {% if st == True %}
+                    <a href="voting">Vote</a>
+                    {% else %} <a href="#">Vote</a>
+                    {% endif %}
+                  </div>
+                  <div class="stock-fullname">Exercise your right to vote! The link will be active when you're authorised to vote.</div>
                 </div>
               </div>
             </svg>
@@ -125,7 +130,7 @@
                   <i class="material-icons">?</i>
                 </div>
                 <div class="stock-info">
-                  <div class="stock-name">View Results</div>
+                  <div class="stock-name"><a href="{% url 'vResults' %}">View Results</a></div>
                   <div class="stock-fullname">Check whether results are out or not</div>
                 </div>
               </div>
