@@ -7,9 +7,10 @@ from .forms import UserForm
 import web3
 from .solWarper import *
 from datetime import datetime
+# from django.contrib.staticfiles.storage import staticfiles_storage
 
 w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
-handle=deploy_contract("static/others/elections.sol")
+handle=deploy_contract()
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
