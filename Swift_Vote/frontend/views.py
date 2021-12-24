@@ -8,6 +8,9 @@ import web3
 from .solWarper import *
 from datetime import datetime
 # from django.contrib.staticfiles.storage import staticfiles_storage
+from django.conf import settings
+from django.core.mail import send_mail
+
 
 w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
 handle=deploy_contract()
@@ -76,12 +79,13 @@ def candidateApplication(request):
         cd.candidateName = request.POST.get('cName')
         cd.cDob = request.POST.get('doB')
         cd.cState  = request.POST.get('state')
+        print(cd.cState)
         cd.cCity = request.POST.get('city')
         cd.electionType = request.POST.get('ecType')
         cd.party = request.POST.get('party')
         cd.save()
         #BC
-        addCandidate(handle, cd.candidateName, cd.cState)
+        addCandidate(handle, candidates.candidateName, candidates.cState)
 
         return redirect('/candidateApplication')
     else:
@@ -203,6 +207,9 @@ def cResults(request):
 def vResults(request):
     return render(request, "voterResults.html")
 
+def ack(request):
+    return render(request, 'ack.html')
+
 def voting(request):
     now = datetime.now().date()
     get_ec = election.objects.filter(sDate=now).filter(status='enable').values('location')
@@ -210,9 +217,29 @@ def voting(request):
     b = []
     for i in loc_list:
         a = i['location']
+        print(a)
         #BC
         c = listCandidates(handle,a) #candidatename & id
+        print(c)
         b = list(election.objects.filter(location=a).values('ec_name', 'electionType'))
-    #remaining - vote acknowledgement/add voted column in userdetails
+    
+    if request.method == "POST":
+        voted = request.POST.get('vote')
+        print(voted)
+        if voted == 'voted':
+            if request.user.is_authenticated:
+                    obj = userDetails.objects.get(email=request.user.get_username())
+                    receiver = obj.email
+                    fname = obj.fName
+                    lname = obj.lName
+                    receiver_name = fname + lname
+                    subject = 'Swift Vote Voting Acknowledgement'
+                    message = f'Greetings {receiver_name}! Your Vote has been recorded successfully. \nThank You, \nTeam Swift Vote.'
+                    email_from = settings.EMAIL_HOST_USER
+                    recipient_list = [receiver, ]
+                    send_mail( subject, message, email_from, recipient_list )
+                    return redirect('ack')
+
+
 
     return render(request, "voting.html", {'ec':b[0]})

@@ -133,7 +133,6 @@ def compile_source():
         }\
     \
         function listCandidates(string memory _location)public view returns (string[] memory name, uint256[] memory id){\
-            require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes('user')),'the role doesnt allow it');\
             string[] memory names=new string[](candidateCount);\
             uint256[] memory ids=new uint256[](candidateCount);\
             uint256 i=1;\
@@ -216,7 +215,7 @@ def listCandidates(contract_handle,location):
     try:
         addresses=contract_handle.functions.listCandidates(location).call()
         # print(type(addresses))
-        return addresses[1]
+        return addresses
     except Exception as e:
         print(e)
 # contract_source_path = 'Swift_Vote/static/others/elections.sol'

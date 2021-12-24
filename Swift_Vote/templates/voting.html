@@ -111,7 +111,10 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Candidate 1</h5>
                                     <p class="card-text">Party A</p>
-                                    <a href="#" class="btn btn-primary">Vote</a>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                    <button name="vote" type="submit" value="voted" class="btn btn-primary">Vote</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -121,7 +124,10 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Candidate 2</h5>
                                     <p class="card-text">Party B</p>
-                                    <a href="#" class="btn btn-primary">Vote</a>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                    <button name="vote" type="submit" value="voted" class="btn btn-primary">Vote</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +137,10 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Candidate 3</h5>
                                     <p class="card-text">Party C</p>
-                                    <a href="#" class="btn btn-primary">Vote</a>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                    <button name="vote" type="submit" value="voted" class="btn btn-primary">Vote</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
