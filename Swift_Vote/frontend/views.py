@@ -50,6 +50,8 @@ def register(request):
         user = userDetails.objects.create_user(
             username=username,email=email,dob=dob,address=address ,fName=fname,lName=lname, contactNumber=contact,password = password, type=utype)
         user.save()
+        #BC
+        addUser(handle,address)
         return redirect('/login')
     else:
         return render(request, 'Sign Up.html')
@@ -73,6 +75,9 @@ def candidateApplication(request):
         cd.electionType = request.POST.get('ecType')
         cd.party = request.POST.get('party')
         cd.save()
+        #BC
+        addCandidate(handle, cd.candidateName, cd.cState)
+
         return redirect('/candidateApplication')
     else:
         return render(request, "candidateApplication.html")
@@ -194,7 +199,10 @@ def voting(request):
     loc_list = list(get_ec)
     for i in loc_list:
         a = i['location']
+        #BC
+        c = listCandidates(handle,a) #candidatename & id
         b = list(election.objects.filter(location=a).values('ec_name', 'electionType'))
-        print(b)
+    
+    #remaining - vote acknowledgement/add voted column in userdetails
 
     return render(request, "voting.html", {'ec':b[0]})

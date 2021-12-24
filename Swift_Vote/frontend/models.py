@@ -22,6 +22,7 @@ class userDetails(AbstractUser):
     # password=models.TextField()
     # Address=models.TextField()
     address = models.CharField(max_length=250)
+
     type=models.CharField(
         max_length = 20,
         choices = uType,
@@ -49,8 +50,7 @@ class Accounts(models.Model):
         choices = aType,
         )
     accountString=models.CharField(max_length=250)
-    accountPrivate=models.TextField()
-    accountPublic=models.TextField()
+    usable = models.BooleanField()
     assigned_to = models.ForeignKey(userDetails,to_field="uid",null=True,blank=True,on_delete=models.CASCADE)
 
 class location(models.Model):

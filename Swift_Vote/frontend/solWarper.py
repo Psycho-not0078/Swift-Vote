@@ -212,16 +212,16 @@ def listVoters(contract_handle):
     except Exception as e:
         print(e)
 
-def listCandidates(contract_handle):
+def listCandidates(contract_handle,location):
     try:
-        addresses=contract_handle.functions.listCandidates().call()
+        addresses=contract_handle.functions.listCandidates(location).call()
         # print(type(addresses))
         return addresses[1]
     except Exception as e:
         print(e)
 # contract_source_path = 'Swift_Vote/static/others/elections.sol'
 
-contract_handle= deploy_contract()
+#contract_handle= deploy_contract()
 # addUser(contract_handle,"fucklife")
 # print(listVoters(contract_handle))
 # txinfo=w3.eth.getTransaction(contract_tester1)
