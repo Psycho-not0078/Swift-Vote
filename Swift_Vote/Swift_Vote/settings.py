@@ -92,16 +92,16 @@ DATABASES = {
         'NAME': 'my-app-db',
         'USER': 'toor',
         'PASSWORD': 'password#123',
-        'HOST': 'db',
-        'PORT': 3306,
+        'HOST': '127.0.0.1',
+        'PORT': 3307,
      }
 }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 AUTH_USER_MODEL = 'frontend.userDetails'
 # Password validation
