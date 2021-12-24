@@ -22,7 +22,6 @@ class userDetails(AbstractUser):
     # password=models.TextField()
     # Address=models.TextField()
     address = models.CharField(max_length=250)
-
     type=models.CharField(
         max_length = 20,
         choices = uType,
@@ -49,7 +48,7 @@ class Accounts(models.Model):
         max_length = 20,
         choices = aType,
         )
-    accountString=models.CharField(max_length=250)
+    accountAddress=models.CharField(max_length=250)
     usable = models.BooleanField()
     assigned_to = models.ForeignKey(userDetails,to_field="uid",null=True,blank=True,on_delete=models.CASCADE)
 

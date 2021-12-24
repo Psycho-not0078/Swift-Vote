@@ -188,7 +188,7 @@ def addUser(contract_handle, location):
     try:
         newAddress=w3.personal.newAccount('awefarw')
         hsh=contract_handle.functions.addUser(newAddress,location).transact({"from":w3.personal.listAccounts[0]})
-        #print(hsh)
+        return newAddress 
     except Exception as e:
         print(e)
 

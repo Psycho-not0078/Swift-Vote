@@ -1,6 +1,6 @@
 from django.db.models import deletion
 from django.shortcuts import render,redirect
-from .models import candidateHistory, userDetails, election, location, candidates
+from .models import *
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import auth
 from .forms import UserForm
@@ -51,7 +51,12 @@ def register(request):
             username=username,email=email,dob=dob,address=address ,fName=fname,lName=lname, contactNumber=contact,password = password, type=utype)
         user.save()
         #BC
-        addUser(handle,address)
+        acc = Accounts()
+        acc.accountType = utype
+        acc.accountAddress = addUser(handle,address)
+        acc.usable = 0 #make the value 1 when ec starts
+        acc.save()
+        #print(acc.accountAddress)
         return redirect('/login')
     else:
         return render(request, 'Sign Up.html')
@@ -128,6 +133,8 @@ def voterDB(request):
             if i['location'] == 'all':
                 start = True
                 return render(request,"voter_db.html", {'st': start})
+    return render(request, "voter_db.html")
+    
 
 def createElection(request):
     if request.method == "POST":
@@ -193,16 +200,19 @@ def electionHistory(request):
 def cResults(request):
     return render(request, "results.html")
 
+def vResults(request):
+    return render(request, "voterResults.html")
+
 def voting(request):
     now = datetime.now().date()
     get_ec = election.objects.filter(sDate=now).filter(status='enable').values('location')
     loc_list = list(get_ec)
+    b = []
     for i in loc_list:
         a = i['location']
         #BC
         c = listCandidates(handle,a) #candidatename & id
         b = list(election.objects.filter(location=a).values('ec_name', 'electionType'))
-    
     #remaining - vote acknowledgement/add voted column in userdetails
 
     return render(request, "voting.html", {'ec':b[0]})
