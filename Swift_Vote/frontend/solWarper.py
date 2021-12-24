@@ -169,7 +169,6 @@ def compile_source():
     }"
     return solcx.compile_source(source,output_values=['abi','bin'],solc_version='0.8.11')
 
-
 def deploy_contract():
     compiled_sol = compile_source()
     contract_id, contract_interface = compiled_sol.popitem()
@@ -228,9 +227,6 @@ def listCandidates(contract_handle,location):
 # print(f'Deployed {contract_id} to: {address}\n')
 
 
-
-
-
 def listOfficials(contract_handle):
     try:
         addresses=contract_handle.functions.listOfficials().call()
@@ -239,20 +235,15 @@ def listOfficials(contract_handle):
     except Exception as e:
         print(e)
 
-def countVote(contract_handle, addr, count):
+def countVote(contract_handle, id):
     try:
-        hsh=contract_handle.functions.countVote(count).transact({'from':addr})
-    except Exception as e:
-        print(e)
-
-def disableVoteAblity(contract_handle, addr):
-    try:
-        hsh=contract_handle.functions.disableVoteAblity().transact({'from':addr})
+        hsh=contract_handle.functions.countVote(id).transact({'from': w3.personal.listAccounts[0]})
+        return hsh
     except Exception as e:
         print(e)
 
 def changeAblity(contract_handle, addr, type, value):
     try:
-        hsh=contract_handle.functions.changeAblity(type, value).transact({'from':addr})
+        hsh=contract_handle.functions.changeAblity(addr, type, value).transact({'from': w3.personal.listAccounts[0]})
     except Exception as e:
         print(e)
