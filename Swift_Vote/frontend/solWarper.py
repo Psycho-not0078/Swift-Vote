@@ -231,3 +231,29 @@ def listCandidates(contract_handle,location):
 
 
 
+
+def listOfficials(contract_handle):
+    try:
+        addresses=contract_handle.functions.listOfficials().call()
+        # print(type(addresses))
+        return addresses[1]
+    except Exception as e:
+        print(e)
+
+def countVote(contract_handle, addr, count):
+    try:
+        hsh=contract_handle.functions.countVote(count).transact({'from':addr})
+    except Exception as e:
+        print(e)
+
+def disableVoteAblity(contract_handle, addr):
+    try:
+        hsh=contract_handle.functions.disableVoteAblity().transact({'from':addr})
+    except Exception as e:
+        print(e)
+
+def changeAblity(contract_handle, addr, type, value):
+    try:
+        hsh=contract_handle.functions.changeAblity(type, value).transact({'from':addr})
+    except Exception as e:
+        print(e)
