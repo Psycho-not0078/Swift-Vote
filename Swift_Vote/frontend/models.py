@@ -9,6 +9,16 @@ from django.db.models.fields.related import ForeignKey
 
 uType=(("official","Official"),("Voter","Voter"),("Candidate","Candidate"))
 aType=(("official","Official"),("normie","Normie"))
+
+class Accounts(models.Model):
+    accountType=models.CharField(
+        max_length = 20,
+        choices = aType,
+        )
+    accountAddress=models.CharField(max_length=250)
+    usable = models.BooleanField()
+    # assigned_to = models.ForeignKey(userDetails,to_field="uid",null=True,blank=True,on_delete=models.CASCADE)
+
 class userDetails(AbstractUser):
     uid=models.AutoField(primary_key=True)
     email=models.EmailField("email address", unique=True)
@@ -26,6 +36,7 @@ class userDetails(AbstractUser):
         max_length = 20,
         choices = uType,
         )
+    accountId = models.ForeignKey(Accounts,on_delete=models.CASCADE, null=True)
     USERNAME_FIELD='email'
     REQUIRED_FIELDS=['fname','lname','contactNumber','username','dob',"documentLocation"]
     # EMAIL_FIELD='email'
@@ -39,18 +50,10 @@ class candidates(models.Model):
     cState=models.CharField(max_length=240)
     cCity=models.CharField(max_length=240)
     electionType=models.CharField(max_length=120)
-    uid=models.ForeignKey(userDetails,on_delete=models.CASCADE, default=1)
+    uid=models.IntegerField()
+    # uid=models.ForeignKey(userDetails,on_delete=models.CASCADE, default=1)
     party=models.CharField(max_length=60)
 
-class Accounts(models.Model):
-    aid=models.AutoField(primary_key=True)
-    accountType=models.CharField(
-        max_length = 20,
-        choices = aType,
-        )
-    accountAddress=models.CharField(max_length=250)
-    usable = models.BooleanField()
-    assigned_to = models.ForeignKey(userDetails,to_field="uid",null=True,blank=True,on_delete=models.CASCADE)
 
 class location(models.Model):
     lid=models.AutoField(primary_key=True)

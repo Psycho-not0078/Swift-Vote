@@ -113,7 +113,7 @@
                                     <p class="card-text">{{ c.party }}</p>
                                     <form action="" method="POST">
                                         {% csrf_token %}
-                                    <button name="vote" type="submit" value="voted" class="btn btn-primary">Vote</button>
+                                    <button name="vote" type="submit" value={{ c.candidateName }} class="btn btn-primary">Vote</button>
                                     </form>
                                 </div>
                             </div>

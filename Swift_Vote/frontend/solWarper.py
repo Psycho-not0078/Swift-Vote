@@ -1,11 +1,13 @@
 from logging import exception
 import web3
+from web3 import Web3
 import solcx
 from django.conf import settings
 from django.conf.urls.static import static
 
 # print(w3.personal.listAccounts, len(w3.personal.listAccounts))
 w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
+
 # solcx.install_solc()
 # print(solcx.get_solcx_install_folder())
 
@@ -44,7 +46,8 @@ def compile_source():
     \
         mapping(uint256=>address) userAddress;\
         mapping(address=>user) users;\
-        mapping(uint256=>candidate) candidates;\
+        mapping(uint256=>string) candidateNames;\
+        mapping(string=>candidate) candidates; \
         mapping(uint256=>vt) votes;\
     \
         constructor(){\
@@ -57,21 +60,19 @@ def compile_source():
             userAddress[userCount]=_ad;\
             users[_ad]=user(userCount,'admin','central',0,1,1);\
         }\
-    function addUser(address _ad, string memory _location) public{\
+        function addUser(address _ad, string memory _location) public{\
             require(users[msg.sender].ablity_to_add==1,'the role doesnt allow it');\
             userCount+=1;\
             voterCount+=1;\
             userAddress[userCount]=_ad;\
             users[_ad]=user(userCount,'user',_location,1,0,0);\
         }\
-    \
-    \
         function addCandidate( string memory _name, string memory _location) public {\
             require(users[msg.sender].ablity_to_add==1,'the role doesnt allow it');\
             candidateCount+=1;\
-            candidates[candidateCount]=candidate(candidateCount, _name, _location);\
+            candidateNames[candidateCount]=_name;\
+            candidates[candidateNames[candidateCount]]=candidate(candidateCount, _name, _location);\
         }\
-    \
         function changeAblity(address _ad, uint256 _ablityType, uint256 _value) public {\
             require(users[msg.sender].ablity_to_change==1,'the role doesnt allow it');\
             if (_ablityType==1){\
@@ -131,41 +132,51 @@ def compile_source():
             }\
             return addressesses;\
         }\
-    \
-        function listCandidates(string memory _location)public view returns (string[] memory name, uint256[] memory id){\
+        function listCandidates(string memory _location)public view returns (string[] memory name){\
+            require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes('admin')),'the role doesnt allow it');\
             string[] memory names=new string[](candidateCount);\
-            uint256[] memory ids=new uint256[](candidateCount);\
             uint256 i=1;\
             uint256 pos=0;\
             for(i=1;i<=candidateCount;i++){\
-                if(keccak256(bytes(candidates[i].location))==keccak256(bytes(_location))){\
-                    ids[pos]=candidates[i].id;\
-                    names[pos]=candidates[i].name;\
+                if(keccak256(bytes(candidates[candidateNames[i]].location))==keccak256(bytes(_location))){\
+                    names[pos]=candidates[candidateNames[i]].name;\
                     pos+=1;\
                 }\
             }\
-            return (names,ids);\
+            return names;\
         }\
-    \
-        function vote(uint256 _id, string memory _location,string memory _date) public{\
-            require(users[msg.sender].ablity_to_vote==1,'the role doesnt allow it');\
-            require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes('user')),'the role doesnt allow it');\
-            require(keccak256(bytes(users[msg.sender].location))==keccak256(bytes(candidates[_id].location)),'error 404');\
-            voteCount+=1;\
-            votes[voteCount]=vt(voteCount, _id, _location, _date);\
-            disableVoteAblity(msg.sender);\
-        }\
-    \
-        function countVote(uint256 _id) public view returns (uint256 _count){\
-            uint256 _vtcount=0;\
-            uint256 i=1;\
-            for(i=1;i<=voteCount;i++){\
-                if (votes[i].cid==_id){\
-                    _vtcount+=1;\
-                }\
+    function vote(string memory _name, string memory _location,string memory _date) public{\
+        require(users[msg.sender].ablity_to_vote==1,'the role doesnt allow it');\
+        require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes('user')),'the role doesnt allow it');\
+        require(keccak256(bytes(users[msg.sender].location))==keccak256(bytes(candidates[_name].location)),'error 404');\
+        voteCount+=1;\
+        uint256 _id=0;\
+        uint256 i=1;\
+        for(i=1;i<=candidateCount;i++){\
+            if (keccak256(bytes(candidateNames[i]))==keccak256(bytes(_name))){\
+                _id=i;\
             }\
-            return _vtcount;\
         }\
+        votes[voteCount]=vt(voteCount, _id, _location, _date);\
+        disableVoteAblity(msg.sender);\
+    }\
+    function countVote(string memory _name) public view returns (uint256 _count){\
+        uint256 _vtcount=0;\
+        uint256 i=1;\
+        uint256 _id=0;\
+        uint256 j=1;\
+        for(j=1;j<=candidateCount;j++){\
+            if (keccak256(bytes(candidateNames[j]))==keccak256(bytes(_name))){\
+                _id=j;\
+            }\
+        }\
+        for(i=1;i<=voteCount;i++){\
+            if (votes[i].cid==_id){\
+                _vtcount+=1;\
+            }\
+        }\
+        return _vtcount;\
+    }\
     }"
     return solcx.compile_source(source,output_values=['abi','bin'],solc_version='0.8.11')
 
@@ -184,19 +195,21 @@ def deploy_contract():
 
 def addUser(contract_handle, location):
     try:
-        newAddress=w3.personal.newAccount('awefarw')
+        passwd='awefarw'
+        newAddress=w3.personal.newAccount(passwd)
         hsh=contract_handle.functions.addUser(newAddress,location).transact({"from":w3.personal.listAccounts[0]})
+        # print(w3.eth.getBalance(newAddress))
+        w3.eth.sendTransaction({'from':w3.personal.listAccounts[5],'to':newAddress,'value':w3.toWei(1,'ether')})
+        w3.personal.unlockAccount(newAddress,passwd)
         return newAddress 
     except Exception as e:
         print(e)
 
-def vote(contract_handle, addr, cid, location, date):
+def vote(contract_handle, addr, cname, location, date):
     try:
-        a = web3.eth.generate_gas_price()
-        print(a)
-        if (w3.eth.getBalance(addr)<=a):
+        if (w3.eth.getBalance(addr)<=20000000000):
             w3.eth.sendTransaction({'from':w3.personal.listAccounts[5],'to':addr,'value':w3.toWei(1,'ether')})
-        hsh=contract_handle.functions.vote(cid, location, date).transact({'from':addr})
+        hsh=contract_handle.functions.vote(cname, location, date).transact({'from':addr})
     except Exception as e:
         print(e)
 
@@ -216,19 +229,14 @@ def listVoters(contract_handle):
 
 def listCandidates(contract_handle,location):
     try:
-        addresses=contract_handle.functions.listCandidates(location).call()
+        Candidates=contract_handle.functions.listCandidates(location).call()
         # print(type(addresses))
-        return addresses
+        return Candidates
     except Exception as e:
         print(e)
 # contract_source_path = 'Swift_Vote/static/others/elections.sol'
 
-#contract_handle= deploy_contract()
-# addUser(contract_handle,"fucklife")
-# print(listVoters(contract_handle))
-# txinfo=w3.eth.getTransaction(contract_tester1)
-# print(txinfo)
-# print(f'Deployed {contract_id} to: {address}\n')
+
 
 
 def listOfficials(contract_handle):
@@ -239,9 +247,9 @@ def listOfficials(contract_handle):
     except Exception as e:
         print(e)
 
-def countVote(contract_handle, id):
+def countVote(contract_handle, cname):
     try:
-        hsh=contract_handle.functions.countVote(id).transact({'from': w3.personal.listAccounts[0]})
+        hsh=contract_handle.functions.countVote(cname).call()
         return hsh
     except Exception as e:
         print(e)

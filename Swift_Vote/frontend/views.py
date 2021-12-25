@@ -30,22 +30,31 @@ def login(request):
         password = request.POST["password"]
         try:
             user = userDetails.objects.get(email=email)
+            print(user.password)
             if check_password(password, user.password):
+                print(12345)
                 user = auth.authenticate(request, email=email, password=password)
                 auth.login(request, user)
                 return redirect("/")
             else:
-                return render(request, "Log In.html", {"msg": "Invalid Credentials"})
+                return render(request, "Log In.html", {"msg": "Invalid Credentials dcfvghbj"})
         except Exception as e:
             return render(
-                request, "Log In.html", {"msg": "Invalid Credentials"}
-            )  #  +"  "+ str(e)
+                request, "Log In.html", {"msg": "Invalid Credentials" +"  "+ str(e)}
+            )  #  
     else:
         return render(request, "Log In.html")
 
 
 def register(request):
     if request.method == "POST":
+
+        acc = Accounts()
+        acc.accountType = request.POST["utype"]
+        acc.accountAddress = addUser(handle, request.POST["address"])
+        acc.usable = False  # make the value 1 when ec starts
+        acc.save()
+
         fname = request.POST["fname"]
         lname = request.POST["lname"]
         email = str(request.POST["email"]).lower()
@@ -55,6 +64,8 @@ def register(request):
         username = request.POST["username"]
         address = request.POST["address"]
         utype = request.POST["utype"]
+
+        
         user = userDetails.objects.create_user(
             username=username,
             email=email,
@@ -64,16 +75,10 @@ def register(request):
             lName=lname,
             contactNumber=contact,
             password=password,
+            accountId = acc,
             type=utype,
         )
         user.save()
-        # BC
-        acc = Accounts()
-        acc.accountType = utype
-        acc.accountAddress = addUser(handle, address)
-        acc.usable = 0  # make the value 1 when ec starts
-        acc.save()
-        # print(acc.accountAddress)
         return redirect("/login")
     else:
         return render(request, "Sign Up.html")
@@ -95,6 +100,8 @@ def candidateDB(request):
 def candidateApplication(request):
     if request.method == "POST":
         cd = candidates()
+        obj = userDetails.objects.get(email=request.user.get_username())
+        print(obj.uid)
         cd.candidateName = request.POST.get("cName")
         cd.cDob = request.POST.get("doB")
         cd.cState = request.POST.get("state")
@@ -102,9 +109,10 @@ def candidateApplication(request):
         cd.cCity = request.POST.get("city")
         cd.electionType = request.POST.get("ecType")
         cd.party = request.POST.get("party")
+        cd.uid = obj.uid
         cd.save()
         # BC
-        addCandidate(handle, candidates.candidateName, candidates.cState)
+        addCandidate(handle, request.POST.get("cName"), request.POST.get("state"))
 
         return redirect("/")
     else:
@@ -249,19 +257,22 @@ def voting(request):
         c = listCandidates(handle, a)  # candidatename & id
         print(c)
         b = list(election.objects.filter(location=a).values("ec_name", "electionType"))
-        acc = list(Accounts.objects.values('accountAddress'))
-        accAddress = acc[0]["accountAddress"]
-    
+        # acc = list(Accounts.objects.values('accountAddress'))
+        # accAddress = acc[0]["accountAddress"]
+        obj = userDetails.objects.get(email=request.user.get_username())
+        # acc = Accounts.objects.get(pk=obj.accountId)
+        accAddress = obj.accountId.accountAddress
+        
     cand = candidates.objects.all()
 
     if request.method == "POST":
-        voted = request.POST.get("vote")
-        print(voted)
-        if voted == "voted":
-            if request.user.is_authenticated:
+        cname = request.POST.get("vote")
+        
+        if request.user.is_authenticated:
                 #vote
-                # vote(handle,accAddress,)
-
+                date1 = str(now)
+                vote(handle,accAddress,cname,a,date1)
+                print(" Vote Count for", cname ,countVote(handle,cname))
 
                 #ack
                 obj = userDetails.objects.get(email=request.user.get_username())
