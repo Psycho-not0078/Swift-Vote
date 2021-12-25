@@ -125,7 +125,7 @@
       class="navbar navbar-light"
       style="margin: 10px; background-color: rgb(206, 206, 252)"
     >
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="/">
         <!--Logo-->
         <img
           src="{% static 'images\CaptureLogo.PNG' %}"
@@ -155,7 +155,7 @@
         <li><a class="nav-links" id="register" href="register">Register</a></li>
         {% endif %} {% if obj.type == "Official" %}
         <li>
-          <a class="nav-links" href="electionSetting">Elections Settings</a>
+          <a class="nav-links" href="electionSetting">Dashboard</a>
         </li>
         {% endif %} {% if user.is_authenticated %}
         <li><a class="nav-links" id="logout" href="logout">Logout</a></li>

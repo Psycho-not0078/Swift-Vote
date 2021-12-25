@@ -109,9 +109,8 @@ logsss.txt
 logs.txt
 
 # migration files
-./Swift_Vote/frontend/migration/
-./Swift_Vote/backend/migration/
-
+Swift_Vote/frontend/migrations
+Swift_Vote/frontend/__pycache__
 #spam
 ./genesis.json/
-./blockchain/data/
+blockchain/data
