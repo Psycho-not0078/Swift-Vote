@@ -262,6 +262,7 @@ def vResults(request):
         print(clist)
         for i in clist:
             if i != "":
+                print(i)
                 arguments[i] = countVote(handle, i)
             
     
@@ -280,9 +281,9 @@ def voting(request):
     b = []
     for i in loc_list:
         a = i["location"]
-        #print(a)
         # BC
         c = listCandidates(handle, a)  # candidatename & id
+        #print(a)
         print(c)
         b = list(election.objects.filter(location=a).values("ec_name", "electionType"))
         # acc = list(Accounts.objects.values('accountAddress'))
@@ -294,8 +295,11 @@ def voting(request):
     cand = candidates.objects.all()
 
     if request.method == "POST":
-        cname = request.POST.get("vote")
-        
+        cid = request.POST.get("vote")
+        #print(request.POST.get("vote"), request.POST["vote"])
+        cobj = candidates.objects.get(cid=cid)
+        cname = cobj.candidateName
+        print(cname)
         if request.user.is_authenticated:
                 #vote
                 date1 = str(now)
