@@ -192,6 +192,10 @@ def addUser(contract_handle, location):
 
 def vote(contract_handle, addr, cid, location, date):
     try:
+        a = web3.eth.generate_gas_price()
+        print(a)
+        if (w3.eth.getBalance(addr)<=a):
+            w3.eth.sendTransaction({'from':w3.personal.listAccounts[5],'to':addr,'value':w3.toWei(1,'ether')})
         hsh=contract_handle.functions.vote(cid, location, date).transact({'from':addr})
     except Exception as e:
         print(e)
