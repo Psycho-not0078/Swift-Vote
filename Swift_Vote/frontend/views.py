@@ -261,13 +261,6 @@ def cResults(request):
 
 
 def vResults(request):
-    now = datetime.now().date()
-    get_ec = list((election.objects.filter(sDate=now).filter(status="enable"))
-    ongoing = False
-    if get_ec != None:
-        ongoing = True
-    else:
-        ongoing = False
     arguments = {}
     arguments['key'] = []
     arguments['value'] = []
@@ -281,7 +274,7 @@ def vResults(request):
                 arguments['key'].append(i)
                 arguments['value'].append(countVote(handle,i))
 
-    return render(request, "voterResults.html", {'keys':arguments['key'], 'values':arguments['value'], 'on':ongoing})
+    return render(request, "voterResults.html", {'keys':arguments['key'], 'values':arguments['value']})
 
 
 def ack(request):
