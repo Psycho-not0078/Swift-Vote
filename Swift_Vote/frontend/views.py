@@ -255,6 +255,8 @@ def cResults(request):
 
 def vResults(request):
     arguments = {}
+    arguments['key'] = []
+    arguments['value'] = []
     if request.user.is_authenticated:
         obj = userDetails.objects.get(email=request.user.get_username())
         q_location = obj.address
@@ -262,11 +264,10 @@ def vResults(request):
         print(clist)
         for i in clist:
             if i != "":
-                print(i)
-                arguments[i] = countVote(handle, i)
-            
-    
-    return render(request, "voterResults.html")
+                arguments['key'].append(i)
+                arguments['value'].append(countVote(handle,i))
+
+    return render(request, "voterResults.html", {'res':arguments})
 
 
 def ack(request):
@@ -315,7 +316,7 @@ def voting(request):
                 lname = obj.lName
                 receiver_name = fname + ' ' + lname
                 subject = "Swift Vote Voting Acknowledgement"
-                message = f"Greetings {receiver_name}!\n Your Vote has been recorded successfully. \nThank You, \nTeam Swift Vote."
+                message = f"Greetings {receiver_name}!\nYour Vote has been recorded successfully. \nThank You, \nTeam Swift Vote."
                 email_from = settings.EMAIL_HOST_USER
                 recipient_list = [
                     receiver,
