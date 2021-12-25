@@ -102,15 +102,15 @@
             <div class="card-body">
                 <h6 class="card-title">Click 'Vote' to cast your vote. You can only select one option.</h6>
                 <!--Voting Options-->
-
                 <div class="container" style="margin-left: 20px;">
                     <div class="row row-cols-2">
+                        {% for c in cand %}
                         <div class="col" style="margin-top: 20px;">
                             <div class="card" style="width: 18rem;">
                                 <img src="static\images\vote1.jpg" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">Candidate 1</h5>
-                                    <p class="card-text">Party A</p>
+                                    <h5 class="card-title">{{ c.candidateName }}</h5>
+                                    <p class="card-text">{{ c.party }}</p>
                                     <form action="" method="POST">
                                         {% csrf_token %}
                                     <button name="vote" type="submit" value="voted" class="btn btn-primary">Vote</button>
@@ -118,33 +118,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col" style="margin-top: 20px;">
-                            <div class="card" style="width: 18rem;">
-                                <img src="static\images\vote1.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Candidate 2</h5>
-                                    <p class="card-text">Party B</p>
-                                    <form action="" method="POST">
-                                        {% csrf_token %}
-                                    <button name="vote" type="submit" value="voted" class="btn btn-primary">Vote</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col" style="margin-top: 20px;">
-                            <div class="card" style="width: 18rem;">
-                                <img src="static\images\vote1.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Candidate 3</h5>
-                                    <p class="card-text">Party C</p>
-                                    <form action="" method="POST">
-                                        {% csrf_token %}
-                                    <button name="vote" type="submit" value="voted" class="btn btn-primary">Vote</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
+                        {% endfor %}
                     </div>
                 </div>
 
