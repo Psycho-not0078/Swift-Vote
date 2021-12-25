@@ -164,12 +164,17 @@ def voterDB(request):
     for i in loc_list:
         if request.user.is_authenticated:
             obj = userDetails.objects.get(email=request.user.get_username())
-            if obj.address == i["location"]:
-                start = True
-                return render(request, "voter_db.html", {"st": start})
-                # for all the locations - General Elections
-            if i["location"] == "all":
-                start = True
+            if obj.voted != True:
+                changeAblity(handle,obj.accountId.accountAddress,1,1)
+                if obj.address == i["location"]:
+                    start = True
+                    return render(request, "voter_db.html", {"st": start})
+                    # for all the locations - General Elections
+                if i["location"] == "all":
+                    start = True
+                    return render(request, "voter_db.html", {"st": start})
+            else:
+                start = False
                 return render(request, "voter_db.html", {"st": start})
     return render(request, "voter_db.html")
 
@@ -204,25 +209,38 @@ def createElection(request):
 
 def disableElection(request):
     context = {}
-    context["toDis"] = election.objects.all()
-    if request.method == "POST":
-        sTerm = request.POST.get("ecSearch")
+    context['toDis'] = election.objects.all()
 
+    if request.method == "POST":
+        disable = request.POST.get('toBeDis')
+        print(disable)
+        state = request.POST.get('state')
+        print(state)
+        if state == '1' and disable != 'None':
+            record = election.objects.get(ec_name = disable)
+            record.status = "enable"
+            record.save(update_fields=['status'])
+            return redirect('electionHistory')
+        elif state == '0' and disable != 'None':
+            election.objects.filter(ec_name=disable).update(status="disable")
+            return redirect('electionHistory')
+        else:
+            pass
+        sTerm = request.POST.get('ecSearch')
         try:
-            context["term"] = election.objects.filter(ec_name=sTerm)
-            dell = request.POST.get("toBeDel")
-            delete = request.POST.get("delete")
+            context['term'] = election.objects.filter(ec_name=sTerm)
+            dell = request.POST.get('toBeDel')
+            delete = request.POST.get('delete')
             if delete == "delete":
                 election.objects.filter(ec_name=dell).delete()
-                return redirect("electionHistory")
-
-            return render(request, "disable_election.html", context)
+                return redirect('electionHistory')
+            return render(request,"disable_election.html", context)
 
         except election.DoesNotExist:
-            return redirect("disableElection")
+            return redirect('disableElection')
 
     else:
-        return render(request, "disable_election.html", context)
+        return render(request,"disable_election.html",context)
 
 
 def electionHistory(request):
@@ -236,12 +254,22 @@ def cResults(request):
 
 
 def vResults(request):
+    arguments = {}
+    if request.user.is_authenticated:
+        obj = userDetails.objects.get(email=request.user.get_username())
+        q_location = obj.address
+        clist = listCandidates(handle,q_location)
+        print(clist)
+        for i in clist:
+            if i != "":
+                arguments[i] = countVote(handle, i)
+            
+    
     return render(request, "voterResults.html")
 
 
 def ack(request):
     return render(request, "ack.html")
-
 
 def voting(request):
     now = datetime.now().date()
@@ -252,7 +280,7 @@ def voting(request):
     b = []
     for i in loc_list:
         a = i["location"]
-        print(a)
+        #print(a)
         # BC
         c = listCandidates(handle, a)  # candidatename & id
         print(c)
@@ -273,15 +301,17 @@ def voting(request):
                 date1 = str(now)
                 vote(handle,accAddress,cname,a,date1)
                 print(" Vote Count for", cname ,countVote(handle,cname))
+                userDetails.objects.filter(email=request.user.get_username()).update(voted=True)
+
 
                 #ack
                 obj = userDetails.objects.get(email=request.user.get_username())
                 receiver = obj.email
                 fname = obj.fName
                 lname = obj.lName
-                receiver_name = fname + lname
+                receiver_name = fname + ' ' + lname
                 subject = "Swift Vote Voting Acknowledgement"
-                message = f"Greetings {receiver_name}! Your Vote has been recorded successfully. \nThank You, \nTeam Swift Vote."
+                message = f"Greetings {receiver_name}!\n Your Vote has been recorded successfully. \nThank You, \nTeam Swift Vote."
                 email_from = settings.EMAIL_HOST_USER
                 recipient_list = [
                     receiver,

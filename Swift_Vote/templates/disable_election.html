@@ -182,9 +182,12 @@
         <!--Disable Section-->
         <div id="disable" style="display:none;">
           {% if toDis %}
+          <form action="" method="POST" id="fstatus">
+            {% csrf_token %}
           <table class="table">
             <thead>
               <tr>
+                <th scope="col">Check</th>
                 <th scope="col">Election Name</th>
                 <th scope="col">Type</th>
                 <th scope="col">Start Date/Time</th>
@@ -197,16 +200,14 @@
             <tbody>
               <tr>
                 {% for h in toDis %}
-                
+                <td><input type="checkbox" name="toBeDis" value={{h.ec_name}} /></td>
                 <td>{{h.ec_name}}</td>
                 <td>{{h.electionType}}</td>
                 <td>{{h.sDate}}</td>
                 <td>{{h.fDate}}</td>
                 <td>{{h.location}}</td>
-                <td>{{h.status}}</td>
+                <td id="change">{{h.status}}</td>
                 <td>
-                  <form action="" method="POST" id="fstatus">
-                    {% csrf_token %}
                     <input type="range" min="0" max="1" step="1" class="form-range" name="state" id="status" style="width: 110px;">
                     <button type="submit" class="btn btn-primary" style="margin-left: 15px;" >Save</button>
                   </form>  
@@ -272,6 +273,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+
 </body>
 
 </html>

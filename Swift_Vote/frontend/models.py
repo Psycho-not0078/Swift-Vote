@@ -21,6 +21,7 @@ class Accounts(models.Model):
 
 class userDetails(AbstractUser):
     uid=models.AutoField(primary_key=True)
+    voted=models.BooleanField(default=False)
     email=models.EmailField("email address", unique=True)
     fName=models.CharField(max_length=30)
     lName=models.CharField(max_length=30)
