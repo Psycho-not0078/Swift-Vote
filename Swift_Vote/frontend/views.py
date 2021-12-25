@@ -98,6 +98,8 @@ def candidateDB(request):
 
 
 def candidateApplication(request):
+    if request.user.is_authenticated:
+        obj = userDetails.objects.get(email=request.user.get_username())
     if request.method == "POST":
         cd = candidates()
         obj = userDetails.objects.get(email=request.user.get_username())
@@ -116,7 +118,12 @@ def candidateApplication(request):
 
         return redirect("/")
     else:
-        return render(request, "candidateApplication.html")
+        if request.user.is_authenticated:
+            dob = str(obj.dob)
+            print(dob)
+            return render(request, "candidateApplication.html", {"obj": obj, "dob1":dob})
+        else:
+            return render(request, "candidateApplication.html")
 
 
 def ecDB(request):

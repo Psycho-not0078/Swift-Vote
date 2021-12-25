@@ -200,12 +200,18 @@
           >
         </li>
         <li><a class="nav-links" href="update">Update Profile</a></li>
-        <li><a class="nav-links" href="voting">Vote</a></li>
+        {% if obj.type == "Voter" %}
+        <li><a class="nav-links" href="voterDB">Dashboard</a></li>
+        {% elif obj.type == "Candidate" %}
+        <li><a class="nav-links" href="dashboard">Dashboard</a></li>
+        {% endif %}
         {% else %}
         <li><a class="nav-links" id="login logtest" href="login">Login</a></li>
         <li><a class="nav-links" id="register" href="register">Register</a></li>
         {% endif %} {% if obj.type == "Official" %}
-        <li><a class="nav-links" href="electionSetting">Elections Settings</a></li>
+        <li>
+          <a class="nav-links" href="electionSetting">Dashboard</a>
+        </li>
         {% endif %} {% if user.is_authenticated %}
         <li><a class="nav-links" id="logout" href="logout">Logout</a></li>
         {% endif %}
