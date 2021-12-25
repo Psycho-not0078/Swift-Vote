@@ -262,7 +262,7 @@ def cResults(request):
 
 def vResults(request):
     now = datetime.now().date()
-    get_ec = list((election.objects.filter(sDate=now).filter(status="enable"))
+    get_ec = list((election.objects.filter(sDate=now).filter(status="enable")))
     ongoing = False
     if get_ec != None:
         ongoing = True
