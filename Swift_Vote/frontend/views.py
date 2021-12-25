@@ -267,7 +267,7 @@ def vResults(request):
                 arguments['key'].append(i)
                 arguments['value'].append(countVote(handle,i))
 
-    return render(request, "voterResults.html", {'res':arguments})
+    return render(request, "voterResults.html", {'keys':arguments['key'], 'values':arguments['value']})
 
 
 def ack(request):

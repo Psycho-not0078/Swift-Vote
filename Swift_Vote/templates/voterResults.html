@@ -114,8 +114,9 @@
 
                 <canvas id="myChart" style="width:100%;max-width:700px; "></canvas>
                 <script>
-                    var xValues = ["Party A", "Party B", "Party C", "Party D", "Party E"];
-                    var yValues = [55, 49, 44, 24, 15];
+                    
+                    var xValues = {{ keys|safe }};
+                    var yValues = {{ values|safe }} ;
                     var barColors = ["red", "green", "blue", "orange", "brown"];
                     new Chart("myChart", {
                         type: "bar",
