@@ -20,6 +20,5 @@ urlpatterns = [
     path('createElection', views.createElection, name='createElection'),
     path('disableElection', views.disableElection, name='disableElection'),
     path('electionHistory', views.electionHistory, name='electionHistory'),
-    path('ack', views.ack, name='ack'),
     path('voting', views.voting, name='voting'),
 ]
