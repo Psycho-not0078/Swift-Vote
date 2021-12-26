@@ -21,12 +21,8 @@ def index(request):
         obj = userDetails.objects.get(email=request.user.get_username())
     else:
         obj = ""
-<<<<<<< HEAD
-    return render(request,"home.html", {'obj': obj})
-=======
     return render(request, "home.html", {"obj": obj})
 
->>>>>>> working-stable
 
 def login(request):
     if request.method == "POST":
@@ -191,10 +187,6 @@ def voterDB(request):
 
 
 def createElection(request):
-    if request.user.is_authenticated:
-        obj = userDetails.objects.get(email=request.user.get_username())
-    else:
-        obj=""
     if request.method == "POST":
         ec = election()
         ec.ec_name = request.POST.get("ecName")
@@ -219,7 +211,7 @@ def createElection(request):
 
         return redirect("/electionSetting")
     else:
-        return render(request, "create_election.html", {"obj":obj})
+        return render(request, "create_election.html")
 
 
 def disableElection(request):

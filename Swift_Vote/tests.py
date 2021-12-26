@@ -60,4 +60,3 @@ class registerformtest(LiveServerTestCase):
         driver.find_element_by_name('loginbutton').click()
         print(driver.current_url)
         assert "http://127.0.0.1:7000/" == driver.current_url
-        

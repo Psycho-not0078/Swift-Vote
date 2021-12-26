@@ -1,4 +1,4 @@
-FROM python:alpine
+FROM python:3.8.10-alpine3.13
 ENV PYTHONUNBUFFERED 1
 ENV PATH="${PATH}:/sbin"
 

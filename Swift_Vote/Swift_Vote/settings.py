@@ -76,11 +76,21 @@ WSGI_APPLICATION = 'Swift_Vote.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'my-app-db',
+#         'USER': 'user#123$$',
+#         'PASSWORD': 'password#123',
+#         'HOST': 'localhost',
+#         'PORT': 3306,
+#      }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'my-app-db',
-        'USER': 'user#123$$',
+        'USER': 'toor',
         'PASSWORD': 'password#123',
         'HOST': '127.0.0.1',
         'PORT': 3307,
