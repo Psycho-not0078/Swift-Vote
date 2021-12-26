@@ -1,7 +1,7 @@
 mysqlclient>=2.0.1
 django>=3.1.14
 django-mysql>=3.9
-web3
+web3==4.10.0
 eth-accounts
 py-solc>=3.2.0
 py-solc-x>=1.1.1
