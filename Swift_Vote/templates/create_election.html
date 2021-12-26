@@ -139,11 +139,12 @@
           return false;
         } else if (st == time_now) {
           alert("Cannot start now! Set Time 3 mins from now.");
-          return false;
-        } else if (sd == today && st < time_now) {
-          alert("Cannot be time elapsed!");
-          return false;
-        } else if (
+          return false;}
+        //  else if (sd == today) {
+        //   alert("Cannot be time elapsed!");
+        //   return false;
+        // } 
+        else if (
           date1.getMonth() == date2.getMonth() &&
           date1.getFullYear() == date2.getFullYear()
         ) {

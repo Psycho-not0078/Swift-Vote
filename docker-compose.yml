@@ -8,6 +8,8 @@ services:
       - ./blockchain/data:/root/.data:rw
       - ./blockchain/blog.txt:/root/blog.txt:rw
     command: ganache-cli 0.0.0.0:8545 --db /root/.data -i 4545 -d -m "myth like bonus scare over problem client lizard pioneer submit female collect" > /root/blog.txt
+    environment:
+      TZ: "Asia/Kolkata"
   db:
     image: mariadb:latest
     restart: always
@@ -21,6 +23,7 @@ services:
        MYSQL_PASSWORD: password#123
        MYSQL_ROOT_PASSWORD: password#123
        DMYSQL_UNIX_ADDR: "/var/lib/mysql/mysql.sock"
+       TZ: "Asia/Kolkata"
   # web:
   #   build: .
   #   command: >
