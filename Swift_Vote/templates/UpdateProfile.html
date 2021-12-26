@@ -134,7 +134,7 @@
                     placeholder="Phone Number"
                     class="form-control my-4 p-2"
                     name="contact"
-                    pattern="[0-9]{11}"
+                    pattern="[0-9]{10}"
                     value={% if user.is_authenticated %} {{ obj.contactNumber }} {% else %} "" {% endif %}
                   />
                 </div>

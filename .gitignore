@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
-__pycache__/
+*/__pycache__/
 *.py[cod]
 *$py.class
 
@@ -109,9 +109,12 @@ logsss.txt
 logs.txt
 
 # migration files
-./Swift_Vote/frontend/migration/
-./Swift_Vote/backend/migration/
-
+Swift_Vote/frontend/migrations
+Swift_Vote/frontend/__pycache__
 #spam
 ./genesis.json/
+<<<<<<< HEAD
 ./blockchain/data
+=======
+blockchain/data
+>>>>>>> working-stable
