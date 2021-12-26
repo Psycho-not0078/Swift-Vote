@@ -14,11 +14,7 @@ from django.core.mail import send_mail
 
 
 w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
-<<<<<<< HEAD
-
-=======
 handle = deploy_contract()
->>>>>>> working-stable
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
@@ -55,20 +51,6 @@ def login(request):
 
 
 def register(request):
-<<<<<<< HEAD
-    if request.method == 'POST':
-        fname = request.POST['fname']
-        lname = request.POST['lname']
-        email = str(request.POST['email']).lower()
-        contact = request.POST['contact']
-        dob = request.POST['dob']
-        password = request.POST['password']
-        username = request.POST['username']
-        address = request.POST['address']
-        utype = request.POST['utype']
-        user = userDetails.objects.create_user(
-            username=username,email=email,dob=dob,address=address ,fName=fname,lName=lname, contactNumber=contact,password = password, type=utype)
-=======
     if request.method == "POST":
 
         acc = Accounts()
@@ -100,7 +82,6 @@ def register(request):
             accountId = acc,
             type=utype,
         )
->>>>>>> working-stable
         user.save()
         return redirect("/login")
     else:
@@ -286,14 +267,6 @@ def electionHistory(request):
 def cResults(request):
     return render(request, "results.html")
 
-<<<<<<< HEAD
-def vResults(request):
-    return render(request, "voterResults.html")
-
-def voting(request):
-    return render(request, "voting.html")
-=======
->>>>>>> working-stable
 
 def vResults(request):
     now = datetime.now().date()

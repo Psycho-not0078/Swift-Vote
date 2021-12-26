@@ -7,78 +7,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<<<<<<< HEAD
-    <title>Sign Up</title>
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
-      body {
-        background: rgb(202, 202, 202);
-      }
-      .row {
-        background: white;
-        border-radius: 30px;
-        box-shadow: 12px 12px 22px grey;
-      }
-      img {
-        border-top-left-radius: 30px;
-        border-bottom-left-radius: 30px;
-      }
-      .btn1 {
-        border: none;
-        outline: none;
-        height: 50px;
-        width: 100%;
-        background-color: black;
-        color: white;
-        border-radius: 4px;
-        font-weight: bold;
-      }
-      .btn1:hover {
-        background: white;
-        border: 1px solid;
-        color: black;
-      }
-      .text-box {
-        border-radius: 30px;
-        background-color: rgb(204, 202, 202);
-        margin-left: 57%;
-      }
-    </style>
-  </head>
-  <body>
-    <section class="Form my-4 mx-5">
-      <div class="container">
-        <div class="row g-0">
-          <div class="col-lg-1"></div>
-          <div class="col-lg-5">
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            <img
-              src="{% static 'images\register.jpg' %}"
-              alt="Artist"
-              class="img-thumbnail"
-            />
-          </div>
-          <div class="col-lg-6 px-5 pt-5">
-            <h1 class="font-weight-bold py-3">Sign Up</h1>
-            <h4>Sign Up by creating an account.</h4>
-            <form action="register" method="POST">
-              {% csrf_token %}
-              <!-- 'fName','lName','username','email','contactNumber','dob','Address' -->
-              <div class="form-row">
-                <div class="col-lg-7">
-                  <input
-                    type="text"
-                    placeholder="First Name"
-                    class="form-control my-4 p-2"
-                    name="fname"
-                    required
-                  />
-                </div>
-=======
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
@@ -149,7 +77,6 @@
             <div class="form-row">
               <div class="col-lg-7">
                 <input type="text" placeholder="First Name" class="form-control my-4 p-2" name="fname" required />
->>>>>>> working-stable
               </div>
             </div>
             <div class="form-row">
@@ -199,38 +126,6 @@
                     required
                   />-->
               </div>
-<<<<<<< HEAD
-              <label for="type">User Type:</label>
-              <div class="form-check" id="type">
-                <input class="form-check-input" type="radio" name="utype" id="utype1" value="Voter" checked>
-                <label class="form-check-label" for="utype1">
-                  Voter
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="utype" value="Candidate" id="utype2">
-                <label class="form-check-label" for="utype2">
-                  Candidate
-                </label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" value="Official" name="utype" id="utype3">
-                <label class="form-check-label" for="utype3">
-                  Official
-                </label>
-              </div>
-              <!-- {{ form.as_p }}   -->
-              <div class="form-row">
-                <div class="col-lg-7">
-                  <button
-                    type="submit"
-                    name="registerbutton"
-                    class="btn1 mt-3 mb-5"
-                  >
-                    SIGN UP
-                  </button>
-                </div>
-=======
             </div>
             <label for="type">User Type:</label>
             <div class="form-check" id="type">
@@ -257,7 +152,6 @@
                 <button type="submit" name="registerbutton" class="btn1 mt-3 mb-5">
                   SIGN UP
                 </button>
->>>>>>> working-stable
               </div>
             </div>
 
