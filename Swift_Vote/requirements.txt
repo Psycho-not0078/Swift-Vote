@@ -10,3 +10,6 @@ rlp
 selenium==3.141.0
 ethtoken>=0.0.1a4
 py-geth>=1.4.0
+python-dotenv
+ast
+json

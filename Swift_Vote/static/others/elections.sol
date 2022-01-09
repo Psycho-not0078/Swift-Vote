@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0 <0.9.0;
     
     contract Election {
@@ -38,7 +39,6 @@ pragma solidity >=0.7.0 <0.9.0;
         constructor(){
             init(msg.sender);
         }
-    
         function init(address _ad) private{
             userCount+=1;
             officialCount+=1;
@@ -63,16 +63,17 @@ pragma solidity >=0.7.0 <0.9.0;
             if (_ablityType==1){
                 users[_ad].ablity_to_vote=_value;
             }
-        else if(_ablityType==2){
-                users[_ad].ablity_to_add=_value;
-                if (_value==1){
-                    officialCount+=1;
+
+            else if(_ablityType==2){
+                    users[_ad].ablity_to_add=_value;
+                    if (_value==1){
+                        officialCount+=1;
+                    }
+                    else{
+                        officialCount-=1;
+                    }
                 }
-                else{
-                    officialCount-=1;
-                }
-            }
-    
+
             else if(_ablityType==3){
                 users[_ad].ablity_to_change=_value;
                 if (_value==1){
@@ -83,13 +84,11 @@ pragma solidity >=0.7.0 <0.9.0;
                 }
             }
         }
-    
         function disableVoteAblity(address _ad) private { 
             if (users[_ad].ablity_to_vote==1) {
                 users[_ad].ablity_to_vote=0;
             }
         }
-    
         function listVoters() public view returns (address  [] memory){
             require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes("admin")),"the role doesnt allow it");
             address[] memory addressesses = new address[](voterCount);
@@ -103,7 +102,6 @@ pragma solidity >=0.7.0 <0.9.0;
             }
             return addressesses;
         }
-    
         function listOfficials() public view returns (address  [] memory){
             require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes("admin")),"the role doesnt allow it");
             address[] memory addressesses = new address[](officialCount);
@@ -130,36 +128,46 @@ pragma solidity >=0.7.0 <0.9.0;
             }
             return names;
         }
-    function vote(string memory _name, string memory _location,string memory _date) public{
-        require(users[msg.sender].ablity_to_vote==1,"the role doesnt allow it");
-        require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes("user")),"the role doesnt allow it");
-        require(keccak256(bytes(users[msg.sender].location))==keccak256(bytes(candidates[_name].location)),"error 404");
-        voteCount+=1;
-        uint256 _id=0;
-        uint256 i=1;
-        for(i=1;i<=candidateCount;i++){
-            if (keccak256(bytes(candidateNames[i]))==keccak256(bytes(_name))){
-                _id=i;
+        function vote(string memory _name, string memory _location,string memory _date) public{
+            require(users[msg.sender].ablity_to_vote==1,"the role doesnt allow it");
+            require(keccak256(bytes(users[msg.sender].tag))==keccak256(bytes("user")),"the role doesnt allow it");
+            require(keccak256(bytes(users[msg.sender].location))==keccak256(bytes(candidates[_name].location)),"error 404");
+            voteCount+=1;
+            uint256 _id=0;
+            uint256 i=1;
+            for(i=1;i<=candidateCount;i++){
+                if (keccak256(bytes(candidateNames[i]))==keccak256(bytes(_name))){
+                    _id=i;
+                }
             }
+            votes[voteCount]=vt(voteCount, _id, _location, _date);
+            disableVoteAblity(msg.sender);
         }
-        votes[voteCount]=vt(voteCount, _id, _location, _date);
-        disableVoteAblity(msg.sender);
-    }
-    function countVote(string memory _name) public view returns (uint256 _count){
-        uint256 _vtcount=0;
-        uint256 i=1;
-        uint256 _id=0;
-        uint256 j=1;
-        for(j=1;j<=candidateCount;j++){
-            if (keccak256(bytes(candidateNames[j]))==keccak256(bytes(_name))){
-                _id=j;
+        function countVote(string memory _name) public view returns (uint256 _count){
+            uint256 _vtcount=0;
+            uint256 i=1;
+            uint256 _id=0;
+            uint256 j=1;
+            for(j=1;j<=candidateCount;j++){
+                if (keccak256(bytes(candidateNames[j]))==keccak256(bytes(_name))){
+                    _id=j;
+                }
             }
-        }
-        for(i=1;i<=voteCount;i++){
-            if (votes[i].cid==_id){
-                _vtcount+=1;
+            for(i=1;i<=voteCount;i++){
+                if (votes[i].cid==_id){
+                    _vtcount+=1;
+                }
             }
+            return _vtcount;
         }
-        return _vtcount;
-    }
+        function randomInt(uint256 _limits) private view returns (uint256 _count){
+            uint256 rand = uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp)));
+            return rand % _limits;
+        }
+        function randomVoter() public view returns (address _ad ){
+            address[] memory avaliableAddresses = listVoters();
+            uint256 limit=uint256(avaliableAddresses.length);
+            return avaliableAddresses[randomInt(limit)];
+        }
+
     }
