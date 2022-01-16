@@ -114,3 +114,4 @@ Swift_Vote/frontend/__pycache__
 #spam
 ./genesis.json/
 blockchain/data
+Swift_Vote/Swift_Vote/.env

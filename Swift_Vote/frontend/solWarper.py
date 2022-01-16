@@ -5,9 +5,7 @@ import solcx
 from django.conf import settings
 from django.conf.urls.static import static
 import os
-import dotenv
-import json, ast
-dotenv.load_dotenv()
+import ast,json
 w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
 
 def compile_source():
@@ -199,25 +197,36 @@ def deploy_contract():
 def tobeornottobe():
     # same deploy function 
     # but uses env variables to ensure that the contract isnt redeployed
-    address=""
-    abi=""
-    if (dotenv.get_key(dotenv_path=".env",key_to_get='ADDRESS')!=""):
-        address=dotenv.get_key(dotenv_path=".env",key_to_get='ADDRESS')
-        abi_2=dotenv.get_key(dotenv_path=".env",key_to_get='ABI')
+    address,abi_2=settings.GETENV()
+    if (address!=""):#if already deployed
         abi=ast.literal_eval(abi_2)
-        print("contract found enabling handle")
-    else:
-        print("deploying after compile")
+        try:
+            handle=w3.eth.contract(address,abi)
+        except exception as e:#if the said address doesnt contain the deployed contract
+            print("compiling...")
+            compiled_sol = compile_source()
+            contract_id, contract_interface = compiled_sol.popitem()
+            contract = w3.eth.contract(
+                abi=contract_interface['abi'],
+                bytecode=contract_interface['bin'])
+            contract_hash=contract.constructor().transact({'from': w3.personal.listAccounts[0]})
+            print("deployed...")
+            address = w3.eth.waitForTransactionReceipt(contract_hash)['contractAddress']
+            abi=contract_interface['abi']
+            e=settings.SETENV(address,abi)
+        print("contract found enabling handler")
+    else:# if the contract isnt complied and deployed
+        print("compiling...")
         compiled_sol = compile_source()
         contract_id, contract_interface = compiled_sol.popitem()
         contract = w3.eth.contract(
             abi=contract_interface['abi'],
             bytecode=contract_interface['bin'])
         contract_hash=contract.constructor().transact({'from': w3.personal.listAccounts[0]})
+        print("deployed...")
         address = w3.eth.waitForTransactionReceipt(contract_hash)['contractAddress']
         abi=contract_interface['abi']
-        dotenv.set_key(dotenv_path=".env",key_to_set='ADDRESS',value_to_set=str(address))
-        dotenv.set_key(dotenv_path=".env",key_to_set="ABI",value_to_set=str(abi))
+        e=settings.SETENV(address,abi)
         # contract_handle=w3.eth.contract(address=address,abi=contract_interface['abi'])
     contract_handle=w3.eth.contract(address=address,abi=abi)
     return contract_handle

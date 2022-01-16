@@ -11,9 +11,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 
+from logging import exception
 from pathlib import Path
 import os
-
+import dotenv
+import json, ast
+dotenv.load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -152,3 +155,21 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'voteswift@gmail.com'
 EMAIL_HOST_PASSWORD = 'random!@#'
+
+
+def SETENV(Addr,Abi):
+    fin=True
+    try:
+        dotenv.set_key(dotenv_path=".env",key_to_set='ADDRESS',value_to_set=str(Addr))
+        dotenv.set_key(dotenv_path=".env",key_to_set='ADDRESS',value_to_set=str(Abi))
+    except exception as e:
+        print(e)
+        fin=False
+    return fin
+
+def GETENV():
+    Address=""
+    Abi=""
+    Address=dotenv.get_key(dotenv_path=".env",key_to_get='ADDRESS')
+    Abi=dotenv.get_key(dotenv_path=".env",key_to_get='ABI')
+    return (Address,Abi)
