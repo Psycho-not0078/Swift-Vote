@@ -24,18 +24,19 @@ services:
        MYSQL_ROOT_PASSWORD: password#123
        DMYSQL_UNIX_ADDR: "/var/lib/mysql/mysql.sock"
        TZ: "Asia/Kolkata"
-  # web:
-  #   build: .
-  #   command: >
-  #     sh -c   "
-              # python manage.py makemigrations &&
-              # python manage.py makemigrations frontend &&
-              # python manage.py migrate --fake &&
-              # python manage.py runserver 0.0.0.0:8000"
-  #   volumes:
-  #     - .:/my_app_dir
+  web:
+    build: .
+    command: >
+      sh -c   "echo 'sleeping for 2 minutes' && sleep 2m &&
+              python manage.py makemigrations &&
+              python manage.py makemigrations frontend &&
+              python manage.py migrate --fake &&
+              python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/my_app_dir
     
-  #   ports:
-  #     - "8001:8000"
-  #   depends_on:
-  #     - db
+    ports:
+      - "8001:8000"
+    depends_on:
+      - db
+      - blockchain

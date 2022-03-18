@@ -1,3 +1,4 @@
+mysql-connector-python
 mysqlclient>=2.0.1
 django>=3.1.14
 django-mysql>=3.9
@@ -11,5 +12,5 @@ selenium==3.141.0
 ethtoken>=0.0.1a4
 py-geth>=1.4.0
 python-dotenv
-ast
-json
+# ast
+# json

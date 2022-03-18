@@ -10,8 +10,9 @@ w3 = web3.Web3(web3.HTTPProvider("http://127.0.0.1:8545"))
 
 def compile_source():
     #cant use the conile files as static files are problematic in nature
-    solcx.install_solc()
-    source="pragma solidity >=0.7.0 <0.9.0;\
+
+    source="pragma solidity >=0.7.0;\
+        pragma experimental ABIEncoderV2;\
     contract Election {\
         struct vt { \
             uint256 id;\
@@ -198,7 +199,8 @@ def tobeornottobe():
     # same deploy function 
     # but uses env variables to ensure that the contract isnt redeployed
     address,abi_2=settings.GETENV()
-    if (address!=""):#if already deployed
+    print(address,abi_2)
+    if (address!=None):#if already deployed
         abi=ast.literal_eval(abi_2)
         try:
             handle=w3.eth.contract(address,abi)
